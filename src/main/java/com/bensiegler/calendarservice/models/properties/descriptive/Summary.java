@@ -15,6 +15,7 @@ public class Summary extends Property {
     }
 
     public Summary(String content) {
+        super("SUMMARY");
         this.content = content;
     }
 

@@ -15,6 +15,7 @@ public class Categories extends Property {
     }
 
     public Categories(ArrayList<?> content) {
+        super("CATEGORIES");
         this.content = content;
     }
 

@@ -10,6 +10,11 @@ public class Method extends Property {
         super("METHOD");
     }
 
+    public Method(String content) {
+        super("METHOD");
+        this.content = content;
+    }
+
     public String getContent() {
         return content;
     }

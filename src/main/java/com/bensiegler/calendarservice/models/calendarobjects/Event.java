@@ -22,6 +22,7 @@ import com.bensiegler.calendarservice.models.properties.temporal.misc.Transparen
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,15 +31,14 @@ public class Event extends CalendarObject{
     //universal add method
     public void addProperty(Property p) {
         Field[] fields = this.getClass().getDeclaredFields();
-
-        for (Field f : fields) {
+        int i = 0;
+        for(Field f : fields) {
             f.setAccessible(true);
 
             try {
                 if (f.getType().equals(p.getClass())) {
-                    f.set(f.getType(), p);
-                }else if(f.getType().equals(ArrayList.class)) {
-
+                    f.set(this, p);
+                }else if(f.getType().equals(ArrayList.class) && p.getName().equalsIgnoreCase(f.getName())) {
                     if (p instanceof Attachment) {
                         attachments.add((Attachment) p);
                     } else if (p instanceof Attendee) {
@@ -63,7 +63,6 @@ public class Event extends CalendarObject{
                 }
             }catch (IllegalAccessException e) {
                 //should not happen
-                continue;
             }
             f.setAccessible(false);
         }
@@ -267,16 +266,16 @@ public class Event extends CalendarObject{
     }
 
     //optional, more than once
-    private ArrayList<Attachment> attachments;
-    private ArrayList<Attendee> attendees;
-    private ArrayList<Categories> categories;
-    private ArrayList<Comment> comments;
-    private ArrayList<Contact> contacts;
-    private ArrayList<ExceptionsProperty> exceptionsDates;
-    //U can include statuses if you would like
-    private ArrayList<RelatedTo> relationships;
-    private ArrayList<Resources> resources;
-    private ArrayList<RecurrenceDates> recurrenceDates;
+    private ArrayList<Attachment> attachments = new ArrayList<>();
+    private ArrayList<Attendee> attendees = new ArrayList<>();
+    private ArrayList<Categories> categories = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Contact> contacts = new ArrayList<>();
+    private ArrayList<ExceptionsProperty> exceptionsDates = new ArrayList<>();
+// TODO include statuses
+    private ArrayList<RelatedTo> relationships = new ArrayList<>();
+    private ArrayList<Resources> resources = new ArrayList<>();
+    private ArrayList<RecurrenceDates> recurrenceDates = new ArrayList<>();
 
     public ArrayList<Attachment> getAttachments() {
         return attachments;
@@ -352,7 +351,7 @@ public class Event extends CalendarObject{
     }
 
     @Override
-    public void writeToCalStreamFile(BufferedWriter writer) throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VEVENT");
@@ -373,13 +372,18 @@ public class Event extends CalendarObject{
                 for(Property p: list) {
                     lines.add(Property.toCalStream(p));
                 }
-            }else {
-                Property p = (Property) f.get(this);
-                lines.add(Property.toCalStream(p));
+            }else if(!f.getName().equals("parent")) {
+                try {
+                   Property p  = (Property) f.get(this);
+                   lines.add(Property.toCalStream(p));
+                }catch (NullPointerException e) {
+                    //do nothing
+                }
+
             }
         }
         lines.add("END:VEVENT");
-        Calendar.writeLines(lines, writer);
+        return lines;
     }
 
     @Override
@@ -394,6 +398,10 @@ public class Event extends CalendarObject{
 
         if(null == dateTimeStamp) {
             throw new CalObjectException("DateTimeStamp is required for an Event");
+        }
+
+        if(null == dateTimeStart) {
+            throw new CalObjectException("DateTimeStart is required for an event");
         }
 
         if(null == parent.getMethod() && null == dateTimeStart) {

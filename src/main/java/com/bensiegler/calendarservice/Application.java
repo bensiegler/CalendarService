@@ -8,25 +8,32 @@ import com.bensiegler.calendarservice.models.calendarobjects.Event;
 import com.bensiegler.calendarservice.models.properties.Property;
 import com.bensiegler.calendarservice.models.properties.changemanagement.DateTimeStamp;
 import com.bensiegler.calendarservice.models.properties.descriptive.Categories;
+import com.bensiegler.calendarservice.models.properties.descriptive.Method;
 import com.bensiegler.calendarservice.models.properties.descriptive.ProductIdentifier;
 import com.bensiegler.calendarservice.models.properties.descriptive.Summary;
 import com.bensiegler.calendarservice.models.properties.relational.UID;
+import com.bensiegler.calendarservice.models.properties.temporal.dt.datetime.DateTimeStart;
 import com.bensiegler.calendarservice.models.properties.temporal.misc.Duration;
+import com.bensiegler.calendarservice.models.properties.temporal.misc.RecurrenceRule;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args) throws PropertyException, CalObjectException {
-//        SpringApplication.run(Application.class, args);
+    public static void main(String[] args) throws PropertyException, CalObjectException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        SpringApplication.run(Application.class, args);
 
         Calendar calendar = new Calendar();
         calendar.setProductIdentifier(new ProductIdentifier("64969478593"));
+        calendar.setMethod(new Method("PUBLISH"));
+
 
         //event setup
         Event event = new Event();
@@ -34,10 +41,14 @@ public class Application {
         event.addProperty(new Summary("WE ARE TESTING THE CAL STREAM!"));
         event.addProperty(new UID("item 1"));
         event.addProperty(new DateTimeStamp(System.currentTimeMillis()));
+        event.addProperty(new DateTimeStart(System.currentTimeMillis()));
+        event.addProperty(new RecurrenceRule("FREQ=DAILY;INTERVAL=1"));
         ArrayList<String> categories = new ArrayList<>();
         categories.add("TEST");
         categories.add("WHOOP WHOOP");
         event.addProperty(new Categories(categories));
+        event.setParent(calendar);
+        calendar.addCalObject(event);
         calendar.writeCalStreamToFile();
     }
 

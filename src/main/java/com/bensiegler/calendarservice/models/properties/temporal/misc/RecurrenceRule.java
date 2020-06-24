@@ -10,6 +10,11 @@ public class RecurrenceRule extends Property {
         super("RRULE");
     }
 
+    public RecurrenceRule(String content) {
+        super("RRULE");
+        this.content = content;
+    }
+
     public String getContent() {
         return content;
     }

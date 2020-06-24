@@ -88,19 +88,19 @@ public class Calendar {
             lines.add(Property.toCalStream(version));
 
             for(TimeZone tz: timeZones) {
-                tz.writeToCalStreamFile(writer);
+                lines.addAll(tz.getCalStream());
             }
 
             for(Event e: events) {
-                e.writeToCalStreamFile(writer);
+                lines.addAll(e.getCalStream());
             }
 
             for(ToDo toDo: toDos) {
-                toDo.writeToCalStreamFile(writer);
+                lines.addAll(toDo.getCalStream());
             }
 
             for(FreeBusy freeBusy: freeBusies) {
-                freeBusy.writeToCalStreamFile(writer);
+                lines.addAll(freeBusy.getCalStream());
             }
 
             lines.add("END:VCALENDAR");

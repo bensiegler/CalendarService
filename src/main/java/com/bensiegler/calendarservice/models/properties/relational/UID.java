@@ -12,6 +12,7 @@ public class UID extends Property {
     }
 
     public UID(String content) {
+        super("UID");
         this.content = content;
     }
 

@@ -26,7 +26,7 @@ public abstract class CalendarObject {
         return unknownProperties;
     }
 
-    public abstract void writeToCalStreamFile(BufferedWriter writer) throws IllegalAccessException, PropertyException, CalObjectException, IOException;
+    public abstract ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException;
 
     public abstract void validate() throws CalObjectException;
 }

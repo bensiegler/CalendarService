@@ -5,12 +5,13 @@ import com.bensiegler.calendarservice.exceptions.PropertyException;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TimeZone extends CalendarObject{
 
     @Override
-    public void writeToCalStreamFile(BufferedWriter writer) throws IllegalAccessException, PropertyException, CalObjectException, IOException {
-
+    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+        return new ArrayList<>();
     }
 
     @Override

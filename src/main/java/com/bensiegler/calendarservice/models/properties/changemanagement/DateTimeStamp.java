@@ -13,6 +13,7 @@ public class DateTimeStamp extends Property {
     }
 
     public DateTimeStamp(Long timeInMillis) {
+        super("DTSTAMP");
         this.content = new DateTime(timeInMillis);
     }
 

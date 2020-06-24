@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/WebSec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/CalendarObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/CalendarObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/FreeBusy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/FreeBusy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/TimeZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/TimeZone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calendarobjects/ToDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/changemanagement/DateTimeStamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/changemanagement/DateTimeStamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Categories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Categories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Summary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/descriptive/Summary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/relational/UID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/relational/UID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/temporal/misc/Duration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/temporal/misc/Duration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/temporal/misc/RecurrenceRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/temporal/misc/RecurrenceRule.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dXMuFQH2YdJW89Og7EpPyZk6jB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.bensiegler.calendarservice.models.properties" />
+      <recent name="com.bensiegler.calendarservice.models.properties.descriptive" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Application (1)">
+    <configuration name="Application (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bensiegler.calendarservice.Application" />
+      <module name="CalendarService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bensiegler.calendarservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClassificationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CalendarService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bensiegler.calendarservice.models.properties.descriptive.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive" />
+      <option name="MAIN_CLASS_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive.ClassificationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClassificationTest.testCalStream" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CalendarService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bensiegler.calendarservice.models.properties.descriptive.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive" />
+      <option name="MAIN_CLASS_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive.ClassificationTest" />
+      <option name="METHOD_NAME" value="testCalStream" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CalendarService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bensiegler.calendarservice.models.properties.descriptive.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive" />
+      <option name="MAIN_CLASS_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive.CommentTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommentTest.testCalStream" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CalendarService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bensiegler.calendarservice.models.properties.descriptive.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive" />
+      <option name="MAIN_CLASS_NAME" value="com.bensiegler.calendarservice.models.properties.descriptive.CommentTest" />
+      <option name="METHOD_NAME" value="testCalStream" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Application (1)" />
+      <item itemvalue="JUnit.ClassificationTest.testCalStream" />
+      <item itemvalue="JUnit.ClassificationTest" />
+      <item itemvalue="JUnit.CommentTest" />
+      <item itemvalue="JUnit.CommentTest.testCalStream" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application (1)" />
+        <item itemvalue="JUnit.CommentTest.testCalStream" />
+        <item itemvalue="JUnit.CommentTest" />
+        <item itemvalue="JUnit.ClassificationTest" />
+        <item itemvalue="JUnit.ClassificationTest.testCalStream" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="" />
+      <created>1592567204142</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592567204142</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="354" y="147" key="#Inspections" timestamp="1592926105514">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="354" y="147" key="#Inspections/0.23.1440.877@0.23.1440.877" timestamp="1592926105514" />
+    <state x="277" y="23" key="#Java" timestamp="1592585300168">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="277" y="23" key="#Java/0.23.1440.877@0.23.1440.877" timestamp="1592585300168" />
+    <state x="208" y="43" key="#Project_Structure" timestamp="1592567348139">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="208" y="43" key="#Project_Structure/0.23.1440.877@0.23.1440.877" timestamp="1592567348139" />
+    <state x="479" y="236" key="#TODO" timestamp="1592818120198">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="479" y="236" key="#TODO/0.23.1440.877@0.23.1440.877" timestamp="1592818120198" />
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592736971554">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1592736971554" />
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1592731379410">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.877@0.23.1440.877" timestamp="1592731379410" />
+    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593029970432">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1593029970432" />
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1593029635129">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1593029635129" />
+    <state x="0" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1593002444153">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="0" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.877@0.23.1440.877" timestamp="1593002444153" />
+    <state x="396" y="337" width="676" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1593031523715">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="396" y="337" width="676" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.877@0.23.1440.877" timestamp="1593031523715" />
+    <state x="229" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592993991958">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="229" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1592993991958" />
+    <state x="458" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592919578721">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="458" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877@0.23.1440.877" timestamp="1592919578721" />
+    <state x="353" y="328" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1592951903826">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="353" y="328" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.877@0.23.1440.877" timestamp="1592951903826" />
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom" timestamp="1593033430968">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1593033430968" />
+    <state width="1398" height="231" key="GridCell.Tab.0.center" timestamp="1593033430968">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="231" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1593033430968" />
+    <state width="1398" height="231" key="GridCell.Tab.0.left" timestamp="1593033430967">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="231" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1593033430967" />
+    <state width="1398" height="231" key="GridCell.Tab.0.right" timestamp="1593033430968">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="231" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1593033430968" />
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1593033154423">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1593033154423" />
+    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1593033154422">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1593033154422" />
+    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1593033154422">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1593033154422" />
+    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1593033154422">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1593033154422" />
+    <state x="335" y="168" key="NewModule_or_Project.wizard" timestamp="1592663116861">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="335" y="168" key="NewModule_or_Project.wizard/0.23.1440.877@0.23.1440.877" timestamp="1592663116861" />
+    <state x="221" y="63" key="SettingsEditor" timestamp="1593026871266">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="221" y="63" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1593026871266" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1592996900481">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1592996900481" />
+    <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592760221166">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1592760221166" />
+    <state x="563" y="244" key="refactoring.ChangeSignatureDialog" timestamp="1592579800565">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="563" y="244" key="refactoring.ChangeSignatureDialog/0.23.1440.877@0.23.1440.877" timestamp="1592579800565" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1593027985746">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1593027985746" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/bensiegler/calendarservice/models/properties/descriptive/CategoriesTest.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/properties/temporal/misc/RecurrenceDates.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

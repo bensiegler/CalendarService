@@ -11,7 +11,10 @@ public class Duration extends Property {
     }
 
     public Duration(Long timeInMillis) {
+        super("DURATION");
         content = java.time.Duration.ofMillis(timeInMillis);
+        System.out.println(this.content.toSeconds());
+        this.content = java.time.Duration.ofSeconds(this.content.toSeconds());
     }
 
     public java.time.Duration getContent() {
@@ -20,6 +23,8 @@ public class Duration extends Property {
 
     public void setContent(java.time.Duration content) {
         this.content = content;
+        System.out.println(this.content.toSeconds());
+        this.content = java.time.Duration.ofSeconds(this.content.toSeconds());
     }
 
     @Override
@@ -28,4 +33,6 @@ public class Duration extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+
 }
