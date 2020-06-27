@@ -1,13 +1,11 @@
 package com.bensiegler.calendarservice.models.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.parameters.string.Language;
-import com.bensiegler.calendarservice.models.properties.Property;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import org.apache.ibatis.annotations.Lang;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
+import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.Categories;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -36,13 +34,13 @@ public class CategoriesTest {
         Categories categories = new Categories();
 
         ArrayList<String> content = new ArrayList<>();
-        categories.setContent(content);
+        categories.setContent(content.toArray(String[]::new));
         content.add("APPOINTMENT");
 
         assertEquals("CATEGORIES:APPOINTMENT", Property.toCalStream(categories));
 
         content.add("EDUCATION");
-
+        categories.setContent(content.toArray(String[]::new));
         assertEquals("CATEGORIES:APPOINTMENT,EDUCATION", Property.toCalStream(categories));
 
         Language language = new Language("EN-us");

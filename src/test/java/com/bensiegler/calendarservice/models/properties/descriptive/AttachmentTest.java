@@ -2,11 +2,11 @@ package com.bensiegler.calendarservice.models.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.ParameterException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.parameters.string.UnknownParameter;
-import com.bensiegler.calendarservice.models.parameters.misc.FormatType;
-import com.bensiegler.calendarservice.models.parameters.string.Encoding;
-import com.bensiegler.calendarservice.models.parameters.string.StringParameter;
-import com.bensiegler.calendarservice.models.parameters.string.ValueType;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
+import com.bensiegler.calendarservice.models.calstandard.parameters.misc.FormatType;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.Encoding;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
+import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.Attachment;
 import org.junit.Test;
 
 import java.util.ArrayList;

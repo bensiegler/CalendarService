@@ -1,16 +1,28 @@
 package com.bensiegler.calendarservice.controllers;
 
-import org.springframework.stereotype.Controller;
+import com.bensiegler.calendarservice.exceptions.CalObjectException;
+import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
+import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.dbmodel.DBCalendar;
+import com.bensiegler.calendarservice.repositories.CalendarRepo;
+import com.bensiegler.calendarservice.services.CalendarStreamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 @RestController
 public class CalStreamController {
+
+    @Autowired
+    CalendarRepo calendarRepo;
+
+    @Autowired
+    CalendarStreamService streamService;
 
     @GetMapping()
     public String getCalStream() {
@@ -30,5 +42,10 @@ public class CalStreamController {
         return calStream;
     }
 
+    @GetMapping("/test/{id}")
+    public String getCal(@PathVariable(name = "id") Long id) throws PropertyException, CalendarObjectMappingException, CalObjectException {
+         streamService.generate_iCalendarStream(id);
+         return "check file";
+    }
 
 }
