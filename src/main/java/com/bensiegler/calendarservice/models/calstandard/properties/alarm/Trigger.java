@@ -79,6 +79,11 @@ public class Trigger extends Property {
     }
 
     @Override
+    public void setContentUsingString(String content) {
+        setContent(Long.parseLong(content));
+    }
+
+    @Override
     public void validate() throws PropertyException {
         if(null != alarmTriggerRelationship && null == duration) {
             throw new PropertyException("If alarm trigger relationship is specified a duration must also be specified.");

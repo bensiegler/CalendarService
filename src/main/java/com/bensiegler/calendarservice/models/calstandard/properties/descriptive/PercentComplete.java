@@ -23,6 +23,13 @@ public class PercentComplete extends Property {
 
     @Override
     public void validate() throws PropertyException {
+        if(null == content) {
+            throw new PropertyException("Content cannot be null");
+        }
+    }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = Integer.parseInt(content);
     }
 }

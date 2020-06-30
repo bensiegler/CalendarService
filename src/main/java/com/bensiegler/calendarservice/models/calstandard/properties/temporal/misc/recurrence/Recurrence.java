@@ -1,6 +1,5 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence;
 
-import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.TemporalProperty;

@@ -4,7 +4,6 @@ import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
-//note this class only extends property and not DateTimeProperty as is does not allow TZID and VALUE fields.
 public class DateTimeCompleted extends Property {
     private DateTime content;
 
@@ -22,6 +21,15 @@ public class DateTimeCompleted extends Property {
 
     @Override
     public void validate() throws PropertyException {
-
+        if(null == content) {
+            throw new PropertyException("content cannot be null");
+        }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = new DateTime(Long.parseLong(content));
+    }
+
+
 }

@@ -25,4 +25,12 @@ public class TZIdentifierProperty extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        String[] holder = content.split("/");
+        this.content = new TimeZoneIdentifier(holder[0], holder[1]);
+    }
+
+
 }

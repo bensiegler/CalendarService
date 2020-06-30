@@ -62,6 +62,10 @@ public class Attachment extends Property {
         }
     }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
 
 
     //TODO this is the start of being able to interpret someone else calendar stream. Currently not essential.

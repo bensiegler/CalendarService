@@ -30,6 +30,13 @@ public class RelatedTo extends Property {
 
     @Override
     public void validate() throws PropertyException {
+        if(null == content) {
+            throw new PropertyException("content cannot be null");
+        }
+    }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
     }
 }

@@ -1,9 +1,8 @@
-package com.bensiegler.calendarservice.models.dbmodel;
+package com.bensiegler.calendarservice.models.dbmodels;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 @Entity
 @Table(name = "parameters")
 public class DBParameter {

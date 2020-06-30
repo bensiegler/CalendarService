@@ -14,7 +14,7 @@ public class DateTimeDue extends Due {
     }
 
     public DateTimeDue(Long timeInMillis) {
-        super(new ValueType("DATE"));
+        super(new ValueType("DATETIME"));
         this.content = new DateTime(timeInMillis);
     }
 
@@ -31,5 +31,10 @@ public class DateTimeDue extends Due {
         if(null == content) {
             throw new PropertyException("Content cannot be null");
         }
+    }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = new DateTime(Long.parseLong(content));
     }
 }

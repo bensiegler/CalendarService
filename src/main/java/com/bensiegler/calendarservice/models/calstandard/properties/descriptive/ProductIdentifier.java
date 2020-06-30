@@ -30,5 +30,9 @@ public class ProductIdentifier extends Property {
         }
     }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
 
 }

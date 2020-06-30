@@ -31,4 +31,9 @@ public class DateStart extends Start {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = new Date(Long.parseLong(content));
+    }
 }

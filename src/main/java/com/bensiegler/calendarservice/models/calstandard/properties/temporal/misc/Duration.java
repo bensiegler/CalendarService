@@ -33,5 +33,10 @@ public class Duration extends Property {
         }
     }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = java.time.Duration.ofMillis(Long.parseLong(content));
+    }
+
 
 }

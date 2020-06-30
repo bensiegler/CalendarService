@@ -30,5 +30,10 @@ public class Method extends Property {
         }
     }
 
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
+
 
 }

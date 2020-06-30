@@ -2,6 +2,7 @@ package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.UnknownProperty;
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
@@ -10,15 +11,10 @@ import com.bensiegler.calendarservice.models.calstandard.properties.changemanage
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Sequence;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.*;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.DateTimeStart;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.End;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.ExceptionsProperty;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.RecurrenceID;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Duration;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.*;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.*;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.RecurrencePeriods;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Transparency;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -351,7 +347,7 @@ public class Event extends CalendarObject{
     }
 
     @Override
-    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VEVENT");
@@ -401,7 +397,7 @@ public class Event extends CalendarObject{
         }
 
         if(null == dateTimeStart) {
-            throw new CalObjectException("DateTimeStart is required for an event");
+            throw new CalObjectException("DateTimeStart is required for an Event");
         }
 
         if(null == parent.getMethod() && null == dateTimeStart) {

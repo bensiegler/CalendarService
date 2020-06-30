@@ -35,4 +35,20 @@ public class TZOffsetFrom extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        int hours;
+        int mins;
+        if(content.contains("+")) {
+            hours = Integer.parseInt(content.substring(1, 3));
+            mins = Integer.parseInt(content.substring(3, 5));
+        }else {
+            hours = Integer.parseInt(content.substring(0, 2));
+            mins = Integer.parseInt(content.substring(2, 4));
+        }
+        setNegativeOffset(hours, mins);
+    }
+
+
 }

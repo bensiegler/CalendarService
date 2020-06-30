@@ -44,4 +44,9 @@ public class Description extends Property {
             throw new PropertyException("content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
 }

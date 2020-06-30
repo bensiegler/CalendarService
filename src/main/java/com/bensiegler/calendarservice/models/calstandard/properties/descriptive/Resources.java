@@ -48,4 +48,10 @@ public class Resources extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        String[] resources = content.split(",");
+        this.content = new ArrayList<>(Arrays.asList(resources));
+    }
 }

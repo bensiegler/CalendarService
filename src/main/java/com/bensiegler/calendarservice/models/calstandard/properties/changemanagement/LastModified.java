@@ -26,4 +26,10 @@ public class LastModified extends Property {
         }
     }
 
+    @Override
+    public void setContentUsingString(String content) {
+        setContent(Long.parseLong(content));
+    }
+
+
 }

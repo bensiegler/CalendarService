@@ -26,4 +26,11 @@ public class TimeLength extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = Duration.ofMillis(Integer.parseInt(content));
+    }
+
+
 }

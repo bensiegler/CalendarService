@@ -1,19 +1,22 @@
 package com.bensiegler.calendarservice.controllers;
 
+import com.bensiegler.NumberGenerators;
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.dbmodel.DBCalendar;
 import com.bensiegler.calendarservice.repositories.CalendarRepo;
 import com.bensiegler.calendarservice.services.CalendarStreamService;
+import com.bensiegler.calendarservice.services.CalendarTestService;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 @RestController
 public class CalStreamController {
@@ -23,6 +26,9 @@ public class CalStreamController {
 
     @Autowired
     CalendarStreamService streamService;
+
+    @Autowired
+    CalendarTestService calendarTestService;
 
     @GetMapping()
     public String getCalStream() {
@@ -42,10 +48,75 @@ public class CalStreamController {
         return calStream;
     }
 
-    @GetMapping("/test/{id}")
-    public String getCal(@PathVariable(name = "id") Long id) throws PropertyException, CalendarObjectMappingException, CalObjectException {
-         streamService.generate_iCalendarStream(id);
-         return "check file";
+    public String getRandomCal() throws PropertyException, CalendarObjectMappingException, CalObjectException {
+        //make random changes. to database as to model people using this
+        String name = calendarTestService.insertNewCalendar();
+        streamService.generate_iCalendarStream(name);
+        String calStream = "";
+         try (BufferedReader inputReader = new BufferedReader(
+                new FileReader("/Users/bensiegler/Library/Mobile Documents/com~apple~CloudDocs/Documents/CodingShit/Tools/CalendarService/src/main/resources/calendarstreams/" + name + "##testCal"))) {
+
+            String line;
+            while ((line = inputReader.readLine()) != null ) {
+                calStream += line + "\n";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return calStream;
+
+    }
+
+    @GetMapping("seltest")
+    public void seleniumTest() throws CalendarObjectMappingException, CalObjectException, PropertyException {
+        Long randomNum = Long.parseLong(String.valueOf(NumberGenerators.randomNumberWithFixedLength(8)));
+        WebDriver driver = null;
+        try {
+            driver = new HtmlUnitDriver();
+            driver.get("https://icalendar.org/validator.html");
+            WebElement validatorForm = driver.findElement(By.name("jform[ical_text]"));
+            String calStream = getRandomCal();
+            validatorForm.sendKeys(calStream);
+            validatorForm.submit();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/bensiegler/Library/Mobile Documents/com~apple~CloudDocs/Documents/CodingShit/Tools/CalendarService/src/main/resources/calendarstreams/analysis/info"))) {
+                int indexOfPRODID = calStream.indexOf("PRODID:") + + "PRODID:".length();
+                int endOfActualPRODID = indexOfPRODID + 6 + "##testCal".length();
+                String prodid = calStream.substring(indexOfPRODID, endOfActualPRODID);
+                writer.write(prodid);
+                try {
+                    WebElement warning = driver.findElement(By.className("alert-warning"));
+                    writer.write(warning.getText());
+                }catch (NoSuchElementException e) {
+                    //do nothing
+                }
+
+                try {
+                    WebElement danger = driver.findElement(By.className("alert-danger"));
+                    writer.write(danger.getText());
+                }catch (NoSuchElementException e) {
+                    //do nothing
+                }
+
+                try {
+                    WebElement success = driver.findElement(By.className("alert-success"));
+                    writer.write(success.getText());
+                }catch (NoSuchElementException e) {
+                    //do nothing
+                }
+                writer.newLine();
+                writer.newLine();
+            }catch (IOException e) {
+                //should not happen
+            }
+
+        }finally {
+            if(null != driver) {
+                driver.quit();
+            }
+        }
+
+
     }
 
 }

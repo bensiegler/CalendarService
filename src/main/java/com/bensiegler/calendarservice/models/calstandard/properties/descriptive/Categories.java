@@ -42,4 +42,10 @@ public class Categories extends Property {
             throw new PropertyException("Content field not specified!");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        String[] categories = content.split(",");
+        this.content = new ArrayList<>(Arrays.asList(categories));
+    }
 }

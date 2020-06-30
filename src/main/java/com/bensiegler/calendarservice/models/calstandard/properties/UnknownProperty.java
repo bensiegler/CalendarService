@@ -31,4 +31,9 @@ public class UnknownProperty extends Property{
             throw new PropertyException("Unknown parameters are required to both specify a name and value");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
 }

@@ -7,9 +7,6 @@ import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Calendar;
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.CalendarObject;
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Event;
-import com.bensiegler.calendarservice.models.calstandard.datatypes.Date;
-import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
-import com.bensiegler.calendarservice.models.calstandard.datatypes.Period;
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.FormatType;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.RSVPExpectation;
@@ -23,19 +20,19 @@ import com.bensiegler.calendarservice.models.calstandard.properties.relational.C
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.RelatedTo;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.ExceptionsProperty;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.RecurrencePeriods;
-import com.bensiegler.calendarservice.models.dbmodel.DBCalendar;
-import com.bensiegler.calendarservice.models.dbmodel.DBEvent;
-import com.bensiegler.calendarservice.models.dbmodel.DBParameter;
-import com.bensiegler.calendarservice.models.dbmodel.DBProperty;
+import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;
+import com.bensiegler.calendarservice.models.dbmodels.DBEvent;
+import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
+import com.bensiegler.calendarservice.models.dbmodels.DBProperty;
 import com.bensiegler.calendarservice.repositories.CalendarRepo;
+import com.bensiegler.calendarservice.repositories.EventPropertyRepo;
+import com.bensiegler.calendarservice.repositories.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -46,9 +43,17 @@ public class CalendarStreamService {
     @Autowired
     CalendarRepo calendarRepo;
 
+    @Autowired
+    EventRepo eventRepo;
 
-    public void generate_iCalendarStream(Long calendarId) throws CalendarObjectMappingException, CalObjectException, PropertyException {
-        DBCalendar DBCalendar = calendarRepo.findOne(calendarId);
+    @Autowired
+    EventPropertyRepo eventPropertyRepo;
+
+
+    public void generate_iCalendarStream(String name) throws CalendarObjectMappingException, CalObjectException, PropertyException {
+        DBCalendar DBCalendar = calendarRepo.findByName(name);
+        DBCalendar.setDBEvents(eventRepo.findByCalendarId(DBCalendar.getId()));
+        DBCalendar.setEventProperties(eventPropertyRepo.findByCalendarId(DBCalendar.getId()));
         Calendar cal = getCalStandardEvents(DBCalendar);
         cal.writeCalStreamToFile();
     }
@@ -61,7 +66,7 @@ public class CalendarStreamService {
             DBProperty[] properties = dbCalendar.getEventProperties().stream()
                     .filter(property -> property.getEventId().equals(e.getId())).toArray(DBProperty[]::new);
 
-            Stream<DBParameter> stream = dbCalendar.getDBParameters().stream();
+            Stream<DBParameter> stream;
 
             Event event = new Event();
             event.setParent(calendar);
@@ -99,32 +104,34 @@ public class CalendarStreamService {
                     if (field.getType().equals(ArrayList.class)) {
                         //get the name of the field and use that to determine what object you need to create.
                         if (field.getName().equalsIgnoreCase("attachment")) {
-                            addObjectToFieldOfTypeArrayList(Attachment.class, parameters, field, obj);
+                            addObjectToArrayListField(Attachment.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("Attendee")) {
-                            addObjectToFieldOfTypeArrayList(Attendee.class, parameters, field, obj);
+                            addObjectToArrayListField(Attendee.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("Categories")) {
-                            addObjectToFieldOfTypeArrayList(Categories.class, parameters, field, obj);
+                            addObjectToArrayListField(Categories.class, parameters, field, obj);
 
-                        } else if (field.getName().equalsIgnoreCase("Comment")) {
-                            addObjectToFieldOfTypeArrayList(Comment.class, parameters, field, obj);
+                        } else if (field.getName().equalsIgnoreCase("Comments")) {
+                            addObjectToArrayListField(Comment.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("Contact")) {
-                            addObjectToFieldOfTypeArrayList(Contact.class, parameters, field, obj);
+                            addObjectToArrayListField(Contact.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("ExceptionsProperty")) {
-                            addObjectToFieldOfTypeArrayList(ExceptionsProperty.class, parameters, field, obj);
+                            addObjectToArrayListField(ExceptionsProperty.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("RelatedTo")) {
-                            addObjectToFieldOfTypeArrayList(RelatedTo.class, parameters, field, obj);
+                            addObjectToArrayListField(RelatedTo.class, parameters, field, obj);
 
                         } else if (field.getName().equalsIgnoreCase("Resources")) {
-                            addObjectToFieldOfTypeArrayList(Resources.class, parameters, field, obj);
+                            addObjectToArrayListField(Resources.class, parameters, field, obj);
 
-                        } else if (field.getName().equalsIgnoreCase("RecurrenceDates")) {
-                            addObjectToFieldOfTypeArrayList(RecurrencePeriods.class, parameters, field, obj);
-
+                        } else if (field.getName().equalsIgnoreCase("RecurrenceDates") ||
+                                field.getName().equalsIgnoreCase("RecurrencePeriods") ||
+                                field.getName().equalsIgnoreCase("RecurrenceDateTimes")
+                        ) {
+                            addObjectToArrayListField(RecurrencePeriods.class, parameters, field, obj);
                         }
                         field.setAccessible(false);
                         return;
@@ -132,70 +139,20 @@ public class CalendarStreamService {
                         //field is not ArrayList. Create new instance. Map parameters onto it. Set it to correct field;
                         Property newProperty = (Property) field.getType().getDeclaredConstructor().newInstance();
 
-                        Field contentField = newProperty.getClass().getDeclaredField("content");
-                        Method setContentMethod = null;
-                        try {
-                            setContentMethod = newProperty.getClass().getDeclaredMethod("setContent", contentField.getType());
-                        }catch (NoSuchMethodException e) {
-                            Method[] methods = newProperty.getClass().getDeclaredMethods();
-                            for(Method m: methods) {
-                                if(m.getName().equalsIgnoreCase("setContent")) {
-                                    setContentMethod = m;
-                                }
-                            }
 
+                        Method setContentUsingStringMethod = null;
+                        try {
+                            setContentUsingStringMethod = newProperty.getClass().getDeclaredMethod("setContentUsingString", String.class);
+                        }catch (NoSuchMethodException e) {
+                           //should not happen... is enforced in property class as abstract method
                         }
 
-                        if(null == setContentMethod) {
+                        if(null == setContentUsingStringMethod) {
                             throw new Exception("This class is causing trouble " + field.getType());
                         }
 
-                        //TODO you also really have to make this better
-                        if(contentField.getType().equals(String.class)) {
-                            setContentMethod.invoke(newProperty, dbProperty.getContent());
-                        }else if(contentField.getType().equals(Long.class)) {
-                            setContentMethod.invoke(newProperty,Long.parseLong(dbProperty.getContent()));
-                        }else if(contentField.getType().equals(Integer.class)) {
-                            setContentMethod.invoke(newProperty,Integer.parseInt(dbProperty.getContent()));
-                        }else if(contentField.getType().equals(String[].class)) {
-                            String[] contentArr = dbProperty.getContent().split(",");
-                            setContentMethod.invoke(newProperty,contentArr);
-                        }else if(contentField.getType().equals(Duration.class)) {
-                            Duration duration = Duration.ofMillis(Long.parseLong(dbProperty.getContent()));
-                            setContentMethod.invoke(newProperty,duration);
-                        }else if(contentField.getType().equals(Period[].class)) {
-                            String[] stringArr = dbProperty.getContent().split(",");
-                            Period[] periods = new Period[stringArr.length];
 
-                            for(int i = 0; i < stringArr.length; i++) {
-                                String[] substrings = stringArr[i].split("/");
-
-                                periods[i] = new Period(new DateTime(Long.parseLong(substrings[0])),
-                                        Duration.ofMillis(Long.parseLong(substrings[1])));
-                            }
-                            setContentMethod.invoke(newProperty,periods);
-                        }else if(contentField.getType().equals(Date[].class)) {
-                            String[] stringArr = dbProperty.getContent().split(",");
-                            Date[] dates = new Date[stringArr.length];
-
-                            for(int i = 0; i < stringArr.length; i++) {
-                                dates[i] = new Date(Long.parseLong(stringArr[i]));
-                            }
-                            setContentMethod.invoke(newProperty,dates);
-                        }else if(contentField.getType().equals(DateTime[].class)) {
-                            String[] stringArr = dbProperty.getContent().split(",");
-                            DateTime[] dates = new DateTime[stringArr.length];
-
-                            for (int i = 0; i < stringArr.length; i++) {
-                                dates[i] = new DateTime(Long.parseLong(stringArr[i]));
-                            }
-                            setContentMethod.invoke(newProperty,dates);
-                        }else if(contentField.getType().equals(DateTime.class) || contentField.getType().equals(Date.class)) {
-                            setContentMethod.invoke(newProperty,Long.parseLong(dbProperty.getContent()));
-                        }else {
-                            throw new Exception(field.getType() + " is causing trouble");
-                        }
-
+                        setContentUsingStringMethod.invoke(newProperty, dbProperty.getContent());
                         mapParametersToProperty(parameters, newProperty);
 
                         field.set(obj, newProperty);
@@ -216,7 +173,7 @@ public class CalendarStreamService {
     }
 
     @SuppressWarnings({"unchecked"})
-    private void addObjectToFieldOfTypeArrayList(Class<?> newPropertyType, DBParameter[] parameters, Field field, CalendarObject calendarObject) throws CalendarObjectMappingException {
+    private void addObjectToArrayListField(Class<?> newPropertyType, DBParameter[] parameters, Field field, CalendarObject calendarObject) throws CalendarObjectMappingException {
         try {
             Property newProperty = (Property) newPropertyType.getDeclaredConstructor().newInstance();
 

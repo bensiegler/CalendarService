@@ -30,4 +30,9 @@ public class DateTimeStamp extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        setContent(Long.parseLong(content));
+    }
 }

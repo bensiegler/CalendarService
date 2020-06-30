@@ -208,5 +208,5 @@ public abstract class Property {
         return this.getClass().getDeclaredFields();
     }
 
-
+    public abstract void setContentUsingString(String content);
 }

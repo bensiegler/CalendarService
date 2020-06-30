@@ -30,4 +30,9 @@ public class Classification extends Property {
             throw new PropertyException("content is not allowed to be null!");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
 }

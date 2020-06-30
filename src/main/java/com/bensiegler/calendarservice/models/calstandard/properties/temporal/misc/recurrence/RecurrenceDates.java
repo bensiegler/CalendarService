@@ -33,4 +33,17 @@ public class RecurrenceDates extends Recurrence {
     protected Field getContentField() throws NoSuchFieldException {
         return this.getClass().getDeclaredField("content");
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        String[] strings = content.split(",");
+        Date[] dates = new Date[strings.length];
+        for(int i = 0; i < strings.length; i++) {
+            dates[i] = new Date(Long.parseLong(strings[i]));
+        }
+
+        this.content = new ArrayList<>(Arrays.asList(dates));
+    }
+
+
 }

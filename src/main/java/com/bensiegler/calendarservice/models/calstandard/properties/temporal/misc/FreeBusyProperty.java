@@ -38,4 +38,21 @@ public class FreeBusyProperty extends Property {
             throw new PropertyException("You must include at least one Period");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        String[] stringArr = content.split(",");
+        Period[] periods = new Period[stringArr.length];
+        String currentString;
+        Long dateTime;
+        Long duration;
+        for(int i = 0; i < stringArr.length; i++) {
+            currentString = stringArr[i];
+            dateTime = Long.parseLong(currentString.substring(0, currentString.indexOf("/")));
+            duration = Long.parseLong(currentString.substring(currentString.indexOf("/")));
+            periods[i] = new Period(dateTime, duration);
+        }
+
+        this.content = new ArrayList<>(Arrays.asList(periods));
+    }
 }

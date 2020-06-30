@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.models.dbmodel;
+package com.bensiegler.calendarservice.models.dbmodels;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

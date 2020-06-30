@@ -15,8 +15,8 @@ public class Date extends DataType {
         content.setTimeInMillis(millis);
     }
 
-    public Calendar getContent() {
-        return content;
+    public long getContent() {
+        return content.getTimeInMillis();
     }
 
     public void setContent(long millis) {

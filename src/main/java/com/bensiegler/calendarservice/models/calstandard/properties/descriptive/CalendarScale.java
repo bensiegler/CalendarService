@@ -29,4 +29,11 @@ public class CalendarScale extends Property {
             throw new PropertyException("Content cannot be null");
         }
     }
+
+    @Override
+    public void setContentUsingString(String content) {
+        this.content = content;
+    }
+
+
 }
