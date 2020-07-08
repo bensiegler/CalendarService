@@ -11,6 +11,11 @@ public class LastModified extends Property {
         super("DTSTAMP");
     }
 
+    public LastModified(Long timeInMillis) {
+        super("DTSTAMP");
+        this.content = new DateTime(timeInMillis);
+    }
+
     public DateTime getContent() {
         return content;
     }

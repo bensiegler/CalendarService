@@ -19,54 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Working on pulling parameters from the database.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/Daylight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/Standard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeDue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeEnd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeRecurrenceID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeStart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/StreamObjectService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/StreamPropertyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/bensiegler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/bensiegler.xml" afterDir="false" />
+    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Can now pull everything from DB properly. Revamped DateTime classes. Created TimeZone CalendarObject.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/TimeZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/TimeZone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/ToDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/datatypes/DateTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/datatypes/DateTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/Property.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/descriptive/Priority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/descriptive/Priority.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DTTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DTTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateDue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateEnd.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateExceptions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateRecurrenceID.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateRecurrences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/date/DateStart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeDue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeEnd.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeRecurrenceID.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeRecurrences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DateTimeRecurrences.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/datetime/DateTimeStart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/Due.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/End.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/ExceptionsProperty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/RecurrenceID.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/Recurrences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/props/Start.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/Duration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/Duration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/Transparency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/Transparency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/recurrence/RecurrenceDateTimes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/recurrence/RecurrenceDateTimes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/recurrence/RecurrencePeriods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/misc/recurrence/RecurrencePeriods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarStreamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarStreamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarTestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarTestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/Daylight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/Daylight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/TimeZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/TimeZone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/changemanagement/LastModified.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/changemanagement/LastModified.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593514014047</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Can now pull everything from DB properly. Revamped DateTime classes. Created TimeZone CalendarObject.">
+      <created>1594199236283</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594199236283</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +180,8 @@
     <MESSAGE value="almost able to pull from DB. Just need to check recurrence and make sure that CalendarStreamService passes correct values to setContent methods." />
     <MESSAGE value="Can now pull from DB. Still needs thorough testing." />
     <MESSAGE value="Working on pulling parameters from the database." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on pulling parameters from the database." />
+    <MESSAGE value="Can now pull everything from DB properly. Revamped DateTime classes. Created TimeZone CalendarObject." />
+    <option name="LAST_COMMIT_MESSAGE" value="Can now pull everything from DB properly. Revamped DateTime classes. Created TimeZone CalendarObject." />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="147" key="#Inspections" timestamp="1592926105514">
@@ -245,10 +212,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1594041183832" />
-    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1594198566691">
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1594200688471">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1594198566691" />
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1594200688471" />
     <state x="0" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1593160428255">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -273,38 +240,38 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="414" height="448" key="DebuggerActiveHint/0.23.1440.877@0.23.1440.877" timestamp="1593265555843" />
-    <state width="1398" height="231" key="GridCell.Tab.0.bottom" timestamp="1594134497578">
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom" timestamp="1594203291809">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="231" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594134497578" />
-    <state width="1398" height="231" key="GridCell.Tab.0.center" timestamp="1594134497577">
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594203291809" />
+    <state width="1398" height="231" key="GridCell.Tab.0.center" timestamp="1594203291808">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="231" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594134497577" />
-    <state width="1398" height="231" key="GridCell.Tab.0.left" timestamp="1594134497577">
+    <state width="1398" height="231" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594203291808" />
+    <state width="1398" height="231" key="GridCell.Tab.0.left" timestamp="1594203291808">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="231" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594134497577" />
-    <state width="1398" height="231" key="GridCell.Tab.0.right" timestamp="1594134497577">
+    <state width="1398" height="231" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594203291808" />
+    <state width="1398" height="231" key="GridCell.Tab.0.right" timestamp="1594203291808">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="231" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594134497577" />
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1594134427435">
+    <state width="1398" height="231" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594203291808" />
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1594201564025">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594134427435" />
-    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1594134427435">
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594201564025" />
+    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1594201564024">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594134427435" />
-    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1594134427434">
+    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594201564024" />
+    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1594201564024">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594134427434" />
-    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1594134427435">
+    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594201564024" />
+    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1594201564024">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594134427435" />
+    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594201564024" />
     <state x="335" y="168" key="NewModule_or_Project.wizard" timestamp="1593259345328">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -349,6 +316,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/bensiegler/calendarservice/models/properties/descriptive/CategoriesTest.java</url>
           <line>19</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/Property.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

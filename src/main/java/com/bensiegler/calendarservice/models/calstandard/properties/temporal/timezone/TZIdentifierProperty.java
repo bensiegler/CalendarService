@@ -11,6 +11,11 @@ public class TZIdentifierProperty extends Property {
         super("TZID");
     }
 
+    public TZIdentifierProperty(String country, String city) {
+        super("TZID");
+        this.content = new TimeZoneIdentifier(country, city);
+    }
+
     public TimeZoneIdentifier getContent() {
         return content;
     }

@@ -65,12 +65,25 @@ public class TimeZone extends CalendarObject {
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VTIMEZONE");
 
-        lines.add(Property.toCalStream(TZID));
-        lines.add(Property.toCalStream(lastModified));
-        lines.add(Property.toCalStream(tzUrl));
+        if(null != TZID) {
+            lines.add(Property.toCalStream(TZID));
+        }
 
-        lines.addAll(daylight.getCalStream());
-        lines.addAll(standard.getCalStream());
+        if(null != lastModified) {
+            lines.add(Property.toCalStream(lastModified));
+        }
+
+        if(null != tzUrl) {
+            lines.add(Property.toCalStream(tzUrl));
+        }
+
+        if(null != daylight) {
+            lines.addAll(daylight.getCalStream());
+        }
+
+        if(null != standard) {
+            lines.addAll(standard.getCalStream());
+        }
 
         lines.add("END:VTIMEZONE");
 
