@@ -11,8 +11,8 @@ import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.ProductIdentifier;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.Summary;
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.UID;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.DateTimeDue;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.DateTimeStart;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeDue;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeStart;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Duration;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
 import org.springframework.boot.SpringApplication;
@@ -31,32 +31,32 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
 
-        Calendar calendar = new Calendar();
-        calendar.setProductIdentifier(new ProductIdentifier("64969478593"));
-        calendar.setMethod(new Method("PUBLISH"));
+//        Calendar calendar = new Calendar();
+//        calendar.setProductIdentifier(new ProductIdentifier("64969478593"));
+//        calendar.setMethod(new Method("PUBLISH"));
+////
+//        ToDo toDo = new ToDo();
+//        toDo.setDateTimeStamp(new DateTimeStamp(System.currentTimeMillis()));
+//        toDo.setSummary(new Summary("Lots of stuff to summarize"));
+//        toDo.setUid(new UID("57894309458"));
+//        toDo.setDue(new DateTimeDue(System.currentTimeMillis() + 158495));
+//        calendar.addCalObject(toDo);
 //
-        ToDo toDo = new ToDo();
-        toDo.setDateTimeStamp(new DateTimeStamp(System.currentTimeMillis()));
-        toDo.setSummary(new Summary("Lots of stuff to summarize"));
-        toDo.setUid(new UID("57894309458"));
-        toDo.setDue(new DateTimeDue(System.currentTimeMillis() + 100000));
-        calendar.addCalObject(toDo);
-
-        //event setup
-        Event event = new Event();
-        event.addProperty(new Duration(644343L));
-        event.addProperty(new Summary("WE ARE TESTING THE CAL STREAM!"));
-        event.addProperty(new UID("item 1"));
-        event.addProperty(new DateTimeStamp(System.currentTimeMillis()));
-        event.addProperty(new DateTimeStart(System.currentTimeMillis()));
-        event.addProperty(new RecurrenceRule("FREQ=DAILY;INTERVAL=1"));
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("TEST");
-        categories.add("WHOOP WHOOP");
-        event.addProperty(new Categories(categories));
-        event.setParent(calendar);
-        calendar.addCalObject(event);
-        calendar.writeCalStreamToFile();
+//        //event setup
+//        Event event = new Event();
+//        event.addProperty(new Duration(644343L));
+//        event.addProperty(new Summary("WE ARE TESTING THE CAL STREAM!"));
+//        event.addProperty(new UID("item 1"));
+//        event.addProperty(new DateTimeStamp(System.currentTimeMillis()));
+//        event.addProperty(new DateTimeStart(System.currentTimeMillis()));
+//        event.addProperty(new RecurrenceRule("FREQ=DAILY;INTERVAL=1"));
+//        ArrayList<String> categories = new ArrayList<>();
+//        categories.add("TEST");
+//        categories.add("WHOOP WHOOP");
+//        event.addProperty(new Categories(categories));
+//        event.setParent(calendar);
+//        calendar.addCalObject(event);
+//        calendar.writeCalStreamToFile();
     }
 
     @Bean

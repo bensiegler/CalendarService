@@ -129,7 +129,7 @@ public abstract class Property {
                         try {
                             calString += listToDelimitedString((ArrayList<Parameter>) f.get(p), ";");
                         }catch (ClassCastException e) {
-                            throw new PropertyException("Either ArrayList in with name " + f.getName() + " in class " + p.getClass() + " must have enclosing type of " + Parameter.class + " or Iterable cannot cast to ArrayList");
+                            throw new PropertyException("Either ArrayList in with name " + f.getName() + " in class " + p.getClass() + " must have type of " + Parameter.class + " or Iterable cannot cast to ArrayList");
                         }
                     }else {
                         //single of that type allowed

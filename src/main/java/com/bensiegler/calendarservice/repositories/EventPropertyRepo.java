@@ -1,6 +1,5 @@
 package com.bensiegler.calendarservice.repositories;
 
-import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.dbmodels.DBProperty;
 import org.springframework.data.jpa.repository.JpaRepository;
 

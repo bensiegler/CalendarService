@@ -1,7 +1,6 @@
 package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
-import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
@@ -10,11 +9,7 @@ import com.bensiegler.calendarservice.models.calstandard.properties.changemanage
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Sequence;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.*;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.date.DateExceptions;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.date.DateRecurrences;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.DateTimeStart;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.Due;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.RecurrenceID;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.DateTimeCompleted;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Duration;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
@@ -43,7 +38,7 @@ public class ToDo extends CalendarObject {
     private Organizer organizer;
     private PercentComplete percentComplete;
     private Priority priority;
-    private RecurrenceID recurrenceID;
+    private DateTimeRecurrenceID recurrenceID;
     private Sequence sequence;
     private Status status;
     private Summary summary;
@@ -51,7 +46,7 @@ public class ToDo extends CalendarObject {
     private RecurrenceRule recurrenceRule;
 
     //one or the other
-    private Due due;
+    private DateTimeDue due;
     private Duration duration;
 
     //optional, more than once
@@ -60,11 +55,11 @@ public class ToDo extends CalendarObject {
     private ArrayList<Categories> categories = new ArrayList<>();
     private ArrayList<Comment> comment = new ArrayList<>();
     private ArrayList<Contact> contact = new ArrayList<>();
-    private ArrayList<DateExceptions> dateExceptions = new ArrayList<>();
-    //TODO missing something called rstatus
+    private ArrayList<DateTimeExceptions> dateExceptions = new ArrayList<>();
+    //TODO missing something called rStatus
     private ArrayList<RelatedTo> relatedTo = new ArrayList<>();
     private ArrayList<Resources> resources = new ArrayList<>();
-    private ArrayList<DateRecurrences> dateRecurrences = new ArrayList<>();
+    private ArrayList<DateTimeRecurrences> dateRecurrences = new ArrayList<>();
 
 
     public DateTimeStamp getDateTimeStamp() {
@@ -171,11 +166,11 @@ public class ToDo extends CalendarObject {
         this.priority = priority;
     }
 
-    public RecurrenceID getRecurrenceID() {
+    public DateTimeRecurrenceID getRecurrenceID() {
         return recurrenceID;
     }
 
-    public void setRecurrenceID(RecurrenceID recurrenceID) {
+    public void setRecurrenceID(DateTimeRecurrenceID recurrenceID) {
         this.recurrenceID = recurrenceID;
     }
 
@@ -219,11 +214,11 @@ public class ToDo extends CalendarObject {
         this.recurrenceRule = recurrenceRule;
     }
 
-    public Due getDue() {
+    public DateTimeDue getDue() {
         return due;
     }
 
-    public void setDue(Due due) {
+    public void setDue(DateTimeDue due) {
         this.due = due;
     }
 
@@ -275,11 +270,11 @@ public class ToDo extends CalendarObject {
         this.contact = contact;
     }
 
-    public ArrayList<DateExceptions> getDateExceptions() {
+    public ArrayList<DateTimeExceptions> getDateExceptions() {
         return dateExceptions;
     }
 
-    public void setDateExceptions(ArrayList<DateExceptions> dateExceptions) {
+    public void setDateExceptions(ArrayList<DateTimeExceptions> dateExceptions) {
         this.dateExceptions = dateExceptions;
     }
 
@@ -299,11 +294,11 @@ public class ToDo extends CalendarObject {
         this.resources = resources;
     }
 
-    public ArrayList<DateRecurrences> getDateRecurrences() {
+    public ArrayList<DateTimeRecurrences> getDateRecurrences() {
         return dateRecurrences;
     }
 
-    public void setDateRecurrences(ArrayList<DateRecurrences> dateRecurrences) {
+    public void setDateRecurrences(ArrayList<DateTimeRecurrences> dateRecurrences) {
         this.dateRecurrences = dateRecurrences;
     }
 

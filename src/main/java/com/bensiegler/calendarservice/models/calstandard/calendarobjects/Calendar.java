@@ -2,6 +2,7 @@ package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.calendarobjects.tz.TimeZone;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
 

@@ -27,6 +27,10 @@ public class Transparency extends Property {
         if(null == content) {
             throw new PropertyException("content cannot be null");
         }
+
+        if(!content.equalsIgnoreCase("OPAQUE") && !content.equalsIgnoreCase("TRANSPARENT")) {
+            throw new PropertyException("TRANSP must be either OPAQUE or TRANSPARENT");
+        }
     }
 
     @Override

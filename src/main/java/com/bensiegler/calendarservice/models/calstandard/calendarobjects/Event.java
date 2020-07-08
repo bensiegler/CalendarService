@@ -2,7 +2,6 @@ package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.UnknownProperty;
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
@@ -11,12 +10,15 @@ import com.bensiegler.calendarservice.models.calstandard.properties.changemanage
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Sequence;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.*;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.datetime.*;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.props.*;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.*;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeEnd;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeExceptions;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeRecurrenceID;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeStart;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Duration;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Transparency;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -43,8 +45,8 @@ public class Event extends CalendarObject{
                         comments.add((Comment) p);
                     } else if (p instanceof Contact) {
                         contacts.add((Contact) p);
-                    }else if(p instanceof ExceptionsProperty) {
-                        exceptionsDates.add((ExceptionsProperty)p);
+                    }else if(p instanceof DateTimeExceptions) {
+                        exceptionsDates.add((DateTimeExceptions)p);
                     }else if(p instanceof RelatedTo) {
                         relationships.add((RelatedTo)p);
                     }else if(p instanceof Resources) {
@@ -68,6 +70,50 @@ public class Event extends CalendarObject{
     private DateTimeStamp dateTimeStamp;
 
     public Event() {
+    }
+
+    //required based on whether method is specified in parent
+    private DateTimeStart dateTimeStart;
+
+    //optional, only once
+    private Classification classification;
+    private Created created;
+    private Description description;
+    private GeographicPosition geographicPosition;
+    private LastModified lastModified;
+    private Location location;
+    private Organizer organizer;
+    private Priority priority;
+    private Sequence sequence;
+    private Status status;
+    private Summary summary;
+    private Transparency transparency;
+    private URL url;
+    private DateTimeRecurrenceID recurrenceID;
+    private RecurrenceRule recurrenceRule;
+
+
+    //one or the other
+    private DateTimeEnd end;
+    private Duration duration;
+
+    //optional, more than once
+    private ArrayList<Attachment> attachments = new ArrayList<>();
+    private ArrayList<Attendee> attendees = new ArrayList<>();
+    private ArrayList<Categories> categories = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Contact> contacts = new ArrayList<>();
+    private ArrayList<DateTimeExceptions> exceptionsDates = new ArrayList<>();
+// TODO include statuses
+    private ArrayList<RelatedTo> relationships = new ArrayList<>();
+    private ArrayList<Resources> resources = new ArrayList<>();
+    private ArrayList<Recurrence> recurrenceInfo = new ArrayList<>();
+
+    private ArrayList<Alarm> alarms = new ArrayList<>();
+
+
+    public ArrayList<Attachment> getAttachments() {
+        return attachments;
     }
 
     public Calendar getParent() {
@@ -94,9 +140,6 @@ public class Event extends CalendarObject{
         this.dateTimeStamp = dateTimeStamp;
     }
 
-    //required based on whether method is specified in parent
-    private DateTimeStart dateTimeStart;
-
     public DateTimeStart getDateTimeStart() {
         return dateTimeStart;
     }
@@ -104,23 +147,6 @@ public class Event extends CalendarObject{
     public void setDateTimeStart(DateTimeStart dateTimeStart) {
         this.dateTimeStart = dateTimeStart;
     }
-
-    //optional, only once
-    private Classification classification;
-    private Created created;
-    private Description description;
-    private GeographicPosition geographicPosition;
-    private LastModified lastModified;
-    private Location location;
-    private Organizer organizer;
-    private Priority priority;
-    private Sequence sequence;
-    private Status status;
-    private Summary summary;
-    private Transparency transparency;
-    private URL url;
-    private RecurrenceID recurrenceID;
-    private RecurrenceRule recurrenceRule;
 
     public Classification getClassification() {
         return classification;
@@ -226,11 +252,11 @@ public class Event extends CalendarObject{
         this.url = url;
     }
 
-    public RecurrenceID getRecurrenceID() {
+    public DateTimeRecurrenceID getRecurrenceID() {
         return recurrenceID;
     }
 
-    public void setRecurrenceID(RecurrenceID recurrenceID) {
+    public void setRecurrenceID(DateTimeRecurrenceID recurrenceID) {
         this.recurrenceID = recurrenceID;
     }
 
@@ -242,15 +268,11 @@ public class Event extends CalendarObject{
         this.recurrenceRule = recurrenceRule;
     }
 
-    //one or the other
-    private End end;
-    private Duration duration;
-
-    public End getEnd() {
+    public DateTimeEnd getEnd() {
         return end;
     }
 
-    public void setEnd(End end) {
+    public void setEnd(DateTimeEnd end) {
         this.end = end;
     }
 
@@ -260,21 +282,6 @@ public class Event extends CalendarObject{
 
     public void setDuration(Duration duration) {
         this.duration = duration;
-    }
-
-    //optional, more than once
-    private ArrayList<Attachment> attachments = new ArrayList<>();
-    private ArrayList<Attendee> attendees = new ArrayList<>();
-    private ArrayList<Categories> categories = new ArrayList<>();
-    private ArrayList<Comment> comments = new ArrayList<>();
-    private ArrayList<Contact> contacts = new ArrayList<>();
-    private ArrayList<ExceptionsProperty> exceptionsDates = new ArrayList<>();
-// TODO include statuses
-    private ArrayList<RelatedTo> relationships = new ArrayList<>();
-    private ArrayList<Resources> resources = new ArrayList<>();
-    private ArrayList<Recurrence> recurrenceInfo = new ArrayList<>();
-    public ArrayList<Attachment> getAttachments() {
-        return attachments;
     }
 
     public void setAttachments(ArrayList<Attachment> attachments) {
@@ -313,14 +320,13 @@ public class Event extends CalendarObject{
         this.contacts = contacts;
     }
 
-    public ArrayList<ExceptionsProperty> getExceptionsDates() {
+    public ArrayList<DateTimeExceptions> getExceptionsDates() {
         return exceptionsDates;
     }
 
-    public void setExceptionsDates(ArrayList<ExceptionsProperty> exceptionsDates) {
+    public void setExceptionsDates(ArrayList<DateTimeExceptions> exceptionsDates) {
         this.exceptionsDates = exceptionsDates;
     }
-
 
     public ArrayList<RelatedTo> getRelationships() {
         return relationships;

@@ -1,7 +1,6 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.calstandard.datatypes.Date;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.Period;
 
 import java.lang.reflect.Field;

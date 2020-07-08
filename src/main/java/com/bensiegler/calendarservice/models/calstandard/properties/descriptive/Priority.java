@@ -26,6 +26,10 @@ public class Priority extends Property {
         if(null == content) {
             throw new PropertyException("Content cannot be null");
         }
+
+        if(content > 9 || content < 0) {
+            throw new PropertyException("Priority must be between 0 and 9");
+        }
     }
 
     @Override

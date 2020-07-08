@@ -3,6 +3,7 @@ package com.bensiegler.calendarservice.services;
 import com.bensiegler.NumberGenerators;
 import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;
 import com.bensiegler.calendarservice.models.dbmodels.DBEvent;
+import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
 import com.bensiegler.calendarservice.models.dbmodels.DBProperty;
 import com.bensiegler.calendarservice.repositories.CalendarRepo;
 import com.bensiegler.calendarservice.repositories.EventPropertyRepo;
@@ -58,33 +59,44 @@ public class CalendarTestService {
         reqProp.setContent(String.valueOf(System.currentTimeMillis()));
         eventPropertyRepo.save(reqProp);
 
+        reqProp = new DBProperty();
+        reqProp.setEventId(eventId);
+        reqProp.setCalendarId(calendarId);
         reqProp.setName("dateTimeStamp");
         reqProp.setContent(String.valueOf(System.currentTimeMillis()));
         eventPropertyRepo.save(reqProp);
 
+        reqProp = new DBProperty();
+        reqProp.setEventId(eventId);
+        reqProp.setCalendarId(calendarId);
         reqProp.setName("dateTimeStart");
         reqProp.setContent(String.valueOf(System.currentTimeMillis()));
         eventPropertyRepo.save(reqProp);
 
+        reqProp = new DBProperty();
+        reqProp.setEventId(eventId);
+        reqProp.setCalendarId(calendarId);
         reqProp.setName("dateTimeEnd");
         reqProp.setContent(String.valueOf(System.currentTimeMillis()));
         eventPropertyRepo.save(reqProp);
 
-
-        reqProp.setName("dateTimeEnd");
+        reqProp = new DBProperty();
+        reqProp.setEventId(eventId);
+        reqProp.setCalendarId(calendarId);
+        reqProp.setName("summary");
         reqProp.setContent("SUMMARY IS THIS");
         eventPropertyRepo.save(reqProp);
 
 
         //create 20 new random properties for the event
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 10; i++) {
             DBProperty property = new DBProperty();
             property.setName(getRandomPropertyName());
-            property.setContent(String.valueOf(System.currentTimeMillis()));
+            property.setContent(String.valueOf(System.currentTimeMillis()).substring(0, 8));
             property.setCalendarId(calendarId);
             property.setEventId(eventId);
-            property = eventPropertyRepo.save(property);
-//            insertNewParameters(calendarId, eventId, property.getId());
+            eventPropertyRepo.save(property);
+            insertNewParameters(calendarId, eventId, property.getId());
         }
     }
 
@@ -112,26 +124,16 @@ public class CalendarTestService {
             return "location";
         }else if(rand == 9) {
             return "organizer";
-        }else if(rand == 10) {
-            return "priority";
         }else if(rand == 11) {
             return "sequence";
-        }else if(rand == 12) {
-            return "status";
         }else if(rand == 13) {
             return "summary";
-        }else if(rand == 14) {
-            return "transparency";
         }else if(rand == 15) {
             return "url";
         }else if(rand == 16) {
             return "recurrenceID";
-        }else if(rand == 17) {
-            return "recurrenceRule";
         }else if(rand == 18) {
             return "end";
-        }else if(rand == 19){
-            return "duration";
         }else if(rand == 20) {
             return "attachments";
         }else if(rand == 21) {
@@ -155,11 +157,26 @@ public class CalendarTestService {
         }
     }
 
-    public void insertNewParameters(Long calendarId, Long eventId, Long PropertyId) {
-
+    public void insertNewParameters(Long calendarId, Long eventId, Long propertyId) {
+        DBParameter parameter = new DBParameter();
+        parameter.setCalendarId(calendarId);
+        parameter.setEventId(eventId);
+        parameter.setPropertyId(propertyId);
+        parameter.setName(getRandomParameterName());
+        parameter.setContent(String.valueOf(System.currentTimeMillis()).substring(0, 8));
+        propertyParameterRepo.save(parameter);
     }
 
     public String getRandomParameterName() {
-        return "null";
+        int rand = NumberGenerators.randomNumberWithFixedLength(2);
+        while(rand > 30) {
+            rand = NumberGenerators.randomNumberWithFixedLength(2);
+        }
+
+        if(rand == 1) {
+            return "member";
+        }else {
+            return "language";
+        }
     }
 }
