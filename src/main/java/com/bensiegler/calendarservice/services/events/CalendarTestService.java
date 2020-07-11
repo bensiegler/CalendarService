@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.services;
+package com.bensiegler.calendarservice.services.events;
 
 import com.bensiegler.NumberGenerators;
 import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;

@@ -2,6 +2,8 @@
   <dictionary name="bensiegler">
     <words>
       <w>altrep</w>
+      <w>byday</w>
+      <w>bymonth</w>
       <w>calscale</w>
       <w>cutype</w>
       <w>dtend</w>
@@ -16,10 +18,12 @@
       <w>tzid</w>
       <w>tzname</w>
       <w>tzoffsetfrom</w>
+      <w>tzoffsetto</w>
       <w>tzurl</w>
       <w>vcalendar</w>
       <w>vevent</w>
       <w>vtimezone</w>
+      <w>vtodo</w>
     </words>
   </dictionary>
 </component>

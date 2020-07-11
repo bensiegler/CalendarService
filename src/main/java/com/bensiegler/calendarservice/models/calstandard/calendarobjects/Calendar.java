@@ -19,6 +19,27 @@ public class Calendar {
     private Method method = new Method("PUBLISH");
     private Color color = new Color("BLUE");
 
+    private ArrayList<TimeZone> timeZones = new ArrayList<>();
+    private ArrayList<Event> events = new ArrayList<>();
+    private ArrayList<FreeBusy> freeBusies = new ArrayList<>();
+    private ArrayList<ToDo> toDos = new ArrayList<>();
+
+    public void setTimeZones(ArrayList<TimeZone> timeZones) {
+        this.timeZones = timeZones;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public void setFreeBusies(ArrayList<FreeBusy> freeBusies) {
+        this.freeBusies = freeBusies;
+    }
+
+    public void setToDos(ArrayList<ToDo> toDos) {
+        this.toDos = toDos;
+    }
+
     public ProductIdentifier getProductIdentifier() {
         return productIdentifier;
     }
@@ -46,13 +67,6 @@ public class Calendar {
     public void setMethod(Method method) {
         this.method = method;
     }
-
-
-    private final ArrayList<TimeZone> timeZones = new ArrayList<>();
-    private final ArrayList<Event> events = new ArrayList<>();
-    private final ArrayList<FreeBusy> freeBusies = new ArrayList<>();
-    private final ArrayList<ToDo> toDos = new ArrayList<>();
-
 
     public void addCalObject(CalendarObject calendarObject) {
         if(calendarObject instanceof TimeZone) {

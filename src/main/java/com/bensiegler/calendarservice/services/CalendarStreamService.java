@@ -11,9 +11,12 @@ import com.bensiegler.calendarservice.repositories.CalendarRepo;
 import com.bensiegler.calendarservice.repositories.EventPropertyRepo;
 import com.bensiegler.calendarservice.repositories.EventRepo;
 import com.bensiegler.calendarservice.repositories.PropertyParameterRepo;
+import com.bensiegler.calendarservice.repositories.tz.TimeZoneRepo;
+import com.bensiegler.calendarservice.services.events.StreamObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.TimeZone;
 import java.util.stream.Stream;
 
 @Service
@@ -34,12 +37,18 @@ public class CalendarStreamService {
     @Autowired
     StreamObjectService streamObjectService;
 
+    @Autowired
+    TimeZoneRepo timeZoneRepo;
+
     public void generate_iCalendarStream(String name) throws Exception {
         DBCalendar DBCalendar = calendarRepo.findByName(name);
         DBCalendar.setDBEvents(eventRepo.findByCalendarId(DBCalendar.getId()));
         DBCalendar.setEventProperties(eventPropertyRepo.findByCalendarId(DBCalendar.getId()));
         DBCalendar.setDBParameters(propertyParameterRepo.findByCalendarId(DBCalendar.getId()));
         Calendar cal = getCalStandardEvents(DBCalendar);
+
+        //have table joining calendars with alarms. Where each calendar specifies the timezone elements that its events need
+
         cal.writeCalStreamToFile();
     }
 
@@ -58,7 +67,7 @@ public class CalendarStreamService {
 
             for(DBProperty property: properties) {
                 stream = dbCalendar.getDBParameters().stream();
-                streamObjectService.mapPropertyOnToCalendarObject(property, stream, event);
+                streamObjectService.mapPropertyOntoCalendarObject(property, stream, event);
             }
 
             calendar.addCalObject(event);

@@ -14,6 +14,11 @@ public class Comment extends Property {
         super("COMMENT");
     }
 
+    public Comment(String content) {
+        super("COMMENT");
+        this.content = content;
+    }
+
     public AlternateRepresentation getAlternateRepresentation() {
         return alternateRepresentation;
     }

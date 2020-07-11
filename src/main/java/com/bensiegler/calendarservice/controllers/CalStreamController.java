@@ -6,7 +6,7 @@ import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.repositories.CalendarRepo;
 import com.bensiegler.calendarservice.services.CalendarStreamService;
-import com.bensiegler.calendarservice.services.CalendarTestService;
+import com.bensiegler.calendarservice.services.events.CalendarTestService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

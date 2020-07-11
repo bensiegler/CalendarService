@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.services;
+package com.bensiegler.calendarservice.services.events;
 
 import com.bensiegler.calendarservice.exceptions.ParameterException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;

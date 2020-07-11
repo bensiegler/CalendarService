@@ -10,6 +10,11 @@ public class TZUrl extends Property {
         super("TZURL");
     }
 
+    public TZUrl(String content) {
+        super("TZURL");
+        this.content = content;
+    }
+
     public String getContent() {
         return content;
     }

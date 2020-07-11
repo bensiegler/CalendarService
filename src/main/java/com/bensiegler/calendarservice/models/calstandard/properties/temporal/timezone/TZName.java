@@ -12,6 +12,11 @@ public class TZName extends Property {
         super("TZNAME");
     }
 
+    public TZName(String content) {
+        super("TZNAME");
+        this.content = content;
+    }
+
     public Language getLanguage() {
         return language;
     }

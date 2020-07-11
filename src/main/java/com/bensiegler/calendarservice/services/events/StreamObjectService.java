@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.services;
+package com.bensiegler.calendarservice.services.events;
 
 import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
 import com.bensiegler.calendarservice.exceptions.ParameterException;
@@ -31,9 +31,9 @@ public class StreamObjectService {
     @Autowired
     StreamPropertyService streamPropertyService;
 
-    void mapPropertyOnToCalendarObject(DBProperty dbProperty,
-                                               Stream<DBParameter> parameterStream,
-                                               CalendarObject obj) throws Exception {
+    public void mapPropertyOntoCalendarObject(DBProperty dbProperty,
+                                       Stream<DBParameter> parameterStream,
+                                       CalendarObject obj) throws Exception {
         //get parameters for this property
         DBParameter[] parameters = parameterStream
                 .filter(parameter -> parameter.getPropertyId().equals(dbProperty.getId()))
@@ -52,7 +52,6 @@ public class StreamObjectService {
                 if (field.getType().equals(ArrayList.class)) {
                     //TODO change ArrayLists in Event and ToDo to just normal arrays so you can see what type they are.
                     //TODO This means you can change all this stupid name stuff and just figure out the types. It's better.
-
 
                     //get the name of the field and use that to determine what object you need to create.
                     if (field.getName().equalsIgnoreCase("attachment")) {

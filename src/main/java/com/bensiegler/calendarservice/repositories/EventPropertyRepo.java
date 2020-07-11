@@ -7,4 +7,5 @@ import java.util.ArrayList;
 
 public interface EventPropertyRepo extends JpaRepository<DBProperty, Long> {
     ArrayList<DBProperty> findByCalendarId(Long calendarId);
+
 }
