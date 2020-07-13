@@ -50,9 +50,6 @@ public class StreamObjectService {
                 field.setAccessible(true);
 
                 if (field.getType().equals(ArrayList.class)) {
-                    //TODO change ArrayLists in Event and ToDo to just normal arrays so you can see what type they are.
-                    //TODO This means you can change all this stupid name stuff and just figure out the types. It's better.
-
                     //get the name of the field and use that to determine what object you need to create.
                     if (field.getName().equalsIgnoreCase("attachment")) {
                         addObjectToArrayListField(dbProperty, Attachment.class, parameters, field, obj);
@@ -90,7 +87,7 @@ public class StreamObjectService {
 
                     if(newProperty instanceof DTTemplate) {
                         //TODO check to see if db says date or just datetime. If it says date tell this object that it should
-                        //show only date.
+                        // show only date.
                     }
 
                     setContentOnProperty(newProperty, dbProperty);

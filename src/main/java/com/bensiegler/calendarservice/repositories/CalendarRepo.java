@@ -1,10 +1,10 @@
 package com.bensiegler.calendarservice.repositories;
 
-import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;
+import com.bensiegler.calendarservice.models.dbmodels.DBEventStore;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CalendarRepo extends JpaRepository<DBCalendar, Long> {
-    DBCalendar findByOwnerId(Long ownerId);
+public interface CalendarRepo extends JpaRepository<DBEventStore, Long> {
+    DBEventStore findByOwnerId(Long ownerId);
 
-    DBCalendar findByName(String name);
+    DBEventStore findByName(String name);
 }

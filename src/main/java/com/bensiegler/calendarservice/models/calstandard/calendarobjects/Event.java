@@ -2,6 +2,7 @@ package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.UnknownProperty;
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
@@ -19,6 +20,7 @@ import com.bensiegler.calendarservice.models.calstandard.properties.temporal.mis
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Transparency;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -91,6 +93,7 @@ public class Event extends CalendarObject{
     private URL url;
     private DateTimeRecurrenceID recurrenceID;
     private RecurrenceRule recurrenceRule;
+    private TimeZoneIdentifier TZID;
 
 
     //one or the other
@@ -130,6 +133,14 @@ public class Event extends CalendarObject{
 
     public void setUid(UID uid) {
         this.uid = uid;
+    }
+
+    public TimeZoneIdentifier getTZID() {
+        return TZID;
+    }
+
+    public void setTZID(TimeZoneIdentifier TZID) {
+        this.TZID = TZID;
     }
 
     public DateTimeStamp getDateTimeStamp() {
@@ -353,7 +364,7 @@ public class Event extends CalendarObject{
     }
 
     @Override
-    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException {
+    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VEVENT");
@@ -382,6 +393,10 @@ public class Event extends CalendarObject{
                     //do nothing
                 }
 
+            }
+
+            for(Alarm a: alarms) {
+                lines.addAll(a.getCalStream());
             }
         }
         lines.add("END:VEVENT");

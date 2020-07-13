@@ -91,7 +91,7 @@ public class TimeZone extends CalendarObject {
         return standardOrDaylights;
     }
 
-    public void setStandardOrDaylights(Collection<StandardOrDaylight> standardOrDaylights) {
+    public void setStandardOrDaylights(ArrayList<StandardOrDaylight> standardOrDaylights) {
         this.standardOrDaylights = standardOrDaylights;
     }
 

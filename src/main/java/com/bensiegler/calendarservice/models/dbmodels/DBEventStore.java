@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "calendars")
-public class DBCalendar {
+public class DBEventStore {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -41,7 +41,7 @@ public class DBCalendar {
     @JoinColumn(name = "calendar_id")
     private Collection<DBProperty> eventProperties = new ArrayList<>();
 
-    public DBCalendar() {
+    public DBEventStore() {
     }
 
     public Long getId() {

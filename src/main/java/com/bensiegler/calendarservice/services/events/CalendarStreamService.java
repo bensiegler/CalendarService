@@ -1,9 +1,9 @@
-package com.bensiegler.calendarservice.services;
+package com.bensiegler.calendarservice.services.events;
 
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Calendar;
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Event;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
-import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;
+import com.bensiegler.calendarservice.models.dbmodels.DBEventStore;
 import com.bensiegler.calendarservice.models.dbmodels.DBEvent;
 import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
 import com.bensiegler.calendarservice.models.dbmodels.DBProperty;
@@ -16,7 +16,6 @@ import com.bensiegler.calendarservice.services.events.StreamObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.TimeZone;
 import java.util.stream.Stream;
 
 @Service
@@ -41,23 +40,25 @@ public class CalendarStreamService {
     TimeZoneRepo timeZoneRepo;
 
     public void generate_iCalendarStream(String name) throws Exception {
-        DBCalendar DBCalendar = calendarRepo.findByName(name);
-        DBCalendar.setDBEvents(eventRepo.findByCalendarId(DBCalendar.getId()));
-        DBCalendar.setEventProperties(eventPropertyRepo.findByCalendarId(DBCalendar.getId()));
-        DBCalendar.setDBParameters(propertyParameterRepo.findByCalendarId(DBCalendar.getId()));
-        Calendar cal = getCalStandardEvents(DBCalendar);
+        DBEventStore DBEventStore = calendarRepo.findByName(name);
+//        DBEventStore.setDBEvents(eventRepo.findByCalendarId(DBEventStore.getId()));
+//        DBEventStore.setEventProperties(eventPropertyRepo.findByCalendarId(DBEventStore.getId()));
+//        DBEventStore.setDBParameters(propertyParameterRepo.findByCalendarId(DBEventStore.getId()));
+        Calendar cal = getCalStandardEvents(DBEventStore);
 
-        //have table joining calendars with alarms. Where each calendar specifies the timezone elements that its events need
+        //TODO have table joining calendars with alarms. Where each calendar specifies
+        // the timezoneIDs for the elements that its events need. Then loop through here or in a new class
+        // and map them onto a cal object.
 
         cal.writeCalStreamToFile();
     }
 
-    private Calendar getCalStandardEvents(DBCalendar dbCalendar) throws Exception {
+    private Calendar getCalStandardEvents(DBEventStore dbEventStore) throws Exception {
         Calendar calendar = new Calendar();
-        calendar.setProductIdentifier(new ProductIdentifier(dbCalendar.getName()));
+        calendar.setProductIdentifier(new ProductIdentifier(dbEventStore.getName()));
 
-        for(DBEvent e: dbCalendar.getDBEvents()) {
-            DBProperty[] properties = dbCalendar.getEventProperties().stream()
+        for(DBEvent e: dbEventStore.getDBEvents()) {
+            DBProperty[] properties = dbEventStore.getEventProperties().stream()
                     .filter(property -> property.getEventId().equals(e.getId())).toArray(DBProperty[]::new);
 
             Stream<DBParameter> stream;
@@ -66,7 +67,7 @@ public class CalendarStreamService {
             event.setParent(calendar);
 
             for(DBProperty property: properties) {
-                stream = dbCalendar.getDBParameters().stream();
+                stream = dbEventStore.getDBParameters().stream();
                 streamObjectService.mapPropertyOntoCalendarObject(property, stream, event);
             }
 
