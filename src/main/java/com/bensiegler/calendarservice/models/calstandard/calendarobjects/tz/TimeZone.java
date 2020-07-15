@@ -26,13 +26,10 @@ public class TimeZone extends CalendarObject {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @NotNull
-    private String idCountry;
-
-    @NotNull
-    private String idCity;
+    private String tzid;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -55,20 +52,12 @@ public class TimeZone extends CalendarObject {
         this.id = id;
     }
 
-    public String getIdCountry() {
-        return idCountry;
+    public String getTzid() {
+        return tzid;
     }
 
-    public void setIdCountry(String idCountry) {
-        this.idCountry = idCountry;
-    }
-
-    public String getIdCity() {
-        return idCity;
-    }
-
-    public void setIdCity(String idCity) {
-        this.idCity = idCity;
+    public void setTzid(String tzid) {
+        this.tzid = tzid;
     }
 
     public Calendar getLastModified() {
@@ -101,7 +90,8 @@ public class TimeZone extends CalendarObject {
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VTIMEZONE");
 
-        TZIdentifierProperty id = new TZIdentifierProperty(idCountry, idCity);
+        TZIdentifierProperty id = new TZIdentifierProperty();
+        id.setContentUsingString(tzid);
         lines.add(Property.toCalStream(id));
 
 
@@ -127,17 +117,14 @@ public class TimeZone extends CalendarObject {
 
     @Override
     public void validate() throws CalObjectException {
-        if(null == idCountry) {
-            throw new CalObjectException("country cannot be null");
+        if(null == tzid) {
+            throw new CalObjectException("tzid cannot be null");
         }
 
-        if(null == idCity) {
-            throw new CalObjectException("city cannot be null");
-        }
+
 
         if(standardOrDaylights.size() < 1) {
             throw new CalObjectException("You are required to have at least one TimeZone Standard");
         }
-
     }
 }

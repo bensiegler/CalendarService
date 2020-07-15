@@ -37,5 +37,8 @@ public class TZIdentifierProperty extends Property {
         this.content = new TimeZoneIdentifier(holder[0], holder[1]);
     }
 
-
+    @Override
+    public String toString() {
+       return content.toString();
+    }
 }

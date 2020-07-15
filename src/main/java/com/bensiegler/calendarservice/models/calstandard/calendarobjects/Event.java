@@ -19,6 +19,7 @@ import com.bensiegler.calendarservice.models.calstandard.properties.temporal.mis
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Transparency;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.timezone.TZIdentifierProperty;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -93,7 +94,7 @@ public class Event extends CalendarObject{
     private URL url;
     private DateTimeRecurrenceID recurrenceID;
     private RecurrenceRule recurrenceRule;
-    private TimeZoneIdentifier TZID;
+    private TZIdentifierProperty TZID;
 
 
     //one or the other
@@ -135,11 +136,11 @@ public class Event extends CalendarObject{
         this.uid = uid;
     }
 
-    public TimeZoneIdentifier getTZID() {
+    public TZIdentifierProperty getTZID() {
         return TZID;
     }
 
-    public void setTZID(TimeZoneIdentifier TZID) {
+    public void setTZID(TZIdentifierProperty TZID) {
         this.TZID = TZID;
     }
 

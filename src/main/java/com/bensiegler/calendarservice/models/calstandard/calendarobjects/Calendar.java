@@ -5,6 +5,10 @@ import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.tz.TimeZone;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.*;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeExceptions;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
+import com.bensiegler.calendarservice.services.timezone.TimeZoneService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -21,6 +25,8 @@ public class Calendar {
 
     private ArrayList<TimeZone> timeZones = new ArrayList<>();
     private ArrayList<Event> events = new ArrayList<>();
+
+    //These two are not complete!
     private ArrayList<FreeBusy> freeBusies = new ArrayList<>();
     private ArrayList<ToDo> toDos = new ArrayList<>();
 
@@ -80,6 +86,9 @@ public class Calendar {
         }
     }
 
+    @Autowired
+    TimeZoneService timeZoneService;
+
 
     public void validate() throws CalObjectException {
         if(null == productIdentifier) {
@@ -88,6 +97,76 @@ public class Calendar {
 
         if(null == version) {
             throw new CalObjectException("Version cannot be null");
+        }
+
+        //////////TIMEZONE VALIDATION//////////
+
+        //Get all TZIDs currently available in Calendar
+        ArrayList<String> calendarTZIDs = new ArrayList<>();
+        for(TimeZone tz: timeZones) {
+            calendarTZIDs.add(tz.getTzid());
+        }
+
+        for(Event e: events) {
+            //Event TZID check
+            if(null != e.getTZID()) {
+                String tzid = e.getTZID().getContent().toStringNoName();
+                if (!calendarTZIDs.contains(tzid)) {
+                    timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                    calendarTZIDs.add(tzid);
+                }
+            }
+
+            //Event ExceptionDates TZID check
+            if(null != e.getExceptionsDates()) {
+                for(DateTimeExceptions dte: e.getExceptionsDates()) {
+                    String tzid = dte.getTimeZoneIdentifier().toStringNoName();
+                    if(!calendarTZIDs.contains(tzid)) {
+                        timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                        calendarTZIDs.add(tzid);
+                    }
+                }
+            }
+
+            //Event DateTimeRecurrences TZID check
+            if(null != e.getRecurrenceInfo()) {
+                for(Recurrence r: e.getRecurrenceInfo()) {
+                    String tzid = r.getTimeZoneIdentifier().toStringNoName();
+                    if(!calendarTZIDs.contains(tzid)) {
+                        timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                        calendarTZIDs.add(tzid);
+                    }
+                }
+            }
+
+            //Event DateTimeStamp TZID check
+            if(null != e.getDateTimeStart()) {
+                String tzid = e.getDateTimeStart().getTimeZoneIdentifier().toStringNoName();
+                if(!calendarTZIDs.contains(tzid)) {
+                    timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                    calendarTZIDs.add(tzid);
+                }
+            }
+
+            //Event DateTimeEnd TZID check
+            if(null != e.getEnd()) {
+                String tzid = e.getEnd().getTimeZoneIdentifier().toStringNoName();
+                if(!calendarTZIDs.contains(tzid)) {
+                    timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                    calendarTZIDs.add(tzid);
+                }
+            }
+
+            //Event RecurrenceInfo TZID check
+            if(null != e.getRecurrenceID()) {
+                String tzid = e.getRecurrenceID().getTimeZoneIdentifier().toStringNoName();
+                if(!calendarTZIDs.contains(tzid)) {
+                    timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
+                    calendarTZIDs.add(tzid);
+                }
+            }
+
+
         }
     }
 

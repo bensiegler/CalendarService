@@ -40,8 +40,7 @@ public class Application {
 
         TimeZone timeZone = new TimeZone();
         //idCountry n idCity
-        timeZone.setIdCity("more fiction");
-        timeZone.setIdCountry("fiction");
+        timeZone.setTzid("fiction/more fiction");
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.setTimeInMillis(System.currentTimeMillis());
         timeZone.setLastModified(cal);
@@ -54,10 +53,10 @@ public class Application {
         daylight.setDateTimeStart(jCal.getTimeInMillis());
         daylight.setRecurrenceRule("FREQ=YEARLY;BYMONTH=3;BYDAY=2SU");
 
-        daylight.setTzOffsetFrom(-5);
+        daylight.setTzOffsetFrom(-5000);
 
         TZOffsetTo tzOffsetTo = new TZOffsetTo();
-        daylight.setTzOffsetTo(-4);
+        daylight.setTzOffsetTo(-4000);
         ArrayList<StandardOrDaylight> arr = new ArrayList<>();
         arr.add(daylight);
 

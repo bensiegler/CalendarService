@@ -19,17 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Did some stuff with alarms. Reorg of services.">
+    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Merged Daylight and Standard into one class since the only difference between them is a single word.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/TimeZoneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/TimeZoneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBEventStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/CalendarRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/CalendarRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarStreamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/CalendarStreamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/CalendarTestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarTestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/StreamObjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/StreamObjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/StandardOrDaylight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/StandardOrDaylight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/TimeZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/tz/TimeZone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/tz/TimeZoneRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/tz/TimeZoneRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/CalendarStreamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/events/CalendarStreamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/timezone/TimeZoneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/timezone/TimeZoneService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594496501713</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Merged Daylight and Standard into one class since the only difference between them is a single word.">
+      <created>1594673383500</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1594673383500</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,7 +209,8 @@
     <MESSAGE value="Working on pulling parameters from the database." />
     <MESSAGE value="Can now pull everything from DB properly. Revamped DateTime classes. Created TimeZone CalendarObject." />
     <MESSAGE value="Did some stuff with alarms. Reorg of services." />
-    <option name="LAST_COMMIT_MESSAGE" value="Did some stuff with alarms. Reorg of services." />
+    <MESSAGE value="Merged Daylight and Standard into one class since the only difference between them is a single word." />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged Daylight and Standard into one class since the only difference between them is a single word." />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="147" key="#Inspections" timestamp="1592926105514">
@@ -231,14 +241,14 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="358" y="331" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/0.23.1440.877@0.23.1440.877" timestamp="1594549160206" />
-    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594041183832">
+    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594826166934">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1594041183832" />
-    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1594550472155">
+    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1594826166934" />
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1594828057902">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1594550472155" />
+    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1594828057902" />
     <state x="0" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1593160428255">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -247,10 +257,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="396" y="337" width="676" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.877@0.23.1440.877" timestamp="1593123745039" />
-    <state x="229" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594496682658">
+    <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594825307504">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="229" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1594496682658" />
+    <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1594825307504" />
     <state x="458" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592919578721">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -263,38 +273,38 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="414" height="448" key="DebuggerActiveHint/0.23.1440.877@0.23.1440.877" timestamp="1593265555843" />
-    <state width="1398" height="182" key="GridCell.Tab.0.bottom" timestamp="1594495116181">
+    <state width="1398" height="182" key="GridCell.Tab.0.bottom" timestamp="1594827405432">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594495116181" />
-    <state width="1398" height="182" key="GridCell.Tab.0.center" timestamp="1594495116180">
+    <state width="1398" height="182" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594827405432" />
+    <state width="1398" height="182" key="GridCell.Tab.0.center" timestamp="1594827405432">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594495116180" />
-    <state width="1398" height="182" key="GridCell.Tab.0.left" timestamp="1594495116180">
+    <state width="1398" height="182" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1594827405432" />
+    <state width="1398" height="182" key="GridCell.Tab.0.left" timestamp="1594827405432">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594495116180" />
-    <state width="1398" height="182" key="GridCell.Tab.0.right" timestamp="1594495116181">
+    <state width="1398" height="182" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1594827405432" />
+    <state width="1398" height="182" key="GridCell.Tab.0.right" timestamp="1594827405432">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594495116181" />
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1594494927303">
+    <state width="1398" height="182" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1594827405432" />
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1594826382742">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594494927303" />
-    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1594494927302">
+    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1594826382742" />
+    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1594826382742">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594494927302" />
-    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1594494927302">
+    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1594826382742" />
+    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1594826382741">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594494927302" />
-    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1594494927302">
+    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1594826382741" />
+    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1594826382742">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594494927302" />
+    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1594826382742" />
     <state x="335" y="168" key="NewModule_or_Project.wizard" timestamp="1593259345328">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -307,10 +317,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1592996900481" />
-    <state x="321" y="201" key="Vcs.Push.Dialog.v2" timestamp="1594496508433">
+    <state x="321" y="201" key="Vcs.Push.Dialog.v2" timestamp="1594673388158">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="321" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1594496508433" />
+    <state x="321" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1594673388158" />
     <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592760221166">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -331,10 +341,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="385" y="211" key="run.anything.popup/0.23.1440.877@0.23.1440.877" timestamp="1594481831763" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1594550371594">
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1594828212048">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1594550371594" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1594828212048" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

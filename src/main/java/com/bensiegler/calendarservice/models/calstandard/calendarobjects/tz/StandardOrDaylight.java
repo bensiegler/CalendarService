@@ -127,9 +127,9 @@ public class StandardOrDaylight extends CalendarObject {
         if(null != tzOffsetFrom) {
             TZOffsetFrom betterTzOffsetFrom = new TZOffsetFrom();
             if(tzOffsetFrom < 0) {
-                betterTzOffsetFrom.setNegativeOffset(tzOffsetFrom / 100, tzOffsetFrom % 100);
+                betterTzOffsetFrom.setNegativeOffset(tzOffsetFrom % 100, tzOffsetFrom / 100);
             }else {
-                betterTzOffsetFrom.setPositiveOffset(tzOffsetFrom / 100, tzOffsetFrom % 100);
+                betterTzOffsetFrom.setPositiveOffset(tzOffsetFrom % 100, tzOffsetFrom / 100);
             }
             lines.add(Property.toCalStream(betterTzOffsetFrom));
         }
@@ -137,9 +137,9 @@ public class StandardOrDaylight extends CalendarObject {
         if(null != tzOffsetTo) {
             TZOffsetTo betterTzOffsetTo = new TZOffsetTo();
             if(tzOffsetTo < 0) {
-                betterTzOffsetTo.setNegativeOffset(tzOffsetTo / 100, tzOffsetTo % 100);
+                betterTzOffsetTo.setNegativeOffset(tzOffsetTo % 100, tzOffsetTo / 100);
             }else {
-                betterTzOffsetTo.setPositiveOffset(tzOffsetTo / 100, tzOffsetTo % 100);
+                betterTzOffsetTo.setPositiveOffset(tzOffsetTo % 100, tzOffsetTo / 100);
             }
             lines.add(Property.toCalStream(betterTzOffsetTo));
         }

@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public interface TimeZoneRepo extends JpaRepository<TimeZone, Integer> {
 
-    ArrayList<TimeZone> findByIdCountryAndIdCity(String country, String city);
+//    ArrayList<TimeZone> findBy
 }

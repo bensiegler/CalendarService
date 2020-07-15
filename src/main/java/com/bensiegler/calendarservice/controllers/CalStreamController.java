@@ -28,7 +28,7 @@ public class CalStreamController {
     CalendarStreamService streamService;
 
     @Autowired
-    CalendarTestService calendarTestService;
+    CalendarTestService calendarTest;
 
     @GetMapping()
     public String getCalStream() {
@@ -66,9 +66,10 @@ public class CalStreamController {
 
         return calStream;
     }
+
     public String getRandomCal() throws Exception {
         //make random changes. to database as to model people using this
-        String name = calendarTestService.insertNewCalendar();
+        String name = calendarTest.insertNewCalendar();
         streamService.generate_iCalendarStream(name);
         String calStream = "";
          try (BufferedReader inputReader = new BufferedReader(
@@ -87,7 +88,7 @@ public class CalStreamController {
     }
 
     @GetMapping("seltest")
-    public void seleniumTest() throws CalendarObjectMappingException, CalObjectException, PropertyException, InterruptedException {
+    public void seleniumTest() throws InterruptedException {
         for (int i = 0; i < 1000; i++) {
             Long randomNum = Long.parseLong(String.valueOf(NumberGenerators.randomNumberWithFixedLength(8)));
             WebDriver driver = null;

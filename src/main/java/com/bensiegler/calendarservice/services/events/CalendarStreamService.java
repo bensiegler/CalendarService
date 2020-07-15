@@ -12,7 +12,6 @@ import com.bensiegler.calendarservice.repositories.EventPropertyRepo;
 import com.bensiegler.calendarservice.repositories.EventRepo;
 import com.bensiegler.calendarservice.repositories.PropertyParameterRepo;
 import com.bensiegler.calendarservice.repositories.tz.TimeZoneRepo;
-import com.bensiegler.calendarservice.services.events.StreamObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
