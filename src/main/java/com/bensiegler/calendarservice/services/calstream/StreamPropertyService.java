@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.services.events;
+package com.bensiegler.calendarservice.services.calstream;
 
 import com.bensiegler.calendarservice.exceptions.ParameterException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;
@@ -8,7 +8,6 @@ import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZon
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -25,27 +24,33 @@ public class StreamPropertyService {
 
     private Property mapParametersToProperty(DBParameter[] parameters, Property property) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ParameterException {
         //At this point property is of the correct type!
-        ArrayList<Field> fieldArrayList = new ArrayList<>(Arrays.asList(property.getClass().getDeclaredFields()));
-        boolean alreadyMapped;
-        for(DBParameter parameter: parameters) {
-            alreadyMapped = false;
-            for (Field f : fieldArrayList) {
-                f.setAccessible(true);
-                if (parameter.getName().equalsIgnoreCase(f.getName()) && !f.getName().equalsIgnoreCase("content")) {
-                    alreadyMapped = true;
-                    Parameter newParam = mapValuesOntoParameters(parameter, f.getType());
-                    f.set(property, newParam);
+        try {
+            ArrayList<Field> fieldArrayList = new ArrayList<>(Arrays.asList(property.retrieveNonContentFields()));
+
+            boolean alreadyMapped;
+            for(DBParameter parameter: parameters) {
+                alreadyMapped = false;
+                for (Field f : fieldArrayList) {
+                    f.setAccessible(true);
+                    if (parameter.getName().equalsIgnoreCase(f.getName()) && !f.getName().equalsIgnoreCase("content")) {
+                        alreadyMapped = true;
+                        Parameter newParam = mapValuesOntoParameters(parameter, f.getType());
+                        f.set(property, newParam);
+                    }
+                    f.setAccessible(false);
                 }
-                f.setAccessible(false);
+
+                if(!alreadyMapped) {
+                    property.addExtra(new UnknownParameter(parameter.getName(), parameter.getContent()));
+                }
             }
 
-            if(!alreadyMapped) {
-                property.addExtra(new UnknownParameter(parameter.getName(), parameter.getContent()));
-            }
+
+            return property;
+        }catch (NoSuchFieldException e) {
+            //dont do nothing
+            return null;
         }
-
-
-        return property;
     }
 
 

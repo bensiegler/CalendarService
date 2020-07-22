@@ -2,8 +2,12 @@ package com.bensiegler.calendarservice.models.calstandard.properties.changemanag
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.ArrayList;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Created extends Property {
     private DateTime content;
 
@@ -16,12 +20,17 @@ public class Created extends Property {
         this.content = new DateTime(timeInMillis);
     }
 
+    public Created(ArrayList<UnknownParameter> extras, DateTime dateTime) {
+        super("CREATED", extras);
+        this.content = dateTime;
+    }
+
     public DateTime getContent() {
         return content;
     }
 
-    public void setContent(Long timeInMillis) {
-        this.content = new DateTime(timeInMillis);
+    public void setContent(DateTime dateTime) {
+        this.content = dateTime;
     }
 
     @Override
@@ -33,6 +42,11 @@ public class Created extends Property {
 
     @Override
     public void setContentUsingString(String content) {
-        setContent(Long.parseLong(content));
+        setContent(new DateTime(Long.parseLong(content)));
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return String.valueOf(content.getContent());
     }
 }

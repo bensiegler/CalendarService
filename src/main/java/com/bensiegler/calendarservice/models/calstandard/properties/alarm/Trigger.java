@@ -3,11 +3,13 @@ package com.bensiegler.calendarservice.models.calstandard.properties.alarm;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.AlarmTriggerRelationship;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
 import java.lang.reflect.Field;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Trigger extends Property {
     private ValueType valueType = new ValueType();
@@ -15,8 +17,28 @@ public class Trigger extends Property {
     private Duration duration;
     private DateTime content;
 
-    public Trigger() {
+//    public Trigger() {
+//        super("TRIGGER");
+//    }
+
+
+    public Trigger(Long dateTime) {
         super("TRIGGER");
+        this.content = new DateTime(dateTime);
+    }
+
+    public Trigger(Duration duration) {
+        super("TRIGGER");
+        this.duration = duration;
+    }
+
+    public Trigger(String name, ArrayList<UnknownParameter> extras, ValueType valueType,
+                   AlarmTriggerRelationship alarmTriggerRelationship, Duration duration, DateTime dateTime) {
+        super("TRIGGER", extras);
+        this.valueType = valueType;
+        this.alarmTriggerRelationship = alarmTriggerRelationship;
+        this.duration = duration;
+        this.content = dateTime;
     }
 
     public ValueType getValueType() {
@@ -52,7 +74,7 @@ public class Trigger extends Property {
     }
 
     @Override
-    protected Field getContentField() throws NoSuchFieldException {
+    public Field retrieveContentField() throws NoSuchFieldException {
         if(null != alarmTriggerRelationship) {
             return this.getClass().getDeclaredField("duration");
         }
@@ -65,7 +87,7 @@ public class Trigger extends Property {
     }
 
     @Override
-    protected Field[] getNonContentFields() throws NoSuchFieldException {
+    public Field[] retrieveNonContentFields() throws NoSuchFieldException {
         if(null != alarmTriggerRelationship) {
             valueType.setValue("DURATION");
         }else if(null == content) {
@@ -84,6 +106,11 @@ public class Trigger extends Property {
     }
 
     @Override
+    public String retrieveContentAsString() {
+        return String.valueOf(content.getContent());
+    }
+
+    @Override
     public void validate() throws PropertyException {
         if(null != alarmTriggerRelationship && null == duration) {
             throw new PropertyException("If alarm trigger relationship is specified a duration must also be specified.");
@@ -92,7 +119,7 @@ public class Trigger extends Property {
         if(null == duration && null == content) {
             throw new PropertyException("You must either specify a duration or a dateTime");
         }
-
-
     }
+
+
 }

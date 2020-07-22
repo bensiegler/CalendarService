@@ -2,7 +2,10 @@ package com.bensiegler.calendarservice.models.calstandard.properties.temporal.ti
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class TZIdentifierProperty extends Property {
     private TimeZoneIdentifier content;
@@ -14,6 +17,11 @@ public class TZIdentifierProperty extends Property {
     public TZIdentifierProperty(String country, String city) {
         super("TZID");
         this.content = new TimeZoneIdentifier(country, city);
+    }
+
+    public TZIdentifierProperty(ArrayList<UnknownParameter> extras, TimeZoneIdentifier content) {
+        super("TZID", extras);
+        this.content = content;
     }
 
     public TimeZoneIdentifier getContent() {
@@ -34,11 +42,11 @@ public class TZIdentifierProperty extends Property {
     @Override
     public void setContentUsingString(String content) {
         String[] holder = content.split("/");
-        this.content = new TimeZoneIdentifier(holder[0], holder[1]);
+        this.content = new TimeZoneIdentifier(holder[0].trim(), holder[1].trim());
     }
 
     @Override
-    public String toString() {
-       return content.toString();
+    public String retrieveContentAsString() {
+        return content.toStringNoName();
     }
 }

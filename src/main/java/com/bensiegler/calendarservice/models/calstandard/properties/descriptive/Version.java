@@ -1,8 +1,13 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
+@Component
 public class Version extends Property {
     private String content;
 
@@ -12,6 +17,11 @@ public class Version extends Property {
 
     public Version(String content) {
         super("VERSION");
+        this.content = content;
+    }
+
+    public Version(ArrayList<UnknownParameter> extras, String content) {
+        super("VERSION", extras);
         this.content = content;
     }
 
@@ -35,5 +45,9 @@ public class Version extends Property {
         this.content = content;
     }
 
+    @Override
+    public String retrieveContentAsString() {
+        return content;
+    }
 }
 

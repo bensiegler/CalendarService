@@ -3,6 +3,7 @@ package com.bensiegler.calendarservice.models.calstandard.properties.descriptive
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.AlternateRepresentation;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
 import java.util.ArrayList;
@@ -17,6 +18,19 @@ public class Resources extends Property {
         super("RESOURCES");
     }
 
+    public Resources(String content) {
+        super("RESOURCES");
+        String[] resources = content.split(",");
+        this.content = new ArrayList<>(Arrays.asList(resources));
+    }
+
+    public Resources(ArrayList<UnknownParameter> extras, AlternateRepresentation alternateRepresentation,
+                     Language language, ArrayList<String> content) {
+        super("RESOURCES", extras);
+        this.alternateRepresentation = alternateRepresentation;
+        this.language = language;
+        this.content = content;
+    }
 
     public AlternateRepresentation getAlternateRepresentation() {
         return alternateRepresentation;
@@ -53,5 +67,16 @@ public class Resources extends Property {
     public void setContentUsingString(String content) {
         String[] resources = content.split(",");
         this.content = new ArrayList<>(Arrays.asList(resources));
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        String contentString = "";
+
+        for(String s: content) {
+            contentString += s + ",";
+        }
+
+        return contentString.substring(0, contentString.length() - 1);
     }
 }

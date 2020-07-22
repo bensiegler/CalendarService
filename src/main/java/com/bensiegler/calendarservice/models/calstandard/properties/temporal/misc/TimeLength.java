@@ -1,9 +1,11 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class TimeLength extends Property {
     private Duration content;
@@ -12,8 +14,18 @@ public class TimeLength extends Property {
         super("DURATION");
     }
 
-    public java.time.Duration getContent() {
-        return content;
+    public TimeLength(Long content) {
+        super("DURATION");
+        this.content =  Duration.ofMillis(content);
+    }
+
+    public TimeLength(ArrayList<UnknownParameter> extras, Long content) {
+        super("DURATION", extras);
+        this.content =  Duration.ofMillis(content);
+    }
+
+    public Long getContent() {
+        return content.toMillis();
     }
 
     public void setContent(java.time.Duration duration) {
@@ -33,4 +45,8 @@ public class TimeLength extends Property {
     }
 
 
+    @Override
+    public String retrieveContentAsString() {
+        return String.valueOf(content.toMillis());
+    }
 }

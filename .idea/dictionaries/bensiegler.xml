@@ -16,10 +16,12 @@
       <w>rrule</w>
       <w>transp</w>
       <w>tzid</w>
+      <w>tzids</w>
       <w>tzname</w>
       <w>tzoffsetfrom</w>
       <w>tzoffsetto</w>
       <w>tzurl</w>
+      <w>valarm</w>
       <w>vcalendar</w>
       <w>vevent</w>
       <w>vtimezone</w>

@@ -21,12 +21,21 @@ public class DateTimeExceptions extends TemporalProperty {
          new ValueType("DATETIME");
     }
 
-    public DateTimeExceptions(ArrayList<Long> timesInMillis) {
+    public DateTimeExceptions(String content) {
         super("EXDATE");
 
-        for(Long l: timesInMillis) {
-            this.content.add(new DateTime(l));
+        String[] timesInMillis = content.split(",");
+        for(String s: timesInMillis) {
+            this.content.add(new DateTime(Long.parseLong(s)));
         }
+    }
+
+    public DateTimeExceptions(ValueType valueType, TimeZoneIdentifier timeZoneIdentifier,
+                              ArrayList<DateTime> content) {
+        super("EXDATE");
+        this.valueType = valueType;
+        this.timeZoneIdentifier = timeZoneIdentifier;
+        this.content = content;
     }
 
     public ValueType getValueType() {
@@ -73,12 +82,23 @@ public class DateTimeExceptions extends TemporalProperty {
     }
 
     @Override
-    protected Field getContentField() throws NoSuchFieldException {
+    public Field retrieveContentField() throws NoSuchFieldException {
         return this.getClass().getDeclaredField("content");
     }
 
     @Override
-    protected Field[] getNonContentFields() {
+    public Field[] retrieveNonContentFields() {
         return this.getClass().getDeclaredFields();
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        String contentString = "";
+
+        for(DateTime d: content) {
+            contentString += d.getContent() + ",";
+        }
+
+        return contentString.substring(0, contentString.length() - 1);
     }
 }

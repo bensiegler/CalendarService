@@ -15,20 +15,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
 @Table(name = "timezones")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TimeZone extends CalendarObject {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-
-    @NotNull
     private String tzid;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,17 +34,12 @@ public class TimeZone extends CalendarObject {
     @Size(max = 200)
     private String tzUrl;
 
-
-    @OneToMany(targetEntity = StandardOrDaylight.class)
-    @JoinColumn(name = "timezone_id")
+    @OneToMany(targetEntity = StandardOrDaylight.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "tzid")
     private Collection<StandardOrDaylight> standardOrDaylights;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public TimeZone() {
+        lastModified = Calendar.getInstance();
     }
 
     public String getTzid() {
@@ -85,7 +75,7 @@ public class TimeZone extends CalendarObject {
     }
 
     @Override
-    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VTIMEZONE");
@@ -93,7 +83,6 @@ public class TimeZone extends CalendarObject {
         TZIdentifierProperty id = new TZIdentifierProperty();
         id.setContentUsingString(tzid);
         lines.add(Property.toCalStream(id));
-
 
         if(null != lastModified) {
             LastModified lm  = new LastModified(lastModified.getTimeInMillis());
@@ -107,7 +96,7 @@ public class TimeZone extends CalendarObject {
 
         StandardOrDaylight[] standardOrDaylightArray = standardOrDaylights.toArray(new StandardOrDaylight[0]);
         for(StandardOrDaylight sd: standardOrDaylightArray) {
-            lines.addAll(sd.getCalStream());
+            lines.addAll(sd.retrieveCalStream());
         }
 
         lines.add("END:VTIMEZONE");
@@ -120,8 +109,6 @@ public class TimeZone extends CalendarObject {
         if(null == tzid) {
             throw new CalObjectException("tzid cannot be null");
         }
-
-
 
         if(standardOrDaylights.size() < 1) {
             throw new CalObjectException("You are required to have at least one TimeZone Standard");

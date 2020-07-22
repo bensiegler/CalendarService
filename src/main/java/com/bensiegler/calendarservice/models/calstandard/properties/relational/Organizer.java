@@ -1,11 +1,10 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.relational;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.calstandard.parameters.string.CommonName;
-import com.bensiegler.calendarservice.models.calstandard.parameters.string.DirectoryReference;
-import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
-import com.bensiegler.calendarservice.models.calstandard.parameters.string.SentBy;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.*;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class Organizer extends Property {
     private CommonName commonName;
@@ -16,6 +15,21 @@ public class Organizer extends Property {
 
     public Organizer() {
         super("ORGANIZER");
+    }
+
+    public Organizer(String content) {
+        super("ORGANIZER");
+        this.content = content;
+    }
+
+    public Organizer(ArrayList<UnknownParameter> extras, CommonName commonName,
+                     DirectoryReference directoryReference, SentBy sentBy, Language language, String content) {
+        super("ORGANIZER", extras);
+        this.commonName = commonName;
+        this.directoryReference = directoryReference;
+        this.sentBy = sentBy;
+        this.language = language;
+        this.content = content;
     }
 
     public CommonName getCommonName() {
@@ -68,5 +82,10 @@ public class Organizer extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

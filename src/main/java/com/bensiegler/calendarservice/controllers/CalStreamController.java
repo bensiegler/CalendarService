@@ -1,11 +1,8 @@
 package com.bensiegler.calendarservice.controllers;
 
 import com.bensiegler.NumberGenerators;
-import com.bensiegler.calendarservice.exceptions.CalObjectException;
-import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
-import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.repositories.CalendarRepo;
-import com.bensiegler.calendarservice.services.events.CalendarStreamService;
+import com.bensiegler.calendarservice.services.calstream.CalendarStreamService;
 import com.bensiegler.calendarservice.services.CalendarTestService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -22,15 +19,12 @@ import java.io.*;
 public class CalStreamController {
 
     @Autowired
-    CalendarRepo calendarRepo;
-
-    @Autowired
     CalendarStreamService streamService;
 
     @Autowired
     CalendarTestService calendarTest;
 
-    @GetMapping()
+    @GetMapping("/calStream")
     public String getCalStream() {
         System.out.println("cal requested");
         String calStream = "";

@@ -35,6 +35,7 @@ public class DateTime extends Date {
                     dateTimeString += s;
                 }
             }
+
             dateTimeString += "Z";
         }
 

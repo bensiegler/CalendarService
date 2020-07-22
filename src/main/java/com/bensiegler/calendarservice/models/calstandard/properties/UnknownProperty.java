@@ -33,6 +33,11 @@ public class UnknownProperty extends Property{
     }
 
     @Override
+    public String retrieveContentAsString() {
+        return content;
+    }
+
+    @Override
     public void setContentUsingString(String content) {
         this.content = content;
     }

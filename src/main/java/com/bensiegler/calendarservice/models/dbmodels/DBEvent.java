@@ -16,6 +16,11 @@ public class DBEvent {
     public DBEvent() {
     }
 
+    public DBEvent(String name, Long calendarId) {
+        this.name = name;
+        this.calendarId = calendarId;
+    }
+
     public Long getId() {
         return id;
     }

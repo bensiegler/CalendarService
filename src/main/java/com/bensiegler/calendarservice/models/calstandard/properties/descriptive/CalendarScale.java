@@ -1,7 +1,10 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class CalendarScale extends Property {
     private String content;
@@ -12,6 +15,11 @@ public class CalendarScale extends Property {
 
     public CalendarScale(String content) {
         super("CALSCALE");
+        this.content = content;
+    }
+
+    public CalendarScale(ArrayList<UnknownParameter> extras, String content) {
+        super("CALSCALE", extras);
         this.content = content;
     }
 
@@ -35,5 +43,9 @@ public class CalendarScale extends Property {
         this.content = content;
     }
 
+    @Override
+    public String retrieveContentAsString() {
+        return content;
+    }
 
 }

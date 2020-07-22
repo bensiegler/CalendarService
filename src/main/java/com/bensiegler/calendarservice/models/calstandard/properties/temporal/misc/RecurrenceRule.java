@@ -1,7 +1,10 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class RecurrenceRule extends Property {
     private String content;
@@ -12,6 +15,11 @@ public class RecurrenceRule extends Property {
 
     public RecurrenceRule(String content) {
         super("RRULE");
+        this.content = content;
+    }
+
+    public RecurrenceRule(ArrayList<UnknownParameter> extras, String content) {
+        super("RRULE", extras);
         this.content = content;
     }
 
@@ -33,5 +41,10 @@ public class RecurrenceRule extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

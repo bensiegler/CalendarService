@@ -3,8 +3,12 @@ package com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.Date;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
+import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DTTemplate;
+
+import java.util.ArrayList;
 
 public class DateTimeEnd extends DTTemplate {
 
@@ -16,6 +20,16 @@ public class DateTimeEnd extends DTTemplate {
         super("DTEND", new ValueType("DATETIME"));
         setContent(timeInMillis);
     }
+
+    public DateTimeEnd(DateTime dateTime) {
+        super("DTEND", new ValueType("DATETIME"));
+        this.content = dateTime;
+    }
+
+    public DateTimeEnd(ArrayList<UnknownParameter> extras, ValueType valueType, TimeZoneIdentifier timeZoneIdentifier, DateTime content) {
+        super(extras, "DTEND", valueType, timeZoneIdentifier, content);
+    }
+
 
     @Override
     public void setContentUsingString(String content) {

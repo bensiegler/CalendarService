@@ -2,6 +2,7 @@ package com.bensiegler.calendarservice.models.calstandard.properties.descriptive
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
 import java.util.ArrayList;
@@ -15,8 +16,15 @@ public class Categories extends Property {
         super("CATEGORIES");
     }
 
-    public Categories(ArrayList<String> content) {
+    public Categories(String content) {
         super("CATEGORIES");
+        String[] categories = content.split(",");
+        this.content = new ArrayList<>(Arrays.asList(categories));
+    }
+
+    public Categories(ArrayList<UnknownParameter> extras, Language languageParam, ArrayList<String> content) {
+        super("CATEGORIES", extras);
+        this.languageParam = languageParam;
         this.content = content;
     }
 
@@ -47,5 +55,16 @@ public class Categories extends Property {
     public void setContentUsingString(String content) {
         String[] categories = content.split(",");
         this.content = new ArrayList<>(Arrays.asList(categories));
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        String contentString = "";
+
+        for(String s: content) {
+            contentString += s + ",";
+        }
+
+        return contentString.substring(0, contentString.length() - 1);
     }
 }

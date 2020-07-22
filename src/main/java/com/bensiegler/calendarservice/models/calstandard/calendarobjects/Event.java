@@ -2,7 +2,6 @@ package com.bensiegler.calendarservice.models.calstandard.calendarobjects;
 
 import com.bensiegler.calendarservice.exceptions.CalObjectException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
-import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import com.bensiegler.calendarservice.models.calstandard.properties.UnknownProperty;
 import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
@@ -15,7 +14,7 @@ import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeExceptions;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeRecurrenceID;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeStart;
-import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Duration;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.CustomDuration;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.Transparency;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
@@ -68,15 +67,24 @@ public class Event extends CalendarObject{
     }
 
     //required
-    private Calendar parent;
-    private UID uid;
-    private DateTimeStamp dateTimeStamp;
+    private UID uid = new UID();
+    private DateTimeStamp dateTimeStamp = new DateTimeStamp();
 
     public Event() {
+//        attachments.add(new Attachment());
+//        attendees.add(new Attendee());
+//        categories.add(new Categories());
+//        comments.add(new Comment());
+//        contacts.add(new Contact());
+//        exceptionsDates.add(new DateTimeExceptions());
+//        relationships.add(new RelatedTo());
+//        resources.add(new Resources());
+//        alarms.add(new Alarm());
     }
 
+
     //required based on whether method is specified in parent
-    private DateTimeStart dateTimeStart;
+    private DateTimeStart dateTimeStart = new DateTimeStart();
 
     //optional, only once
     private Classification classification;
@@ -89,7 +97,7 @@ public class Event extends CalendarObject{
     private Priority priority;
     private Sequence sequence;
     private Status status;
-    private Summary summary;
+    private Summary summary = new Summary();
     private Transparency transparency;
     private URL url;
     private DateTimeRecurrenceID recurrenceID;
@@ -99,33 +107,25 @@ public class Event extends CalendarObject{
 
     //one or the other
     private DateTimeEnd end;
-    private Duration duration;
+    private CustomDuration customDuration;
 
     //optional, more than once
-    private ArrayList<Attachment> attachments = new ArrayList<>();
-    private ArrayList<Attendee> attendees = new ArrayList<>();
-    private ArrayList<Categories> categories = new ArrayList<>();
-    private ArrayList<Comment> comments = new ArrayList<>();
-    private ArrayList<Contact> contacts = new ArrayList<>();
-    private ArrayList<DateTimeExceptions> exceptionsDates = new ArrayList<>();
+    private ArrayList<Attachment> attachments;
+    private ArrayList<Attendee> attendees;
+    private ArrayList<Categories> categories;
+    private ArrayList<Comment> comments;
+    private ArrayList<Contact> contacts;
+    private ArrayList<DateTimeExceptions> exceptionsDates;
 // TODO include statuses
-    private ArrayList<RelatedTo> relationships = new ArrayList<>();
-    private ArrayList<Resources> resources = new ArrayList<>();
-    private ArrayList<Recurrence> recurrenceInfo = new ArrayList<>();
+    private ArrayList<RelatedTo> relationships;
+    private ArrayList<Resources> resources;
+    private ArrayList<Recurrence> recurrenceInfo;
 
     private ArrayList<Alarm> alarms = new ArrayList<>();
 
 
     public ArrayList<Attachment> getAttachments() {
         return attachments;
-    }
-
-    public Calendar getParent() {
-        return parent;
-    }
-
-    public void setParent(Calendar parent) {
-        this.parent = parent;
     }
 
     public UID getUid() {
@@ -288,12 +288,12 @@ public class Event extends CalendarObject{
         this.end = end;
     }
 
-    public Duration getDuration() {
-        return duration;
+    public CustomDuration getCustomDuration() {
+        return customDuration;
     }
 
-    public void setDuration(Duration duration) {
-        this.duration = duration;
+    public void setCustomDuration(CustomDuration customDuration) {
+        this.customDuration = customDuration;
     }
 
     public void setAttachments(ArrayList<Attachment> attachments) {
@@ -365,40 +365,43 @@ public class Event extends CalendarObject{
     }
 
     @Override
-    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:VEVENT");
         Field[] fields = this.getClass().getDeclaredFields();
+        try {
+            for (Field f : fields) {
+                f.setAccessible(true);
+                if (f.get(this) instanceof ArrayList) {
+                    ArrayList<Property> list;
+                    try {
+                        list = (ArrayList<Property>) f.get(this);
+                    } catch (ClassCastException e) {
+                        throw new PropertyException("There is something wrong with field "
+                                + f.getName() + " with type " + f.getType()
+                                + ". It does not seem to be of type " + Property.class);
+                    }
 
-        for(Field f: fields) {
-            f.setAccessible(true);
-            if(f.get(this) instanceof ArrayList ) {
-                ArrayList<Property> list;
-                try {
-                    list = (ArrayList<Property>) f.get(this);
-                }catch (ClassCastException e) {
-                    throw new PropertyException("There is something very wrong with field "
-                            +  f.getName() + " with type " + f.getType()
-                            + ". It does not seem to be of type " + Property.class);
+                    for (Property p : list) {
+                        lines.add(Property.toCalStream(p));
+                    }
+                } else if (!f.getName().equals("parent")) {
+                    try {
+                        Property p = (Property) f.get(this);
+                        lines.add(Property.toCalStream(p));
+                    } catch (NullPointerException e) {
+                        //do nothing
+                    }
+
                 }
 
-                for(Property p: list) {
-                    lines.add(Property.toCalStream(p));
+                for (Alarm a : alarms) {
+                    lines.addAll(a.retrieveCalStream());
                 }
-            }else if(!f.getName().equals("parent")) {
-                try {
-                   Property p  = (Property) f.get(this);
-                   lines.add(Property.toCalStream(p));
-                }catch (NullPointerException e) {
-                    //do nothing
-                }
-
             }
-
-            for(Alarm a: alarms) {
-                lines.addAll(a.getCalStream());
-            }
+        }catch (IllegalAccessException e) {
+            //should not happen
         }
         lines.add("END:VEVENT");
         return lines;
@@ -406,10 +409,7 @@ public class Event extends CalendarObject{
 
     @Override
     public void validate() throws CalObjectException {
-        if(null == parent) {
-            throw new CalObjectException("Please specify a parent calendar object. " +
-                    "This is required to enforce property rules");
-        }
+
         if(null == uid) {
             throw new CalObjectException("UID is a required property for an Event");
         }
@@ -422,12 +422,7 @@ public class Event extends CalendarObject{
             throw new CalObjectException("DateTimeStart is required for an Event");
         }
 
-        if(null == parent.getMethod() && null == dateTimeStart) {
-            throw new CalObjectException("Either a method property must be specified in the parent object ("
-                    + parent.getClass() + ") or DateTimeStart must be specified");
-        }
-
-        if(null != end && null != duration) {
+        if(null != end && null != customDuration) {
             throw new CalObjectException("You can only specify either End or Duration. Not both at the same time.");
         }
 

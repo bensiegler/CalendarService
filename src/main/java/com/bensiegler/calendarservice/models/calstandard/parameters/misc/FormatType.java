@@ -41,4 +41,6 @@ public class FormatType extends Parameter {
     public String toStringNoName() {
         return type + "/" + subtype;
     }
+
+
 }

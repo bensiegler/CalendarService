@@ -3,8 +3,11 @@ package com.bensiegler.calendarservice.models.calstandard.properties.descriptive
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.FormatType;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.Encoding;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 //preliminary test complete
 public class Attachment extends Property {
@@ -16,6 +19,21 @@ public class Attachment extends Property {
 
     public Attachment() {
         super("ATTACH");
+    }
+
+    public Attachment(String content) {
+        super("ATTACH");
+        this.content = content;
+    }
+
+    public Attachment(ArrayList<UnknownParameter> extras, FormatType formatType,
+                      Encoding encoding, ValueType valueType, String content) {
+        super("ATTACH", extras);
+
+        this.formatType = formatType;
+        this.encoding = encoding;
+        this.valueType = valueType;
+        this.content = content;
     }
 
     public FormatType getFormatType() {
@@ -65,6 +83,11 @@ public class Attachment extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 
 

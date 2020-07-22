@@ -1,13 +1,26 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class Priority extends Property {
     private Integer content;
 
     public Priority() {
         super("PRIORITY");
+    }
+
+    public Priority(Integer content) {
+        super("PRIORITY");
+        this.content = content;
+    }
+
+    public Priority(ArrayList<UnknownParameter> extras, Integer content) {
+        super("PRIORITY", extras);
+        this.content = content;
     }
 
     public Integer getContent() {
@@ -35,5 +48,10 @@ public class Priority extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = Integer.parseInt(content);
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return String.valueOf(content);
     }
 }

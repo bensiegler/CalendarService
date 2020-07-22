@@ -1,7 +1,7 @@
 package com.bensiegler.calendarservice.services;
 
 import com.bensiegler.NumberGenerators;
-import com.bensiegler.calendarservice.models.dbmodels.DBEventStore;
+import com.bensiegler.calendarservice.models.dbmodels.DBCalendar;
 import com.bensiegler.calendarservice.models.dbmodels.DBEvent;
 import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
 import com.bensiegler.calendarservice.models.dbmodels.DBProperty;
@@ -28,7 +28,7 @@ public class CalendarTestService {
     PropertyParameterRepo propertyParameterRepo;
 
     public String insertNewCalendar() {
-        DBEventStore newCalendar = new DBEventStore();
+        DBCalendar newCalendar = new DBCalendar();
         newCalendar.setCalScale("GREGORIAN");
         newCalendar.setColor("BLUE");
         newCalendar.setOwnerId(1L);

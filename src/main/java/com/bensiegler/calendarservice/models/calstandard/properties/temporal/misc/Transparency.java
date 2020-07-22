@@ -2,13 +2,26 @@ package com.bensiegler.calendarservice.models.calstandard.properties.temporal.mi
 
 import com.bensiegler.calendarservice.exceptions.ParameterException;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class Transparency extends Property {
     private String content;
 
     public Transparency() {
         super("TRANSP");
+    }
+
+    public Transparency(String content) {
+        super("TRANSP");
+        this.content = content;
+    }
+
+    public Transparency(ArrayList<UnknownParameter> extras, String content) {
+        super("TRANSP", extras);
+        this.content = content;
     }
 
     public String getContent() {
@@ -36,5 +49,10 @@ public class Transparency extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

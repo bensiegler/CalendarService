@@ -1,5 +1,7 @@
 package com.bensiegler.calendarservice.models.calstandard.parameters;
 
+import java.beans.Transient;
+
 public abstract class Parameter {
     private String name;
 
@@ -10,19 +12,17 @@ public abstract class Parameter {
         this.name = name;
     }
 
+    @Transient
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
     public abstract String toStringNoName();
-
-
-
-//    public abstract void setFields(Field[] fields);
 
 
 }

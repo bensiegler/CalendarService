@@ -1,7 +1,12 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.datatypes.Date;
+import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.Period;
+import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
+import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.PercentComplete;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -13,6 +18,22 @@ public class RecurrencePeriods extends Recurrence {
 
     public RecurrencePeriods() {
         super("RDATE");
+    }
+
+    public RecurrencePeriods(String contentString) {
+        super("RDATE");
+        String[] dateTimes = contentString.split(",");
+
+        for(String s: dateTimes) {
+            Long dateTime = Long.parseLong(s.substring(0, s.indexOf("/")));
+            Long duration = Long.parseLong(s.substring(s.indexOf("/")));
+            content.add(new Period(dateTime,duration));
+        }
+    }
+
+    public RecurrencePeriods(ValueType valueType, TimeZoneIdentifier timeZoneIdentifier, ArrayList<Period> periods) {
+        super("RDATE", valueType, timeZoneIdentifier);
+        this.content = periods;
     }
 
     public ArrayList<Period> getContent() {
@@ -31,7 +52,7 @@ public class RecurrencePeriods extends Recurrence {
     }
 
     @Override
-    protected Field getContentField() throws NoSuchFieldException {
+    public Field retrieveContentField() throws NoSuchFieldException {
         return this.getClass().getDeclaredField("content");
     }
 
@@ -51,5 +72,16 @@ public class RecurrencePeriods extends Recurrence {
         }
 
         this.content = new ArrayList<>(Arrays.asList(periods));
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        String contentString = "";
+
+        for(Period p: content) {
+            contentString += p.toString() + ",";
+        }
+
+        return contentString.substring(0, contentString.length() - 1);
     }
 }

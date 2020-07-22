@@ -2,13 +2,26 @@ package com.bensiegler.calendarservice.models.calstandard.properties.temporal.ti
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.UTCOffset;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class TZOffsetFrom extends Property {
     private UTCOffset content;
 
     public TZOffsetFrom() {
         super("TZOFFSETFROM");
+    }
+
+    public TZOffsetFrom(String content) {
+        super("TZOFFSETFROM");
+        setContentUsingString(content);
+    }
+
+    public TZOffsetFrom(ArrayList<UnknownParameter> extras, UTCOffset content) {
+        super("TZOFFSETFROM", extras);
+        this.content = content;
     }
 
     public void setPositiveOffset(int hours, int minutes) {
@@ -40,15 +53,20 @@ public class TZOffsetFrom extends Property {
     public void setContentUsingString(String content) {
         int hours;
         int mins;
-        if(content.contains("+")) {
+        if(content.contains("-")) {
             hours = Integer.parseInt(content.substring(1, 3));
             mins = Integer.parseInt(content.substring(3, 5));
+            setNegativeOffset(hours, mins);
         }else {
             hours = Integer.parseInt(content.substring(0, 2));
             mins = Integer.parseInt(content.substring(2, 4));
+            setPositiveOffset(hours, mins);
         }
-        setNegativeOffset(hours, mins);
+
     }
 
-
+    @Override
+    public String retrieveContentAsString() {
+        return content.toString();
+    }
 }

@@ -24,20 +24,16 @@ public class StandardOrDaylight extends CalendarObject {
     private Integer id;
 
     @NotNull
-    @Column(name = "timezone_id")
-    private Integer timezoneId;
-
-    @NotNull
     private String standardOrDaylight;
 
     @NotNull
     private Long dateTimeStart;
 
     @NotNull
-    private Integer tzOffsetTo;
+    private String tzOffsetTo;
 
     @NotNull
-    private Integer tzOffsetFrom;
+    private String tzOffsetFrom;
 
     @NotNull
     private String recurrenceRule;
@@ -46,6 +42,7 @@ public class StandardOrDaylight extends CalendarObject {
     private String tzName;
 
     private String comment;
+
     //note that there are no recurrenceDates here
 
 
@@ -57,14 +54,6 @@ public class StandardOrDaylight extends CalendarObject {
         this.id = id;
     }
 
-    public int getTimezoneId() {
-        return timezoneId;
-    }
-
-    public void setTimezoneId(int timezoneId) {
-        this.timezoneId = timezoneId;
-    }
-
     public long getDateTimeStart() {
         return dateTimeStart;
     }
@@ -73,19 +62,19 @@ public class StandardOrDaylight extends CalendarObject {
         this.dateTimeStart = dateTimeStart;
     }
 
-    public int getTzOffsetTo() {
+    public String getTzOffsetTo() {
         return tzOffsetTo;
     }
 
-    public void setTzOffsetTo(int tzOffsetTo) {
+    public void setTzOffsetTo(String tzOffsetTo) {
         this.tzOffsetTo = tzOffsetTo;
     }
 
-    public int getTzOffsetFrom() {
+    public String getTzOffsetFrom() {
         return tzOffsetFrom;
     }
 
-    public void setTzOffsetFrom(int tzOffsetFrom) {
+    public void setTzOffsetFrom(String tzOffsetFrom) {
         this.tzOffsetFrom = tzOffsetFrom;
     }
 
@@ -113,8 +102,24 @@ public class StandardOrDaylight extends CalendarObject {
         this.comment = comment;
     }
 
+    public String getStandardOrDaylight() {
+        return standardOrDaylight;
+    }
+
+    public void setStandardOrDaylight(String standardOrDaylight) {
+        this.standardOrDaylight = standardOrDaylight;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDateTimeStart(Long dateTimeStart) {
+        this.dateTimeStart = dateTimeStart;
+    }
+
     @Override
-    public ArrayList<String> getCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException {
+    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
         ArrayList<String> lines = new ArrayList<>();
         lines.add("BEGIN:" + standardOrDaylight);
@@ -126,21 +131,13 @@ public class StandardOrDaylight extends CalendarObject {
 
         if(null != tzOffsetFrom) {
             TZOffsetFrom betterTzOffsetFrom = new TZOffsetFrom();
-            if(tzOffsetFrom < 0) {
-                betterTzOffsetFrom.setNegativeOffset(tzOffsetFrom % 100, tzOffsetFrom / 100);
-            }else {
-                betterTzOffsetFrom.setPositiveOffset(tzOffsetFrom % 100, tzOffsetFrom / 100);
-            }
+            betterTzOffsetFrom.setContentUsingString(tzOffsetFrom);
             lines.add(Property.toCalStream(betterTzOffsetFrom));
         }
 
         if(null != tzOffsetTo) {
             TZOffsetTo betterTzOffsetTo = new TZOffsetTo();
-            if(tzOffsetTo < 0) {
-                betterTzOffsetTo.setNegativeOffset(tzOffsetTo % 100, tzOffsetTo / 100);
-            }else {
-                betterTzOffsetTo.setPositiveOffset(tzOffsetTo % 100, tzOffsetTo / 100);
-            }
+            betterTzOffsetTo.setContentUsingString(tzOffsetTo);
             lines.add(Property.toCalStream(betterTzOffsetTo));
         }
 

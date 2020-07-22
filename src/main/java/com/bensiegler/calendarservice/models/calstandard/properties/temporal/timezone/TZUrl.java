@@ -1,7 +1,10 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.timezone;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class TZUrl extends Property {
     private String content;
@@ -12,6 +15,11 @@ public class TZUrl extends Property {
 
     public TZUrl(String content) {
         super("TZURL");
+        this.content = content;
+    }
+
+    public TZUrl(ArrayList<UnknownParameter> extras, String content) {
+        super("TZURL", extras);
         this.content = content;
     }
 
@@ -35,5 +43,8 @@ public class TZUrl extends Property {
         this.content = content;
     }
 
-
+    @Override
+    public String retrieveContentAsString() {
+        return content;
+    }
 }

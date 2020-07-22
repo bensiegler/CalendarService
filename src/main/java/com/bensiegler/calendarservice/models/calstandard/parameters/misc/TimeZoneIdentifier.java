@@ -12,8 +12,14 @@ public class TimeZoneIdentifier extends Parameter {
 
     public TimeZoneIdentifier(String continent, String city) {
         super("TZID");
-        this.continent = continent;
-        this.city = city;
+        this.continent = continent.trim();
+        this.city = city.trim();
+    }
+
+    public TimeZoneIdentifier(String content) {
+        super("TZID");
+        this.continent = content.substring(0, content.indexOf("/") - 1).trim();
+        this.city = content.substring(content.indexOf("/") + 2).trim();
     }
 
     public String getContinent() {
@@ -34,11 +40,11 @@ public class TimeZoneIdentifier extends Parameter {
 
     @Override
     public String toString() {
-        return "TZID=" + continent + "/" + city;
+        return "TZID=" + continent + " / " + city;
     }
 
     @Override
     public String toStringNoName() {
-        return continent + "/" + city;
+        return continent + " / " + city;
     }
 }

@@ -1,7 +1,9 @@
 package com.bensiegler.calendarservice.models.calstandard.parameters.string;
 
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class StringParameter extends Parameter {
     private String value;
 
@@ -33,15 +35,17 @@ public abstract class StringParameter extends Parameter {
         }
     }
 
+
+
     @Override
     public String toStringNoName() {
-        return "=\"" + value + "\"";
+        return value;
     }
 
     @Override
     public String toString() {
-        return super.getName() + "=\"" + value + "\"";
+        String name = super.getName();
+        return name + "='" + value + "'";
     }
-
 
 }

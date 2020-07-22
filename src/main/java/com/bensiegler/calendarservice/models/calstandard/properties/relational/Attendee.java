@@ -7,6 +7,8 @@ import com.bensiegler.calendarservice.models.calstandard.parameters.stringlist.D
 import com.bensiegler.calendarservice.models.calstandard.parameters.stringlist.Member;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 
+import java.util.ArrayList;
+
 public class Attendee extends Property {
     private CalendarUserType cuType;
     private Member memberOf;
@@ -22,6 +24,29 @@ public class Attendee extends Property {
 
     public Attendee() {
         super("ATTENDEE");
+    }
+
+    public Attendee(String content) {
+        super("ATTENDEE");
+        this.content = content;
+    }
+
+    public Attendee(String name, ArrayList<UnknownParameter> extras, CalendarUserType cuType,
+                    Member memberOf, ParticipantRole participantRole, ParticipantStatus participantStatus,
+                    DelegatedTo delegatedTo, DelegatedFrom delegatedFrom, SentBy sentBy, CommonName commonName,
+                    DirectoryReference directoryReference, Language language, String content) {
+        super("ATTENDEE", extras);
+        this.cuType = cuType;
+        this.memberOf = memberOf;
+        this.participantRole = participantRole;
+        this.participantStatus = participantStatus;
+        this.delegatedTo = delegatedTo;
+        this.delegatedFrom = delegatedFrom;
+        this.sentBy = sentBy;
+        this.commonName = commonName;
+        this.directoryReference = directoryReference;
+        this.language = language;
+        this.content = content;
     }
 
     public CalendarUserType getCuType() {
@@ -122,5 +147,10 @@ public class Attendee extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

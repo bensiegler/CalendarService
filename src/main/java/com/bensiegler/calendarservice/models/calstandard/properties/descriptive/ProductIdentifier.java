@@ -1,7 +1,10 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.descriptive;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class ProductIdentifier extends Property {
     private String content;
@@ -12,6 +15,11 @@ public class ProductIdentifier extends Property {
 
     public ProductIdentifier(String content) {
         super("PRODID");
+        this.content = content;
+    }
+
+    public ProductIdentifier(ArrayList<UnknownParameter> extras, String content) {
+        super("PRODID", extras);
         this.content = content;
     }
 
@@ -33,6 +41,11 @@ public class ProductIdentifier extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 
 }

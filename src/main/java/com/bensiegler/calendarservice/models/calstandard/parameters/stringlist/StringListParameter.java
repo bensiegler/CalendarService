@@ -48,4 +48,5 @@ public abstract class StringListParameter extends Parameter {
         //trim last comma off
         return stringRep.substring(0, stringRep.length() - 1);
     }
+
 }

@@ -3,7 +3,10 @@ package com.bensiegler.calendarservice.models.calstandard.properties.relational;
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.AlternateRepresentation;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class Contact extends Property {
     private AlternateRepresentation alternateRepresentation;
@@ -12,6 +15,18 @@ public class Contact extends Property {
 
     public Contact() {
         super("CONTACT");
+    }
+
+    public Contact(String content) {
+        super("CONTACT");
+        this.content = content;
+    }
+
+    public Contact(ArrayList<UnknownParameter> extras, AlternateRepresentation alternateRepresentation, Language language, String content) {
+        super("CONTACT", extras);
+        this.alternateRepresentation = alternateRepresentation;
+        this.language = language;
+        this.content = content;
     }
 
     public AlternateRepresentation getAlternateRepresentation() {
@@ -48,5 +63,10 @@ public class Contact extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

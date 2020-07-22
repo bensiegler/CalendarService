@@ -2,7 +2,10 @@ package com.bensiegler.calendarservice.models.calstandard.properties.temporal.ti
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.Language;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class TZName extends Property {
     private Language language;
@@ -14,6 +17,12 @@ public class TZName extends Property {
 
     public TZName(String content) {
         super("TZNAME");
+        this.content = content;
+    }
+
+    public TZName(ArrayList<UnknownParameter> extras, Language language, String content) {
+        super("TZNAME", extras);
+        this.language = language;
         this.content = content;
     }
 
@@ -43,5 +52,10 @@ public class TZName extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

@@ -2,7 +2,10 @@ package com.bensiegler.calendarservice.models.calstandard.properties.relational;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.RelationshipType;
+import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+
+import java.util.ArrayList;
 
 public class RelatedTo extends Property {
     private RelationshipType relatedTo;
@@ -10,6 +13,17 @@ public class RelatedTo extends Property {
 
     public RelatedTo() {
         super("RELATED-TO");
+    }
+
+    public RelatedTo(String content) {
+        super("RELATED-TO");
+        this.content = content;
+    }
+
+    public RelatedTo(ArrayList<UnknownParameter> extras, RelationshipType relatedTo, String content) {
+        super("RELATED-TO", extras);
+        this.relatedTo = relatedTo;
+        this.content = content;
     }
 
     public RelationshipType getRelatedTo() {
@@ -38,5 +52,10 @@ public class RelatedTo extends Property {
     @Override
     public void setContentUsingString(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        return content;
     }
 }

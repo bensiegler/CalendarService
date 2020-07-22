@@ -1,4 +1,4 @@
-package com.bensiegler.calendarservice.services.events;
+package com.bensiegler.calendarservice.services.calstream;
 
 import com.bensiegler.calendarservice.exceptions.CalendarObjectMappingException;
 import com.bensiegler.calendarservice.exceptions.ParameterException;
@@ -46,7 +46,7 @@ public class StreamObjectService {
 
         //set property onto CalendarObject
         for (Field field : fields) {
-            if (field.getName().equalsIgnoreCase(dbProperty.getName())) {
+            if (field.getType().getSimpleName().equalsIgnoreCase(dbProperty.getName())) {
                 field.setAccessible(true);
 
                 if (field.getType().equals(ArrayList.class)) {
@@ -84,14 +84,13 @@ public class StreamObjectService {
                     //field is not Array. Create new instance. Map parameters onto it. Set it to correct field;
                     Property newProperty = (Property) field.getType().getDeclaredConstructor().newInstance();
 
-
                     if(newProperty instanceof DTTemplate) {
                         //TODO check to see if db says date or just datetime. If it says date tell this object that it should
                         // show only date.
                     }
 
                     setContentOnProperty(newProperty, dbProperty);
-                   newProperty = streamPropertyService.getCalStandardProperty(parameters, newProperty);
+                    newProperty = streamPropertyService.getCalStandardProperty(parameters, newProperty);
 
                     field.set(obj, newProperty);
                     field.setAccessible(false);

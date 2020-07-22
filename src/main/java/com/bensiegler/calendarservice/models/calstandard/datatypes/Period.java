@@ -51,6 +51,7 @@ public class Period extends DataType {
         }catch (PropertyException e) {
             throw new IllegalStateException(e.getMessage());
         }
+
         return dateTimeStart.toString() + "/" + duration.toString();
     }
 

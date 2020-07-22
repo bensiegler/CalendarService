@@ -5,10 +5,14 @@ import com.bensiegler.calendarservice.exceptions.PropertyException;
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.StringParameter;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.UnknownParameter;
+import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DTTemplate;
+import org.springframework.stereotype.Component;
 
+import java.beans.Transient;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+@Component
 public abstract class Property {
     protected String name;
     protected ArrayList<UnknownParameter> extras = new ArrayList<>();
@@ -20,6 +24,12 @@ public abstract class Property {
         this.name = name;
     }
 
+    public Property(String name, ArrayList<UnknownParameter> extras) {
+        this.name = name;
+        this.extras = extras;
+    }
+
+    @Transient
     public String getName() {
         return name;
     }
@@ -94,7 +104,7 @@ public abstract class Property {
         p.validate();
 
         try {
-            fields = p.getNonContentFields();
+            fields = p.retrieveNonContentFields();
         }catch (NoSuchFieldException e) {
             throw new PropertyException("Check fields in property " + p.getClass());
         }
@@ -160,7 +170,7 @@ public abstract class Property {
         //make sure that content field is existent.
         Field contentField;
         try {
-            contentField = getContentField();
+            contentField = retrieveContentField();
             contentField.setAccessible(true);
         }catch (NoSuchFieldException e) {
             throw new PropertyException("Content field must specified in class " + p.getClass());
@@ -169,8 +179,6 @@ public abstract class Property {
         try {
             //add content field
             if (contentField.get(p) instanceof Iterable<?>) {
-                //question ==  is this not prone to issues if something other than a ArrayList is passed to it? Even though
-                // it may be iterable? It doesn't show unchecked cast.
                 ArrayList<?> content = (ArrayList<?>) contentField.get(p);
 
                 if (!(content.size() > 0)) {
@@ -186,10 +194,21 @@ public abstract class Property {
                 calString = calString.substring(0, calString.length() - 1);
             } else {
                 if(contentField.get(p) instanceof Parameter) {
-                    Parameter param = (Parameter)contentField.get(p);
-                    calString += ":" + param.toStringNoName();
+                    Parameter param = (Parameter) contentField.get(p);
+                    if(p instanceof DTTemplate && null != ((DTTemplate) p).getTimeZoneIdentifier()) {
+                        String  s = ":" + param.toStringNoName();
+                        calString += s.substring(0, s.length() - 1);
+                    }else {
+
+                        calString += ":" + param.toStringNoName();
+                    }
                 }else {
-                    calString += ":" + contentField.get(p).toString();
+                    if(p instanceof DTTemplate && null != ((DTTemplate) p).getTimeZoneIdentifier()) {
+                        String  s = ":" + contentField.get(p).toString();
+                        calString += s.substring(0, s.length() - 1);
+                    }else {
+                        calString += ":" + contentField.get(p).toString();
+                    }
                 }
             }
         }catch (IllegalAccessException e) {
@@ -200,13 +219,15 @@ public abstract class Property {
         return calString;
     }
 
-    protected Field getContentField() throws NoSuchFieldException {
+    public Field retrieveContentField() throws NoSuchFieldException {
         return this.getClass().getDeclaredField("content");
     }
 
-    protected Field[] getNonContentFields() throws NoSuchFieldException {
+    public Field[] retrieveNonContentFields() throws NoSuchFieldException {
         return this.getClass().getDeclaredFields();
     }
 
     public abstract void setContentUsingString(String content);
+
+    public abstract String retrieveContentAsString();
 }

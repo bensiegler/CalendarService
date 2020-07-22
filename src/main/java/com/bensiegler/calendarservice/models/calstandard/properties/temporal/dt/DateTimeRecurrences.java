@@ -1,9 +1,11 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.datatypes.Date;
 import com.bensiegler.calendarservice.models.calstandard.datatypes.DateTime;
 import com.bensiegler.calendarservice.models.calstandard.parameters.misc.TimeZoneIdentifier;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.ValueType;
+import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.LastModified;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.TemporalProperty;
 
 import java.lang.reflect.Field;
@@ -19,11 +21,19 @@ public class DateTimeRecurrences extends TemporalProperty {
         super("RDATE");
     }
 
-    public DateTimeRecurrences(ArrayList<Long> timesInMillis) {
+    public DateTimeRecurrences(String timesInMillis) {
         super("RDATE");
-        for(Long l: timesInMillis) {
-            this.content.add(new DateTime(l));
+        String[] millis = timesInMillis.split(",");
+        for(String s: millis) {
+            this.content.add(new DateTime(Long.parseLong(s)));
         }
+    }
+
+    public DateTimeRecurrences(ValueType valueType, TimeZoneIdentifier timeZoneIdentifier, ArrayList<DateTime> content) {
+        super("RDATE");
+        this.valueType = valueType;
+        this.timeZoneIdentifier = timeZoneIdentifier;
+        this.content = content;
     }
 
     public ValueType getValueType() {
@@ -70,12 +80,23 @@ public class DateTimeRecurrences extends TemporalProperty {
     }
 
     @Override
-    protected Field getContentField() throws NoSuchFieldException {
+    public Field retrieveContentField() throws NoSuchFieldException {
         return this.getClass().getDeclaredField("content");
     }
 
     @Override
-    protected Field[] getNonContentFields() {
+    public Field[] retrieveNonContentFields() {
         return this.getClass().getDeclaredFields();
+    }
+
+    @Override
+    public String retrieveContentAsString() {
+        String contentString = "";
+
+        for(DateTime d: content) {
+            contentString += d.getContent() + ",";
+        }
+
+        return contentString.substring(0, contentString.length() - 1);
     }
 }
