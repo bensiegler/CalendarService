@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/event")
 public class EventController {
@@ -21,7 +23,7 @@ public class EventController {
     }
 
     @PostMapping("/new/{calID}")
-    public Event insertNewEvent(@RequestBody Event event, @PathVariable(value = "calID")Long id) throws CalObjectException, PropertyException {
+    public Event insertNewEvent(@RequestBody Event event, @PathVariable(value = "calID") UUID id) throws CalObjectException, PropertyException {
         return eventService.saveEvent(event, id);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class EventService {
@@ -34,7 +35,7 @@ public class EventService {
     @Autowired
     PropertyParameterRepo propertyParameterRepo;
 
-    public Event saveEvent(Event event, Long calendarId) throws CalObjectException, PropertyException {
+    public Event saveEvent(Event event, UUID calendarId) throws CalObjectException, PropertyException {
         event.validate();
 
         if(calendarRepo.findOne(calendarId) == null) {
@@ -60,7 +61,7 @@ public class EventService {
         return event;
     }
 
-    private void saveProperties(ArrayList<Property> properties, Long calendarId, Long eventId) throws PropertyException {
+    private void saveProperties(ArrayList<Property> properties, UUID calendarId, UUID eventId) throws PropertyException {
 
         for (Property p : properties) {
             //save property
@@ -129,7 +130,7 @@ public class EventService {
 
     }
 
-    private ArrayList<DBParameter> parameterToDBParameter(ArrayList<Parameter> parameters , Long calendarId, Long eventId, Long propertyId) {
+    private ArrayList<DBParameter> parameterToDBParameter(ArrayList<Parameter> parameters , UUID calendarId, UUID eventId, UUID propertyId) {
         ArrayList<DBParameter> dbParameters = new ArrayList<>();
 
         for(Parameter p: parameters) {

@@ -76,6 +76,13 @@
             <version>2.52.0</version>
         </dependency>
 
+    <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.bensiegler</groupId>
             <artifactId>CustomMathMethods</artifactId>

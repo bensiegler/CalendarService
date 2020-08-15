@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -42,12 +43,8 @@ public class CalendarStreamService {
     @Autowired
     TimeZoneRepo timeZoneRepo;
 
-    public void generate_iCalendarStream(String name) throws Exception {
-        DBCalendar DBCalendar = calendarRepo.findByName(name);
-//        DBEventStore.setDBEvents(eventRepo.findByCalendarId(DBEventStore.getId()));
-//        DBEventStore.setEventProperties(eventPropertyRepo.findByCalendarId(DBEventStore.getId()));
-//        DBEventStore.setDBParameters(propertyParameterRepo.findByCalendarId(DBEventStore.getId()));
-        Calendar cal = getPopulatedCalendar(DBCalendar);
+    public void generate_iCalendarStream(UUID id) throws Exception {
+        Calendar cal = getPopulatedCalendar(id);
 
         //TODO have table joining calendars with alarms. Where each calendar specifies
         // the timezoneIDs for the elements that its events need. Then loop through here or in a new class
@@ -56,9 +53,10 @@ public class CalendarStreamService {
         cal.retrieveCalStream();
     }
 
-    public Calendar getPopulatedCalendar(DBCalendar dbCalendar) throws Exception {
+    public Calendar getPopulatedCalendar(UUID id) throws Exception {
+        DBCalendar dbCalendar = calendarRepo.findOne(id);
         Calendar calendar = context.getBean(Calendar.class);
-        calendar.setProductIdentifier(new ProductIdentifier(dbCalendar.getName()));
+        calendar.setProductIdentifier(new ProductIdentifier(dbCalendar.toString()));
 
         for(DBEvent e: dbCalendar.getDBEvents()) {
             DBProperty[] properties = dbCalendar.getEventProperties().stream()

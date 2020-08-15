@@ -28,7 +28,7 @@ public class Calendar extends CalendarObject {
     @Autowired
     TimeZoneService timeZoneService;
 
-    private ProductIdentifier productIdentifier;
+
     private Version version = new Version("2.0");
 
     private CalendarScale calendarScale = new CalendarScale("GREGORIAN");
@@ -47,15 +47,6 @@ public class Calendar extends CalendarObject {
         this.events = events;
     }
 
-
-
-    public ProductIdentifier getProductIdentifier() {
-        return productIdentifier;
-    }
-
-    public void setProductIdentifier(ProductIdentifier productIdentifier) {
-        this.productIdentifier = productIdentifier;
-    }
 
     public Version getVersion() {
         return version;
@@ -104,7 +95,7 @@ public class Calendar extends CalendarObject {
         ArrayList<String> lines = new ArrayList<>();
 
         lines.add("BEGIN:VCALENDAR");
-        lines.add(Property.toCalStream(productIdentifier));
+        lines.add(Property.toCalStream(super.getProductIdentifier()));
         lines.add(Property.toCalStream(version));
         lines.add(Property.toCalStream(calendarScale));
         lines.add(Property.toCalStream(color));
@@ -122,7 +113,7 @@ public class Calendar extends CalendarObject {
     }
 
     public void validate() throws CalObjectException {
-        if(null == productIdentifier) {
+        if(null == super.getProductIdentifier()) {
             throw new CalObjectException("Product Identifier cannot be null");
         }
 

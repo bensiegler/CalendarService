@@ -1,47 +1,27 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.UUID;
+
+@Data
 
 @Entity
 @Table(name = "events")
 public class DBEvent {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private UUID id;
+
     private String name;
 
     @Column(name = "calendar_id")
-    private Long calendarId;
+    private UUID calendarId;
 
-    public DBEvent() {
-    }
 
-    public DBEvent(String name, Long calendarId) {
+    public DBEvent(String name, UUID calendarId) {
         this.name = name;
-        this.calendarId = calendarId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getCalendarId() {
-        return calendarId;
-    }
-
-    public void setCalendarId(Long calendarId) {
         this.calendarId = calendarId;
     }
 }

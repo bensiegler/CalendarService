@@ -1,22 +1,35 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.UUID;
+
+@Data
+
 @Entity
 @Table(name = "parameters")
 public class DBParameter {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @NotNull
     @Column(name = "calendar_id")
-    private Long calendarId;
+    private UUID calendarId;
     @NotNull
-    private Long eventId;
+    private UUID eventId;
     @NotNull
-    private Long propertyId;
+    private UUID propertyId;
 
     @NotNull
     @Size(max = 200)
@@ -25,54 +38,4 @@ public class DBParameter {
     @Size(max = 1000)
     private String content;
 
-    public DBParameter() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCalendarId() {
-        return calendarId;
-    }
-
-    public void setCalendarId(Long calendarId) {
-        this.calendarId = calendarId;
-    }
-
-    public Long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
-
-    public Long getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
