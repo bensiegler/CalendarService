@@ -8,6 +8,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface CalendarRepo extends JpaRepository<DBCalendar, UUID> {
+public interface CalendarRepo extends JpaRepository<DBCalendar, String> {
     DBCalendar findByName(String name);
 }

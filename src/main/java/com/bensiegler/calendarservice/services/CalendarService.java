@@ -24,7 +24,7 @@ public class CalendarService {
     CalendarStreamService streamService;
 
 
-    public Calendar getCalendarById(UUID id) throws Exception {
+    public Calendar getCalendarById(String id) throws Exception {
         return streamService.getPopulatedCalendar(id);
     }
 
@@ -53,12 +53,12 @@ public class CalendarService {
         dbCalendar.setName(calendar.getProductIdentifier().retrieveContentAsString());
 
         //TODO get owner from authority
-        dbCalendar.setOwnerId((UUID) AuthenticationFacade.getUserId());
+        dbCalendar.setOwnerId(AuthenticationFacade.getUserId());
         calendarRepo.save(dbCalendar);
         return calendar;
     }
 
-    public ArrayList<String> writeCalendarStreamToFile(UUID id) throws Exception {
+    public ArrayList<String> writeCalendarStreamToFile(String id) throws Exception {
         Calendar calendar = getCalendarById(id);
         ArrayList<String> calStream = calendar.retrieveCalStream();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/bensiegler/Library/Mobile Documents/com~apple~CloudDocs/Documents/CodingShit/Tools/CalendarService/src/main/resources/calendarstreams/test/test.txt"))) {

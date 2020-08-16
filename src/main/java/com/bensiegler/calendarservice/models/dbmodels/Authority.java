@@ -13,22 +13,19 @@ import java.util.UUID;
 public class Authority {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private String id;
 
     @Column(nullable = false)
-    private UUID calendarObjectId;
-
-    @Column(nullable = true)
-    private UUID actionTakenBy;
+    private String calendarObjectId;
 
     @Column(nullable = false)
-    private UUID authorityGrantedTo;
+    private String actionTakenBy;
+
+    @Column(nullable = false)
+    private String authorityGrantedTo;
 
     @Column(nullable = false)
     private String powerGiven;
@@ -37,5 +34,22 @@ public class Authority {
         return powerGiven + "_" + calendarObjectId.toString() + "_" + authorityGrantedTo;
     }
 
+    public void formatUUIDs() {
+        if(null != id) {
+            id = id.trim();
+        }
+
+        if(null != calendarObjectId) {
+            calendarObjectId = calendarObjectId.trim();
+        }
+
+        if(null != actionTakenBy) {
+            actionTakenBy = actionTakenBy.trim();
+        }
+
+        if(null != authorityGrantedTo) {
+            authorityGrantedTo = authorityGrantedTo.trim();        }
+
+    }
 
 }

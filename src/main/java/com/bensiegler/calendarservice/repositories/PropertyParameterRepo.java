@@ -9,6 +9,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface PropertyParameterRepo extends JpaRepository<DBParameter, UUID> {
+public interface PropertyParameterRepo extends JpaRepository<DBParameter, String> {
     ArrayList<DBParameter> findByCalendarId(Long calendarId);
 }

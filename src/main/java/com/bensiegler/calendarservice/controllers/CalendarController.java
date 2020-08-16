@@ -23,7 +23,7 @@ public class CalendarController {
     AuthenticationFacade authenticationFacade;
 
     @GetMapping("/{calendarID}")
-    public Object getCalendarByID(@PathVariable(value = "calendarID") UUID id,
+    public Object getCalendarByID(@PathVariable(value = "calendarID") String id,
                                   @RequestHeader("accept-language")String language) throws Exception {
         if(language.equalsIgnoreCase("iCalendar")) {
             return calendarService.getCalendarById(id);

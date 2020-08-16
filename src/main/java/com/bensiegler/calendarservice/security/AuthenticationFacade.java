@@ -1,24 +1,19 @@
 package com.bensiegler.calendarservice.security;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+@Configuration
+public class AuthenticationFacade {
 
-interface IAuthenticationFacade {
-    Authentication getAuthentication();
-}
-
-@Component
-public class AuthenticationFacade implements IAuthenticationFacade {
-    @Override
-    public Authentication getAuthentication() {
+    public static Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public static Object getUserId() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        return userDetails.getUsername();
+    public static String getUserId() {
+        UserDetails details = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return details.getUsername();
     }
 }

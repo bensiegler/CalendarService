@@ -43,7 +43,7 @@ public class CalendarStreamService {
     @Autowired
     TimeZoneRepo timeZoneRepo;
 
-    public void generate_iCalendarStream(UUID id) throws Exception {
+    public void generate_iCalendarStream(String id) throws Exception {
         Calendar cal = getPopulatedCalendar(id);
 
         //TODO have table joining calendars with alarms. Where each calendar specifies
@@ -53,7 +53,7 @@ public class CalendarStreamService {
         cal.retrieveCalStream();
     }
 
-    public Calendar getPopulatedCalendar(UUID id) throws Exception {
+    public Calendar getPopulatedCalendar(String id) throws Exception {
         DBCalendar dbCalendar = calendarRepo.findOne(id);
         Calendar calendar = context.getBean(Calendar.class);
         calendar.setProductIdentifier(new ProductIdentifier(dbCalendar.toString()));

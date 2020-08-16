@@ -35,7 +35,7 @@ public class EventService {
     @Autowired
     PropertyParameterRepo propertyParameterRepo;
 
-    public Event saveEvent(Event event, UUID calendarId) throws CalObjectException, PropertyException {
+    public Event saveEvent(Event event, String calendarId) throws CalObjectException, PropertyException {
         event.validate();
 
         if(calendarRepo.findOne(calendarId) == null) {
@@ -61,7 +61,7 @@ public class EventService {
         return event;
     }
 
-    private void saveProperties(ArrayList<Property> properties, UUID calendarId, UUID eventId) throws PropertyException {
+    private void saveProperties(ArrayList<Property> properties, String calendarId, String eventId) throws PropertyException {
 
         for (Property p : properties) {
             //save property
@@ -130,7 +130,7 @@ public class EventService {
 
     }
 
-    private ArrayList<DBParameter> parameterToDBParameter(ArrayList<Parameter> parameters , UUID calendarId, UUID eventId, UUID propertyId) {
+    private ArrayList<DBParameter> parameterToDBParameter(ArrayList<Parameter> parameters , String calendarId, String eventId, String propertyId) {
         ArrayList<DBParameter> dbParameters = new ArrayList<>();
 
         for(Parameter p: parameters) {

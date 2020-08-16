@@ -1,6 +1,7 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -10,17 +11,20 @@ import java.util.UUID;
 @Entity
 @Table(name = "events")
 public class DBEvent {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
 
     private String name;
 
     @Column(name = "calendar_id")
-    private UUID calendarId;
+    private String calendarId;
 
 
-    public DBEvent(String name, UUID calendarId) {
+    public DBEvent(String name, String calendarId) {
         this.name = name;
         this.calendarId = calendarId;
     }

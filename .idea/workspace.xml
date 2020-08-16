@@ -20,36 +20,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Event objects are now checked to make sure that all the TZs they need are present in the calendar.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/AuthorityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/exceptions/AccessException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/exceptions/RequestHeaderException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/Authority.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/AuthorityRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/AuthenticationFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/AccessDecisionManagerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/DeleteVoter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/EditVoter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ShareVoter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ViewVoter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/Voter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/AuthorityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/UserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authentication/CustomAuthenticationProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authentication/UsernamePasswordAuthTokenWithID.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalStreamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/AuthorityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/AuthorityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalendarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/exceptions/AccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/exceptions/AuthorityException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/CalendarObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/CalendarObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/Authority.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBCalendar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBParameter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/AuthorityRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/AuthorityRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/CalendarRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/CalendarRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/AuthenticationFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/AuthenticationFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/WebSec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/WebSec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/AccessDecisionManagerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/AccessDecisionManagerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/DeleteVoter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/DeleteVoter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/EditVoter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/EditVoter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ShareVoter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ShareVoter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ViewVoter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authorization/accessdecisionvoters/ViewVoter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/AuthorityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/AuthorityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarTestService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/CalendarStreamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/CalendarStreamService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
@@ -87,6 +90,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authentication" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -96,9 +100,13 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.bensiegler.calendarservice.models" />
       <recent name="com.bensiegler.calendarservice" />
       <recent name="com.bensiegler.calendarservice.models.properties" />
       <recent name="com.bensiegler.calendarservice.models.properties.descriptive" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/authentication" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.bensiegler.calendarservice.services" />
@@ -229,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595427260391</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="security almost implemented">
+      <created>1597527392576</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1597527392576</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,7 +268,8 @@
     <MESSAGE value="Merged Daylight and Standard into one class since the only difference between them is a single word." />
     <MESSAGE value="Event objects are now checked to make sure that all the TZs they need are present in the calendar." />
     <MESSAGE value="backup bcs laptop being weird..." />
-    <option name="LAST_COMMIT_MESSAGE" value="backup bcs laptop being weird..." />
+    <MESSAGE value="security almost implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="security almost implemented" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="190" key="#Getter_Template" timestamp="1595247885804">
@@ -292,11 +308,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1594826166934" />
-    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser" timestamp="1597524635181">
+    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser" timestamp="1597575795340">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1595247886986" />
-    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1597524635181" />
+    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1597575795340" />
     <state x="578" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597525273895">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -305,10 +321,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="0" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.877@0.23.1440.877" timestamp="1593160428255" />
-    <state x="396" y="337" width="676" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1593123745039">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="462" y="391" width="564" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597602957173">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="396" y="337" width="676" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.877@0.23.1440.877" timestamp="1593123745039" />
+    <state x="462" y="391" width="564" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1680.1027@0.23.1680.1027" timestamp="1597602957173" />
     <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1595156103739">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -326,42 +343,46 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="414" height="448" key="DebuggerActiveHint/0.23.1440.877@0.23.1440.877" timestamp="1593265555843" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1597527118954">
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom" timestamp="1597603230482">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="182" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1595424977462" />
-    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1597527118954" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1597527118954">
+    <state width="1638" height="280" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1597603230482" />
+    <state width="1638" height="280" key="GridCell.Tab.0.center" timestamp="1597603230481">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="182" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1595424977461" />
-    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1597527118954" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1597527118953">
+    <state width="1638" height="280" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1597603230481" />
+    <state width="1638" height="280" key="GridCell.Tab.0.left" timestamp="1597603230481">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="182" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1595424977461" />
-    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1597527118953" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1597527118954">
+    <state width="1638" height="280" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1597603230481" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right" timestamp="1597603230482">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="182" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1595424977462" />
-    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1597527118954" />
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom" timestamp="1595159986545">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1638" height="280" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1597603230482" />
+    <state width="1638" height="346" key="GridCell.Tab.1.bottom" timestamp="1597600527676">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
-    <state width="1398" height="286" key="GridCell.Tab.1.center" timestamp="1595159986545">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1638" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1597600527676" />
+    <state width="1638" height="346" key="GridCell.Tab.1.center" timestamp="1597600527676">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
-    <state width="1398" height="286" key="GridCell.Tab.1.left" timestamp="1595159986544">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1638" height="346" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1597600527676" />
+    <state width="1638" height="346" key="GridCell.Tab.1.left" timestamp="1597600527676">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1595159986544" />
-    <state width="1398" height="286" key="GridCell.Tab.1.right" timestamp="1595159986545">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1638" height="346" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1597600527676" />
+    <state width="1638" height="346" key="GridCell.Tab.1.right" timestamp="1597600527676">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
+    <state width="1638" height="346" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1597600527676" />
     <state x="391" y="193" key="NewModule_or_Project.wizard" timestamp="1597354420281">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
@@ -375,10 +396,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1592996900481" />
-    <state x="321" y="201" key="Vcs.Push.Dialog.v2" timestamp="1595427264114">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="375" y="231" key="Vcs.Push.Dialog.v2" timestamp="1597527403264">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="321" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1595427264113" />
+    <state x="375" y="231" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1597527403264" />
     <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594916783537">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -387,6 +409,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="508" y="382" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877@0.23.1440.877" timestamp="1593333452923" />
+    <state x="538" y="125" width="604" height="822" key="find.popup" timestamp="1597564320692">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="538" y="125" width="604" height="822" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1597564320692" />
     <state x="88" y="124" key="new project wizard" timestamp="1593531484606">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -399,11 +425,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="385" y="211" key="run.anything.popup/0.23.1440.877@0.23.1440.877" timestamp="1594481831763" />
-    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup" timestamp="1597527085680">
+    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup" timestamp="1597597112342">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1595154659039" />
-    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1597527085680" />
+    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1597597112342" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -422,6 +448,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/dt/DTTemplate.java</url>
           <line>24</line>
           <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/security/AuthenticationFacade.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

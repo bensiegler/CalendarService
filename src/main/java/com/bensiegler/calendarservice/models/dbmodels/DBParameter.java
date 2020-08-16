@@ -15,21 +15,18 @@ import java.util.UUID;
 public class DBParameter {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private String id;
 
     @NotNull
     @Column(name = "calendar_id")
-    private UUID calendarId;
+    private String calendarId;
     @NotNull
-    private UUID eventId;
+    private String eventId;
     @NotNull
-    private UUID propertyId;
+    private String propertyId;
 
     @NotNull
     @Size(max = 200)

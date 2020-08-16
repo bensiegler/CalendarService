@@ -23,7 +23,7 @@ public class EventController {
     }
 
     @PostMapping("/new/{calID}")
-    public Event insertNewEvent(@RequestBody Event event, @PathVariable(value = "calID") UUID id) throws CalObjectException, PropertyException {
+    public Event insertNewEvent(@RequestBody Event event, @PathVariable(value = "calID") String id) throws CalObjectException, PropertyException {
         return eventService.saveEvent(event, id);
     }
 }

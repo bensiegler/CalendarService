@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface EventPropertyRepo extends JpaRepository<DBProperty, UUID> {
+public interface EventPropertyRepo extends JpaRepository<DBProperty, String> {
     ArrayList<DBProperty> findByCalendarId(Long calendarId);
 
 }

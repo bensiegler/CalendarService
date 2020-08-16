@@ -25,12 +25,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @SpringBootApplication
 @EnableSpringConfigured
 public class Application {
 
     public static void main(String[] args) throws PropertyException, CalObjectException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+//        System.out.println(UUID.randomUUID());
         SpringApplication.run(Application.class, args);
 
 

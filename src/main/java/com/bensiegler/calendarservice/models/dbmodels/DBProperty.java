@@ -12,24 +12,24 @@ import java.util.UUID;
 @Entity
 @Table(name = "properties")
 public class DBProperty {
+
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private String id;
 
     @NotNull
     @Column(name = "calendar_id")
-    private UUID calendarId;
+    private String calendarId;
 
     @NotNull
-    private UUID eventId;
+    private String eventId;
+
     @NotNull
     @Size(max = 200)
     private String name;
+
     @NotNull
     @Size(max = 1000)
     private String content;

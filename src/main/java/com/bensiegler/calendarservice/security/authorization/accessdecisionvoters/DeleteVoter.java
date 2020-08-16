@@ -1,6 +1,9 @@
 package com.bensiegler.calendarservice.security.authorization.accessdecisionvoters;
 
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.CalendarObject;
+import com.bensiegler.calendarservice.models.dbmodels.Authority;
+import com.bensiegler.calendarservice.services.AuthorityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
@@ -9,9 +12,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class DeleteVoter implements AccessDecisionVoter<CalendarObject> {
+
+    @Autowired
+    AuthorityService authorityService;
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
@@ -37,7 +44,18 @@ public class DeleteVoter implements AccessDecisionVoter<CalendarObject> {
                     + object.getProductIdentifier().retrieveContentAsString() + "_"
                     + userDetails.getUsername())).count() <= 1) {
 
-                return ACCESS_DENIED;
+                Authority deleteAuthority = authorityService.getAuthorityByCalendarObjectIdAndPowerGiven
+                        (
+                        object.getProductIdentifier().retrieveContentAsString(),
+                        "DELETE"
+                        );
+
+                if(null == deleteAuthority) {
+                    return ACCESS_DENIED;
+                }else{
+                    authorityService.addAuthorityToPrincipal(deleteAuthority.getAuthorityString());
+                    return ACCESS_GRANTED;
+                }
             } else {
                 return ACCESS_GRANTED;
             }

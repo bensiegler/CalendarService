@@ -18,13 +18,10 @@ import java.util.UUID;
 public class DBCalendar {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private String id;
 
     @NotNull
     @Size(max = 200)
@@ -35,7 +32,7 @@ public class DBCalendar {
     private String color;
 
     @NotNull
-    private UUID ownerId;
+    private String ownerId;
 
     @NotNull
     private String calScale;

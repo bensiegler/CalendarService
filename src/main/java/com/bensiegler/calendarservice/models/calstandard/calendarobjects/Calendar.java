@@ -28,7 +28,7 @@ public class Calendar extends CalendarObject {
     @Autowired
     TimeZoneService timeZoneService;
 
-
+    private String name;
     private Version version = new Version("2.0");
 
     private CalendarScale calendarScale = new CalendarScale("GREGORIAN");
