@@ -43,7 +43,7 @@ public abstract class CalendarObject {
         this.productIdentifier = productIdentifier;
     }
 
-    public abstract ArrayList<String> retrieveCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException;
+    public abstract String retrieveCalStream() throws IllegalAccessException, PropertyException, CalObjectException, IOException;
 
     public abstract void validate() throws CalObjectException;
 

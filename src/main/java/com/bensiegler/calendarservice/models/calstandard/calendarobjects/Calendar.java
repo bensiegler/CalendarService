@@ -8,6 +8,10 @@ import com.bensiegler.calendarservice.models.calstandard.properties.descriptive.
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.DateTimeExceptions;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
 import com.bensiegler.calendarservice.services.timezone.TimeZoneService;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +26,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@Data
+
 
 public class Calendar extends CalendarObject {
 
     @Autowired
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     TimeZoneService timeZoneService;
 
     private String name;
@@ -39,47 +47,6 @@ public class Calendar extends CalendarObject {
     private ArrayList<Event> events = new ArrayList<>();
 
 
-    public void setTimeZones(ArrayList<TimeZone> timeZones) {
-        this.timeZones = timeZones;
-    }
-
-    public void setEvents(ArrayList<Event> events) {
-        this.events = events;
-    }
-
-
-    public Version getVersion() {
-        return version;
-    }
-
-    public CalendarScale getCalendarScale() {
-        return calendarScale;
-    }
-
-    public void setCalendarScale(CalendarScale calendarScale) {
-        this.calendarScale = calendarScale;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
-    }
-
-    public void setVersion(Version version) {
-        this.version = version;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public void addCalObject(CalendarObject calendarObject) {
         if(calendarObject instanceof TimeZone) {
             timeZones.add((TimeZone)calendarObject);
@@ -90,26 +57,30 @@ public class Calendar extends CalendarObject {
 
 
     @Override
-    public ArrayList<String> retrieveCalStream() throws  PropertyException, CalObjectException {
+    public String retrieveCalStream() throws  PropertyException, CalObjectException {
         validate();
-        ArrayList<String> lines = new ArrayList<>();
+        StringBuilder lines = new StringBuilder();
 
-        lines.add("BEGIN:VCALENDAR");
-        lines.add(Property.toCalStream(super.getProductIdentifier()));
-        lines.add(Property.toCalStream(version));
-        lines.add(Property.toCalStream(calendarScale));
-        lines.add(Property.toCalStream(color));
+        lines.append("BEGIN:VCALENDAR").append("\n");
+        lines.append(Property.toCalStream(super.getProductIdentifier())).append("\n");
+        lines.append(Property.toCalStream(version)).append("\n");
+        lines.append(Property.toCalStream(calendarScale)).append("\n");
+        lines.append(Property.toCalStream(color)).append("\n");
+
+        if(null != method) {
+            lines.append(Property.toCalStream(method)).append("\n");
+        }
 
         for (TimeZone tz : timeZones) {
-            lines.addAll(tz.retrieveCalStream());
+            lines.append(tz.retrieveCalStream());
         }
 
         for (Event e : events) {
-            lines.addAll(e.retrieveCalStream());
+            lines.append(e.retrieveCalStream());
         }
 
-        lines.add("END:VCALENDAR");
-        return lines;
+        lines.append("END:VCALENDAR").append("\n");
+        return lines.toString();
     }
 
     public void validate() throws CalObjectException {

@@ -15,14 +15,20 @@ import com.bensiegler.calendarservice.models.calstandard.properties.temporal.dt.
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.CustomDuration;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.RecurrenceRule;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.timezone.TZOffsetTo;
+import com.bensiegler.calendarservice.security.AuthenticationFacade;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -31,14 +37,14 @@ import java.util.UUID;
 @EnableSpringConfigured
 public class Application {
 
-    public static void main(String[] args) throws PropertyException, CalObjectException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-//        System.out.println(UUID.randomUUID());
+    public static void main(String[] args) throws PropertyException, CalObjectException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+        System.out.println(System.currentTimeMillis());
         SpringApplication.run(Application.class, args);
 
 
 //        Calendar calendar = new Calendar();
-//        calendar.setProductIdentifier(new ProductIdentifier("64969478593"));
 //        calendar.setMethod(new Method("PUBLISH"));
+//        calendar.setProductIdentifier(new ProductIdentifier("PID"));
 //
 //        TimeZone timeZone = new TimeZone();
 //        //idCountry n idCity
@@ -78,7 +84,16 @@ public class Application {
 //        categories.add("WHOOP WHOOP");
 ////        event.addProperty(new Categories(categories));
 //        calendar.addCalObject(event);
-//        calendar.retrieveCalStream();
+//        ArrayList<String> strings = calendar.retrieveCalStream();
+//
+//        BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("/Users/bensiegler/Library/Mobile Documents/com~apple~CloudDocs/Documents/CodingShit/Tools/CalendarService/src/main/resources/calendarstreams/testCal"));
+//
+//        for(String s: strings) {
+//            fileWriter.write(s);
+//            fileWriter.newLine();
+//        }
+//
+//        fileWriter.close();
     }
 
     @Bean
@@ -97,4 +112,9 @@ public class Application {
 //            SpringApplicationBuilder builder) {
 //        return builder.sources(Application.class);
 //    }
+
+    @Bean
+    public Authentication authentication() {
+        return new UsernamePasswordAuthenticationToken("username", "password");
+    }
 }

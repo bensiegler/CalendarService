@@ -23,18 +23,14 @@ public class DBCalendar {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @NotNull
     @Size(max = 200)
     private String name;
 
-    @NotNull
     @Size(max = 50)
     private String color;
 
-    @NotNull
     private String ownerId;
 
-    @NotNull
     private String calScale;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = DBEvent.class)

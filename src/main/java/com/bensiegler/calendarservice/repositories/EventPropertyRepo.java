@@ -9,6 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface EventPropertyRepo extends JpaRepository<DBProperty, String> {
-    ArrayList<DBProperty> findByCalendarId(Long calendarId);
-
+    ArrayList<DBProperty> findByCalendarId(String calendarId);
+    ArrayList<DBProperty> findByEventId(String eventId);
 }

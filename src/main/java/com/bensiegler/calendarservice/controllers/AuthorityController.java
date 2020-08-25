@@ -6,6 +6,7 @@ import com.bensiegler.calendarservice.repositories.AuthorityRepo;
 import com.bensiegler.calendarservice.security.AuthenticationFacade;
 import com.bensiegler.calendarservice.services.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,16 +24,20 @@ public class AuthorityController {
     @Autowired
     AuthorityRepo authorityRepo;
 
-    @GetMapping("/cal/{calendarObjectId}")
+    @PreAuthorize("isGrantedViewAuthority(#calendarObjectId)")
+    @GetMapping("/{calendarObjectId}/cal")
     public List<Authority> getAuthorityByCalendarObjectId(@PathVariable(name = "calendarObjectId") String calendarObjectId) {
-        return authorityService.getAuthorityByCalendarObjectId(calendarObjectId);
+        return authorityService.getByCalendarObjectIdAndUserId(calendarObjectId);
     }
 
+
+
     @GetMapping("/auths")
-    public Collection<? extends GrantedAuthority> authorities() {
+    public Collection<? extends GrantedAuthority> getOwnAuthorities() {
         return AuthenticationFacade.getAuthentication().getAuthorities();
     }
 
+    ////REMOVE////
     @GetMapping("/all")
     public List<Authority> getAll() {
         ArrayList<Authority> authorities = (ArrayList<Authority>) authorityRepo.findAll();
@@ -44,22 +49,16 @@ public class AuthorityController {
         return authorities;
     }
 
+    @PreAuthorize("isGrantedShareAuthority(#authority.calendarObjectId)")
     @PostMapping("/grant")
-    public Authority allowView(@RequestBody Authority authority) throws AuthorityException {
+    public Authority grantAuthority(@RequestBody Authority authority) throws AuthorityException {
        return authorityService.grantAuthority(authority);
     }
 
+    @PreAuthorize("isGrantedShareAuthority(#authority.calendarObjectId)")
     @DeleteMapping("/revoke")
-    public void revokeView(@RequestBody Authority authority) {
+    public void revokeAuthority(@RequestBody Authority authority) throws AuthorityException {
         authorityService.revokeAuthority(authority);
     }
-
-
-
-
-
-
-
-
 
 }

@@ -14,7 +14,9 @@ import com.bensiegler.calendarservice.repositories.CalendarRepo;
 import com.bensiegler.calendarservice.repositories.EventPropertyRepo;
 import com.bensiegler.calendarservice.repositories.EventRepo;
 import com.bensiegler.calendarservice.repositories.PropertyParameterRepo;
+import com.bensiegler.calendarservice.services.calstream.StreamObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -35,6 +37,9 @@ public class EventService {
     @Autowired
     PropertyParameterRepo propertyParameterRepo;
 
+    @Autowired
+    StreamObjectService streamObjectService;
+
     public Event saveEvent(Event event, String calendarId) throws CalObjectException, PropertyException {
         event.validate();
 
@@ -46,23 +51,38 @@ public class EventService {
 
         //save event
         try {
-            dbEvent = new DBEvent(event.getDescription().getContent(), calendarId);
+            dbEvent = new DBEvent(event.getSummary().getContent(), calendarId);
         }catch (NullPointerException e) {
             dbEvent = new DBEvent("New Event", calendarId);
         }
+
         eventRepo.save(dbEvent);
 
         //save properties
+        event.setUid(new UID(String.valueOf(dbEvent.getId())));
         ArrayList<Property> eventProperties = getProperties(event);
         saveProperties(eventProperties, calendarId, dbEvent.getId());
 
 
-        event.setUid(new UID(String.valueOf(dbEvent.getId())));
         return event;
     }
 
-    private void saveProperties(ArrayList<Property> properties, String calendarId, String eventId) throws PropertyException {
+    public Event getEventById(String eventId) throws Exception {
+        Event event = new Event();
 
+        DBEvent dbEvent = eventRepo.findOne(eventId);
+        event.setUid(new UID(dbEvent.getId()));
+        ArrayList<DBProperty> properties = eventPropertyRepo.findByEventId(eventId);
+        ArrayList<DBParameter> parameters = propertyParameterRepo.findByEventId(eventId);
+
+        for(DBProperty property: properties) {
+            streamObjectService.mapPropertyOntoCalendarObject(property, parameters.stream(), event);
+        }
+
+        return event;
+    }
+
+    private void saveProperties(ArrayList<Property> properties, String calendarId, String eventId)  {
         for (Property p : properties) {
             //save property
             DBProperty dbProperty = new DBProperty();
@@ -77,7 +97,6 @@ public class EventService {
             ArrayList<DBParameter> dbParameters = parameterToDBParameter(propertyParameters,
                     calendarId, eventId, dbProperty.getId());
             propertyParameterRepo.save(dbParameters);
-
         }
 
     }
@@ -93,7 +112,16 @@ public class EventService {
                 Object object = f.get(calendarObject);
 
                 if (object instanceof Property) {
-                    properties.add((Property) object);
+                    properties.add((Property)object);
+                }else if (object instanceof ArrayList<?>) {
+                    try {
+                        if (((ArrayList<?>) object).get(0) instanceof Property) {
+                            ArrayList<Property> list = (ArrayList<Property>) object;
+                            properties.addAll(list);
+                        }
+                    }catch (IndexOutOfBoundsException e) {
+                       //do nothing means empty array when checking if type property
+                    }
                 }
 
                 f.setAccessible(false);

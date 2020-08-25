@@ -1,6 +1,8 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.UUID;
 @Table(schema = "calservicetest", name = "authorities")
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Authority {
 
     @Id
@@ -31,7 +35,7 @@ public class Authority {
     private String powerGiven;
 
     public String getAuthorityString() {
-        return powerGiven + "_" + calendarObjectId.toString() + "_" + authorityGrantedTo;
+        return powerGiven + "_" + calendarObjectId + "_" + authorityGrantedTo;
     }
 
     public void formatUUIDs() {

@@ -43,10 +43,9 @@ public class StreamObjectService {
         //get all fields for the type of CalendarObject given
         Field[] fields = obj.getClass().getDeclaredFields();
 
-
         //set property onto CalendarObject
         for (Field field : fields) {
-            if (field.getType().getSimpleName().equalsIgnoreCase(dbProperty.getName())) {
+            if (field.getName().equalsIgnoreCase(dbProperty.getName())) {
                 field.setAccessible(true);
 
                 if (field.getType().equals(ArrayList.class)) {

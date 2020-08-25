@@ -75,33 +75,33 @@ public class TimeZone extends CalendarObject {
     }
 
     @Override
-    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
+    public String retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
-        ArrayList<String> lines = new ArrayList<>();
-        lines.add("BEGIN:VTIMEZONE");
+        StringBuilder lines = new StringBuilder();
+        lines.append("BEGIN:VTIMEZONE").append("\n");
 
         TZIdentifierProperty id = new TZIdentifierProperty();
         id.setContentUsingString(tzid);
-        lines.add(Property.toCalStream(id));
+        lines.append(Property.toCalStream(id)).append("\n");
 
         if(null != lastModified) {
             LastModified lm  = new LastModified(lastModified.getTimeInMillis());
-            lines.add(Property.toCalStream(lm));
+            lines.append(Property.toCalStream(lm)).append("\n");
         }
 
         if(null != tzUrl) {
             TZUrl betterTZUrl = new TZUrl(tzUrl);
-            lines.add(Property.toCalStream(betterTZUrl));
+            lines.append(Property.toCalStream(betterTZUrl)).append("\n");
         }
 
         StandardOrDaylight[] standardOrDaylightArray = standardOrDaylights.toArray(new StandardOrDaylight[0]);
         for(StandardOrDaylight sd: standardOrDaylightArray) {
-            lines.addAll(sd.retrieveCalStream());
+            lines.append(sd.retrieveCalStream());
         }
 
-        lines.add("END:VTIMEZONE");
+        lines.append("END:VTIMEZONE").append("\n");
 
-        return lines;
+        return lines.toString();
     }
 
     @Override

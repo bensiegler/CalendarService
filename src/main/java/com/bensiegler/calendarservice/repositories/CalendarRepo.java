@@ -10,4 +10,5 @@ import java.util.UUID;
 @Repository
 public interface CalendarRepo extends JpaRepository<DBCalendar, String> {
     DBCalendar findByName(String name);
+    ArrayList<DBCalendar> findByOwnerId(String ownerId);
 }

@@ -1,6 +1,7 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
 
 @Entity
 @Table(name = "parameters")

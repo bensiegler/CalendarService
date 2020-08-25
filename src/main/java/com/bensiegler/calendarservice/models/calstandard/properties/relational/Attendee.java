@@ -31,7 +31,7 @@ public class Attendee extends Property {
         this.content = content;
     }
 
-    public Attendee(String name, ArrayList<UnknownParameter> extras, CalendarUserType cuType,
+    public Attendee(ArrayList<UnknownParameter> extras, CalendarUserType cuType,
                     Member memberOf, ParticipantRole participantRole, ParticipantStatus participantStatus,
                     DelegatedTo delegatedTo, DelegatedFrom delegatedFrom, SentBy sentBy, CommonName commonName,
                     DirectoryReference directoryReference, Language language, String content) {

@@ -13,7 +13,11 @@ public class AuthenticationFacade {
     }
 
     public static String getUserId() {
-        UserDetails details = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return details.getUsername();
+        try {
+            UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return details.getUsername();
+        }catch (ClassCastException e) {
+            throw new RuntimeException("YOU NEED TO SIGN IN IDIOT");
+        }
     }
 }

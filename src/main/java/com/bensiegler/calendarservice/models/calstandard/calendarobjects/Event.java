@@ -40,7 +40,7 @@ public class Event extends CalendarObject{
                     if (p instanceof Attachment) {
                         attachments.add((Attachment) p);
                     } else if (p instanceof Attendee) {
-                        attendees.add((Attendee) p);
+                        attendee.add((Attendee) p);
                     } else if (p instanceof Categories) {
                         categories.add((Categories) p);
                     } else if (p instanceof Comment) {
@@ -110,16 +110,16 @@ public class Event extends CalendarObject{
     private CustomDuration customDuration;
 
     //optional, more than once
-    private ArrayList<Attachment> attachments;
-    private ArrayList<Attendee> attendees;
-    private ArrayList<Categories> categories;
-    private ArrayList<Comment> comments;
-    private ArrayList<Contact> contacts;
-    private ArrayList<DateTimeExceptions> exceptionsDates;
+    private ArrayList<Attachment> attachments = new ArrayList<>();
+    private ArrayList<Attendee> attendee = new ArrayList<>();
+    private ArrayList<Categories> categories = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Contact> contacts = new ArrayList<>();
+    private ArrayList<DateTimeExceptions> exceptionsDates = new ArrayList<>();
 // TODO include statuses
-    private ArrayList<RelatedTo> relationships;
-    private ArrayList<Resources> resources;
-    private ArrayList<Recurrence> recurrenceInfo;
+    private ArrayList<RelatedTo> relationships = new ArrayList<>();
+    private ArrayList<Resources> resources = new ArrayList<>();
+    private ArrayList<Recurrence> recurrenceInfo = new ArrayList<>();
 
     private ArrayList<Alarm> alarms = new ArrayList<>();
 
@@ -300,12 +300,12 @@ public class Event extends CalendarObject{
         this.attachments = attachments;
     }
 
-    public ArrayList<Attendee> getAttendees() {
-        return attendees;
+    public ArrayList<Attendee> getAttendee() {
+        return attendee;
     }
 
-    public void setAttendees(ArrayList<Attendee> attendees) {
-        this.attendees = attendees;
+    public void setAttendee(ArrayList<Attendee> attendee) {
+        this.attendee = attendee;
     }
 
     public ArrayList<Categories> getCategories() {
@@ -365,10 +365,10 @@ public class Event extends CalendarObject{
     }
 
     @Override
-    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
+    public String retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
-        ArrayList<String> lines = new ArrayList<>();
-        lines.add("BEGIN:VEVENT");
+        StringBuilder string = new StringBuilder();
+        string.append("BEGIN:VEVENT").append("\n");
         Field[] fields = this.getClass().getDeclaredFields();
         try {
             for (Field f : fields) {
@@ -384,12 +384,12 @@ public class Event extends CalendarObject{
                     }
 
                     for (Property p : list) {
-                        lines.add(Property.toCalStream(p));
+                        string.append(Property.toCalStream(p)).append("\n");
                     }
                 } else if (!f.getName().equals("parent")) {
                     try {
                         Property p = (Property) f.get(this);
-                        lines.add(Property.toCalStream(p));
+                        string.append(Property.toCalStream(p)).append("\n");
                     } catch (NullPointerException e) {
                         //do nothing
                     }
@@ -397,14 +397,14 @@ public class Event extends CalendarObject{
                 }
 
                 for (Alarm a : alarms) {
-                    lines.addAll(a.retrieveCalStream());
+                    string.append(a.retrieveCalStream()).append("\n");
                 }
             }
         }catch (IllegalAccessException e) {
             //should not happen
         }
-        lines.add("END:VEVENT");
-        return lines;
+        string.append("END:VEVENT").append("\n");
+        return string.toString();
     }
 
     @Override

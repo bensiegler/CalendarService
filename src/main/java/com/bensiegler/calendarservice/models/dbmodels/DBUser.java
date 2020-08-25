@@ -1,6 +1,7 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
 
 @Entity
 @Table(schema = "calServiceTest", name = "users")

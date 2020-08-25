@@ -40,21 +40,21 @@ public class Alarm extends CalendarObject{
 
 
     @Override
-    public ArrayList<String> retrieveCalStream() throws PropertyException {
-        ArrayList<String> lines = new ArrayList<>();
-        lines.add("BEGIN:VALARM");
-        lines.add(Property.toCalStream(new Action(action)));
+    public String retrieveCalStream() throws PropertyException {
+        StringBuilder lines = new StringBuilder();
+        lines.append("BEGIN:VALARM").append("\n");
+        lines.append(Property.toCalStream(new Action(action)));
 
         try {
-            lines.add(Property.toCalStream(new Trigger(Long.parseLong(trigger))));
+            lines.append(Property.toCalStream(new Trigger(Long.parseLong(trigger)))).append("\n");
         }catch (NumberFormatException e) {
             //trigger is in a duration format as it could not be parsed
-            lines.add(Property.toCalStream(new Trigger(Duration.ofMillis(Long.parseLong(trigger)))));
+            lines.append(Property.toCalStream(new Trigger(Duration.ofMillis(Long.parseLong(trigger))))).append("\n");
         }
 
 
-        lines.add("END:VALARM");
-        return lines;
+        lines.append("END:VALARM").append("\n");
+        return lines.toString();
     }
 
     @Override

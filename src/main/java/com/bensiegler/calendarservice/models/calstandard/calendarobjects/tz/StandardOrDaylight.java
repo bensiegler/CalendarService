@@ -119,45 +119,45 @@ public class StandardOrDaylight extends CalendarObject {
     }
 
     @Override
-    public ArrayList<String> retrieveCalStream() throws PropertyException, CalObjectException {
+    public String retrieveCalStream() throws PropertyException, CalObjectException {
         validate();
-        ArrayList<String> lines = new ArrayList<>();
-        lines.add("BEGIN:" + standardOrDaylight);
+        StringBuilder lines = new StringBuilder();
+        lines.append("BEGIN:").append(standardOrDaylight).append("\n");
 
         if(null != dateTimeStart) {
             DateTimeStart betterDateTimeStart = new DateTimeStart(dateTimeStart);
-            lines.add(Property.toCalStream(betterDateTimeStart));
+            lines.append(Property.toCalStream(betterDateTimeStart)).append("\n");
         }
 
         if(null != tzOffsetFrom) {
             TZOffsetFrom betterTzOffsetFrom = new TZOffsetFrom();
             betterTzOffsetFrom.setContentUsingString(tzOffsetFrom);
-            lines.add(Property.toCalStream(betterTzOffsetFrom));
+            lines.append(Property.toCalStream(betterTzOffsetFrom)).append("\n");
         }
 
         if(null != tzOffsetTo) {
             TZOffsetTo betterTzOffsetTo = new TZOffsetTo();
             betterTzOffsetTo.setContentUsingString(tzOffsetTo);
-            lines.add(Property.toCalStream(betterTzOffsetTo));
+            lines.append(Property.toCalStream(betterTzOffsetTo)).append("\n");
         }
 
         if(null != recurrenceRule) {
             RecurrenceRule betterRecurrenceRule = new RecurrenceRule(recurrenceRule);
-            lines.add(Property.toCalStream(betterRecurrenceRule));
+            lines.append(Property.toCalStream(betterRecurrenceRule)).append("\n");
         }
 
         if(null != comment) {
             Comment betterComment = new Comment(comment);
-            lines.add(Property.toCalStream(betterComment));
+            lines.append(Property.toCalStream(betterComment)).append("\n");
         }
 
         if(null != tzName) {
             TZName betterTzName = new TZName(tzName);
-            lines.add(Property.toCalStream(betterTzName));
+            lines.append(Property.toCalStream(betterTzName)).append("\n");
         }
 
-        lines.add("END:" + standardOrDaylight);
-        return lines;
+        lines.append("END:").append(standardOrDaylight).append("\n");
+        return lines.toString();
     }
 
     @Override

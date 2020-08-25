@@ -10,5 +10,6 @@ import java.util.UUID;
 
 @Repository
 public interface PropertyParameterRepo extends JpaRepository<DBParameter, String> {
-    ArrayList<DBParameter> findByCalendarId(Long calendarId);
+    ArrayList<DBParameter> findByCalendarId(String calendarId);
+    ArrayList<DBParameter> findByEventId(String eventId);
 }
