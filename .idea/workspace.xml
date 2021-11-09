@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,34 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Event objects are now checked to make sure that all the TZs they need are present in the calendar.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBAlarm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/AuthorityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/AuthorityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/controllers/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Alarm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/calendarobjects/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/parameters/string/StringParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/parameters/string/StringParameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/descriptive/Categories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/descriptive/Categories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/relational/Attendee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/relational/Attendee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/calstandard/properties/temporal/timezone/TZIdentifierProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBParameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/models/dbmodels/DBUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/EventPropertyRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/repositories/PropertyParameterRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/CalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/StreamObjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/StreamObjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/StreamPropertyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bensiegler/calendarservice/services/calstream/StreamPropertyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="089a38c7-246d-49da-bb85-301ebcd0c504" name="Default Changelist" comment="Event objects are now checked to make sure that all the TZs they need are present in the calendar. and more" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,6 +142,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -254,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598342397302</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Event objects are now checked to make sure that all the TZs they need are present in the calendar. and more">
+      <created>1636438192569</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636438192569</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,146 +265,8 @@
     <MESSAGE value="security almost implemented" />
     <MESSAGE value="authority system implemented" />
     <MESSAGE value="general update" />
-    <option name="LAST_COMMIT_MESSAGE" value="general update" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="413" y="190" key="#Getter_Template" timestamp="1595247885804">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="413" y="190" key="#Getter_Template/0.23.1440.877@0.23.1440.877" timestamp="1595247885804" />
-    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595088802686">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1595088802686" />
-    <state x="358" y="331" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog" timestamp="1594549160206">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="358" y="331" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/0.23.1440.877@0.23.1440.877" timestamp="1594549160206" />
-    <state x="492" y="312" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602194797037">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="422" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1594826166934" />
-    <state x="492" y="312" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1602194797037" />
-    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser" timestamp="1598386031094">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="794" y="162" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1595247886986" />
-    <state x="926" y="186" key="#com.intellij.ide.util.MemberChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1598386031094" />
-    <state x="578" y="319" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597525273895">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="578" y="319" key="#com.intellij.ide.util.PackageChooserDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1597525273895" />
-    <state x="462" y="391" width="564" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597956019111">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="462" y="391" width="564" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1680.1027@0.23.1680.1027" timestamp="1597956019111" />
-    <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598387079879">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1595156103739" />
-    <state x="0" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1598387079879" />
-    <state x="534" y="248" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597506640018">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="534" y="248" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1597506640018" />
-    <state width="570" height="525" key="DebuggerActiveHint" timestamp="1598441424727">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="570" height="525" key="DebuggerActiveHint/0.23.1680.1027@0.23.1680.1027" timestamp="1598441424727" />
-    <state width="1638" height="346" key="GridCell.Tab.0.bottom" timestamp="1602326962763">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1595424977462" />
-    <state width="1638" height="346" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962763" />
-    <state width="1638" height="346" key="GridCell.Tab.0.center" timestamp="1602326962763">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1595424977461" />
-    <state width="1638" height="346" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962763" />
-    <state width="1638" height="346" key="GridCell.Tab.0.left" timestamp="1602326962763">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1595424977461" />
-    <state width="1638" height="346" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962763" />
-    <state width="1638" height="346" key="GridCell.Tab.0.right" timestamp="1602326962763">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="182" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1595424977462" />
-    <state width="1638" height="346" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962763" />
-    <state width="1638" height="346" key="GridCell.Tab.1.bottom" timestamp="1602326962765">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
-    <state width="1638" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962765" />
-    <state width="1638" height="346" key="GridCell.Tab.1.center" timestamp="1602326962764">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
-    <state width="1638" height="346" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962764" />
-    <state width="1638" height="346" key="GridCell.Tab.1.left" timestamp="1602326962764">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1595159986544" />
-    <state width="1638" height="346" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962764" />
-    <state width="1638" height="346" key="GridCell.Tab.1.right" timestamp="1602326962764">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1398" height="286" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1595159986545" />
-    <state width="1638" height="346" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1602326962764" />
-    <state x="378" y="198" key="Maven.ArtifactSearchDialog" timestamp="1597755569853">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="378" y="198" key="Maven.ArtifactSearchDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1597755569853" />
-    <state x="391" y="193" key="NewModule_or_Project.wizard" timestamp="1597912675850">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="391" y="193" key="NewModule_or_Project.wizard/0.23.1680.1027@0.23.1680.1027" timestamp="1597912675850" />
-    <state x="221" y="63" key="SettingsEditor" timestamp="1595242336670">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="221" y="63" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1595242336670" />
-    <state x="375" y="231" key="Vcs.Push.Dialog.v2" timestamp="1598342402647">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="321" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1595427264113" />
-    <state x="375" y="231" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1598342402647" />
-    <state width="840" height="513" key="XDebugger.FullValuePopup" timestamp="1602235807275">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="840" height="513" key="XDebugger.FullValuePopup/0.23.1680.1027@0.23.1680.1027" timestamp="1602235807275" />
-    <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594916783537">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="339" y="79" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1594916783537" />
-    <state x="308" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602235103414">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="308" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.1027@0.23.1680.1027" timestamp="1602235103414" />
-    <state x="100" y="123" width="1480" height="827" key="dock-window-1" timestamp="1597655624678">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="100" y="123" width="1480" height="827" key="dock-window-1/0.23.1680.1027@0.23.1680.1027" timestamp="1597655624678" />
-    <state x="538" y="125" width="604" height="822" key="find.popup" timestamp="1597564320692">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="538" y="125" width="604" height="822" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1597564320692" />
-    <state x="232" y="145" key="new project wizard" timestamp="1601157249935">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="232" y="145" key="new project wizard/0.23.1680.1027@0.23.1680.1027" timestamp="1601157249935" />
-    <state x="657" y="282" key="refactoring.ChangeSignatureDialog" timestamp="1597614386608">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="657" y="282" key="refactoring.ChangeSignatureDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1597614386607" />
-    <state x="385" y="211" key="run.anything.popup" timestamp="1594481831763">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="385" y="211" key="run.anything.popup/0.23.1440.877@0.23.1440.877" timestamp="1594481831763" />
-    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup" timestamp="1602239188871">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1595154659039" />
-    <state x="449" y="245" width="782" height="792" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1602239188871" />
+    <MESSAGE value="Event objects are now checked to make sure that all the TZs they need are present in the calendar. and more" />
+    <option name="LAST_COMMIT_MESSAGE" value="Event objects are now checked to make sure that all the TZs they need are present in the calendar. and more" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -480,8 +326,7 @@
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
-        <PinnedItemInfo typeName="java.lang.Long" fieldName="value" />
-        <PinnedItemInfo typeName="com.bensiegler.calendarservice.models.dbmodels.DBCalendar" fieldName="id" />
+        <PinnedItemInfo />
       </pinned-members>
     </pin-to-top-manager>
   </component>
