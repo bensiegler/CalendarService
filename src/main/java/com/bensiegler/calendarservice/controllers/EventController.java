@@ -29,9 +29,14 @@ public class EventController {
     }
 
 
-    @GetMapping("/{calendarId}/{eventId}")
-    public Event getEventById(@PathVariable(name = "calendarId")String calendarId, @PathVariable(name = "eventId")String eventId) throws Exception {
+    @GetMapping("/{eventId}")
+    public Event getEventById(@PathVariable(name = "eventId")String eventId) throws Exception {
         return eventService.getEventById(eventId);
+    }
+
+    @DeleteMapping("/{eventId}")
+    public Event deleteEventById(@PathVariable(name = "eventId")String eventId) throws Exception {
+        return eventService.deleteEventById(eventId);
     }
 
 

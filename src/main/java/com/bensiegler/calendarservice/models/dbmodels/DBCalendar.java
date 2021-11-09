@@ -37,12 +37,8 @@ public class DBCalendar {
     @JoinColumn(name = "calendar_id")
     private Collection<DBEvent> DBEvents = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = DBParameter.class)
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = DBAlarm.class)
     @JoinColumn(name = "calendar_id")
-    private Collection<DBParameter> DBParameters = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = DBProperty.class)
-    @JoinColumn(name = "calendar_id")
-    private Collection<DBProperty> eventProperties = new ArrayList<>();
+    private Collection<DBAlarm> DBAlarms = new ArrayList<>();
 
 }

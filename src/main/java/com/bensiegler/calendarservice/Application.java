@@ -39,6 +39,7 @@ public class Application {
 
     public static void main(String[] args) throws PropertyException, CalObjectException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
         System.out.println(System.currentTimeMillis());
+        System.out.println(UUID.randomUUID());
         SpringApplication.run(Application.class, args);
 
 

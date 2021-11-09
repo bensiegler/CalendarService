@@ -6,7 +6,7 @@
 
     <groupId>com.bensiegler</groupId>
     <artifactId>CalendarService</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -86,9 +86,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.bensiegler</groupId>
-            <artifactId>CustomMathMethods</artifactId>
-            <version>1.0</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
 

@@ -31,7 +31,6 @@ public class AuthorityController {
     }
 
 
-
     @GetMapping("/auths")
     public Collection<? extends GrantedAuthority> getOwnAuthorities() {
         return AuthenticationFacade.getAuthentication().getAuthorities();

@@ -36,7 +36,6 @@ public abstract class StringParameter extends Parameter {
     }
 
 
-
     @Override
     public String toStringNoName() {
         return value;
@@ -45,7 +44,7 @@ public abstract class StringParameter extends Parameter {
     @Override
     public String toString() {
         String name = super.getName();
-        return name + "='" + value + "'";
+        return name + "=\"" + value + "\"";
     }
 
 }

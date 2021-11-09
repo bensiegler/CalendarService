@@ -19,9 +19,14 @@ public class TZIdentifierProperty extends Property {
         this.content = new TimeZoneIdentifier(country, city);
     }
 
-    public TZIdentifierProperty(ArrayList<UnknownParameter> extras, TimeZoneIdentifier content) {
+    public TZIdentifierProperty(ArrayList<UnknownParameter> extras, String timezone) {
         super("TZID", extras);
-        this.content = content;
+        setContentUsingString(timezone);
+    }
+
+    public TZIdentifierProperty(String timezone) {
+        super("TZID");
+        setContentUsingString(timezone);
     }
 
     public TimeZoneIdentifier getContent() {
@@ -30,6 +35,10 @@ public class TZIdentifierProperty extends Property {
 
     public void setContent(TimeZoneIdentifier content) {
         this.content = content;
+    }
+
+    public void setContent(String timezone) {
+        setContentUsingString(timezone);
     }
 
     @Override

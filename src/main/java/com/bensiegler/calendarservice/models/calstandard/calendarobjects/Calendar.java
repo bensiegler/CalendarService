@@ -13,21 +13,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.jca.context.SpringContextResourceAdapter;
-import org.springframework.orm.hibernate4.SpringSessionContext;
-import org.springframework.stereotype.Component;
 
-import javax.swing.text.IconView;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Data
-
 
 public class Calendar extends CalendarObject {
 
@@ -102,9 +91,9 @@ public class Calendar extends CalendarObject {
 
         for(Event e: events) {
             //Event TZID check
-            if(null != e.getTZID()) {
+            if(null != e.getTZIdentifierProperty()) {
                 try {
-                    String tzid = e.getTZID().getContent().toStringNoName();
+                    String tzid = e.getTZIdentifierProperty().getContent().toStringNoName();
                     if (!calendarTZIDs.contains(tzid)) {
                         timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
                         calendarTZIDs.add(tzid);
@@ -159,9 +148,9 @@ public class Calendar extends CalendarObject {
 
 
             //Event DateTimeEnd TZID check
-            if(null != e.getEnd()) {
+            if(null != e.getDateTimeEnd()) {
                 try {
-                    String tzid = e.getEnd().getTimeZoneIdentifier().toStringNoName();
+                    String tzid = e.getDateTimeEnd().getTimeZoneIdentifier().toStringNoName();
                     if (!calendarTZIDs.contains(tzid)) {
                         timeZones.add(timeZoneService.getTimeZoneByTZID(tzid));
                         calendarTZIDs.add(tzid);

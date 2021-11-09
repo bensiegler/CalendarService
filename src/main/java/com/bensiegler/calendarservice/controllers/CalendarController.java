@@ -7,7 +7,10 @@ import com.bensiegler.calendarservice.services.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -18,6 +21,7 @@ public class CalendarController {
 
     @Autowired
     CalendarService calendarService;
+
 
     @PreAuthorize("isGrantedViewAuthority(#calendarId)")
     @GetMapping("/{calendarId}")
@@ -68,7 +72,11 @@ public class CalendarController {
     }
 
     @GetMapping("/iCal/{calendarId}")
-    public String get_iCalendarStream(@PathVariable(name = "calendarId")String calendarId) throws Exception {
+    public String get_iCalendarStream(@PathVariable(name = "calendarId")String calendarId, @RequestHeader(name = "user-agent")String header) throws Exception {
+        HttpServletRequest request =
+                ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes())
+                        .getRequest();
+
         BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/bensiegler/Library/Mobile Documents/com~apple~CloudDocs/Documents/CodingShit/Tools/CalendarService/src/main/resources/calendarstreams/testCal"));
         String calStream = calendarService.getCalendarById(calendarId).retrieveCalStream();
 

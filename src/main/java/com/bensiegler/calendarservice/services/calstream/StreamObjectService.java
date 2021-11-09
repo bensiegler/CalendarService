@@ -50,7 +50,7 @@ public class StreamObjectService {
 
                 if (field.getType().equals(ArrayList.class)) {
                     //get the name of the field and use that to determine what object you need to create.
-                    if (field.getName().equalsIgnoreCase("attachment")) {
+                    if (field.getName().equalsIgnoreCase("Attachment")) {
                         addObjectToArrayListField(dbProperty, Attachment.class, parameters, field, obj);
                     } else if (field.getName().equalsIgnoreCase("Attendee")) {
                         addObjectToArrayListField(dbProperty, Attendee.class, parameters, field, obj);

@@ -1,21 +1,21 @@
 package com.bensiegler.calendarservice.models.dbmodels;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-@Table(name = "events")
-public class DBEvent {
+@Table(name = "alarms")
+public class DBAlarm {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -23,18 +23,14 @@ public class DBEvent {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
-    @Column(nullable = false)
-    private String name;
-
     @Column(nullable = false, name = "calendar_id")
     private String calendarId;
+
+    @Column(nullable = false, name = "event_id")
+    private String eventId;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = DBProperty.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "calendar_object_id")
     private Collection<DBProperty> properties = new ArrayList<>();
 
-    public DBEvent(String name, String calendarId) {
-        this.name = name;
-        this.calendarId = calendarId;
-    }
 }

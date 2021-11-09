@@ -1,6 +1,7 @@
 package com.bensiegler.calendarservice.models.calstandard.properties.relational;
 
 import com.bensiegler.calendarservice.exceptions.PropertyException;
+import com.bensiegler.calendarservice.models.calstandard.parameters.misc.RSVPExpectation;
 import com.bensiegler.calendarservice.models.calstandard.parameters.string.*;
 import com.bensiegler.calendarservice.models.calstandard.parameters.stringlist.DelegatedFrom;
 import com.bensiegler.calendarservice.models.calstandard.parameters.stringlist.DelegatedTo;
@@ -10,7 +11,7 @@ import com.bensiegler.calendarservice.models.calstandard.properties.Property;
 import java.util.ArrayList;
 
 public class Attendee extends Property {
-    private CalendarUserType cuType;
+    private CalendarUserType calendarUserType;
     private Member memberOf;
     private ParticipantRole participantRole;
     private ParticipantStatus participantStatus;
@@ -20,6 +21,7 @@ public class Attendee extends Property {
     private CommonName commonName;
     private DirectoryReference directoryReference;
     private Language language;
+    private RSVPExpectation rsvpExpectation;
     private String content;
 
     public Attendee() {
@@ -31,12 +33,12 @@ public class Attendee extends Property {
         this.content = content;
     }
 
-    public Attendee(ArrayList<UnknownParameter> extras, CalendarUserType cuType,
+    public Attendee(ArrayList<UnknownParameter> extras, CalendarUserType calendarUserType,
                     Member memberOf, ParticipantRole participantRole, ParticipantStatus participantStatus,
                     DelegatedTo delegatedTo, DelegatedFrom delegatedFrom, SentBy sentBy, CommonName commonName,
-                    DirectoryReference directoryReference, Language language, String content) {
+                    DirectoryReference directoryReference, Language language, RSVPExpectation rsvpExpectation, String content) {
         super("ATTENDEE", extras);
-        this.cuType = cuType;
+        this.calendarUserType = calendarUserType;
         this.memberOf = memberOf;
         this.participantRole = participantRole;
         this.participantStatus = participantStatus;
@@ -46,15 +48,16 @@ public class Attendee extends Property {
         this.commonName = commonName;
         this.directoryReference = directoryReference;
         this.language = language;
+        this.rsvpExpectation = rsvpExpectation;
         this.content = content;
     }
 
-    public CalendarUserType getCuType() {
-        return cuType;
+    public CalendarUserType getCalendarUserType() {
+        return calendarUserType;
     }
 
-    public void setCuType(CalendarUserType cuType) {
-        this.cuType = cuType;
+    public void setCalendarUserType(CalendarUserType calendarUserType) {
+        this.calendarUserType = calendarUserType;
     }
 
     public Member getMemberOf() {
@@ -119,6 +122,14 @@ public class Attendee extends Property {
 
     public void setDirectoryReference(DirectoryReference directoryReference) {
         this.directoryReference = directoryReference;
+    }
+
+    public RSVPExpectation getRsvpExpectation() {
+        return rsvpExpectation;
+    }
+
+    public void setRsvpExpectation(RSVPExpectation rsvpExpectation) {
+        this.rsvpExpectation = rsvpExpectation;
     }
 
     public Language getLanguage() {

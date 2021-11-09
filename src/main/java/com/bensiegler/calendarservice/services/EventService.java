@@ -6,6 +6,8 @@ import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Calenda
 import com.bensiegler.calendarservice.models.calstandard.calendarobjects.Event;
 import com.bensiegler.calendarservice.models.calstandard.parameters.Parameter;
 import com.bensiegler.calendarservice.models.calstandard.properties.Property;
+import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.Created;
+import com.bensiegler.calendarservice.models.calstandard.properties.changemanagement.LastModified;
 import com.bensiegler.calendarservice.models.calstandard.properties.relational.UID;
 import com.bensiegler.calendarservice.models.dbmodels.DBEvent;
 import com.bensiegler.calendarservice.models.dbmodels.DBParameter;
@@ -16,9 +18,9 @@ import com.bensiegler.calendarservice.repositories.EventRepo;
 import com.bensiegler.calendarservice.repositories.PropertyParameterRepo;
 import com.bensiegler.calendarservice.services.calstream.StreamObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -42,6 +44,9 @@ public class EventService {
 
     public Event saveEvent(Event event, String calendarId) throws CalObjectException, PropertyException {
         event.validate();
+
+        event.setCreated(new Created(System.currentTimeMillis()));
+        event.setLastModified(new LastModified(System.currentTimeMillis()));
 
         if(calendarRepo.findOne(calendarId) == null) {
             throw new CalObjectException("No calendar was found with that ID");
@@ -68,16 +73,32 @@ public class EventService {
     }
 
     public Event getEventById(String eventId) throws Exception {
+
         Event event = new Event();
 
         DBEvent dbEvent = eventRepo.findOne(eventId);
+
+        if(null == dbEvent) {
+            throw new CalObjectException("No event found with that ID");
+        }
+
         event.setUid(new UID(dbEvent.getId()));
-        ArrayList<DBProperty> properties = eventPropertyRepo.findByEventId(eventId);
-        ArrayList<DBParameter> parameters = propertyParameterRepo.findByEventId(eventId);
+        ArrayList<DBProperty> properties = eventPropertyRepo.findByCalendarObjectId(eventId);
 
         for(DBProperty property: properties) {
-            streamObjectService.mapPropertyOntoCalendarObject(property, parameters.stream(), event);
+            streamObjectService.mapPropertyOntoCalendarObject(property, property.getParameters().stream(), event);
         }
+
+        return event;
+    }
+
+    @Transactional
+    public Event deleteEventById(String eventId) throws Exception {
+        Event event = getEventById(eventId);
+
+        propertyParameterRepo.deleteByCalendarObjectId(eventId);
+        eventPropertyRepo.deleteByCalendarObjectId(eventId);
+        eventRepo.delete(eventId);
 
         return event;
     }
@@ -87,18 +108,23 @@ public class EventService {
             //save property
             DBProperty dbProperty = new DBProperty();
             dbProperty.setCalendarId(calendarId);
-            dbProperty.setEventId(eventId);
+            dbProperty.setCalendarObjectId(eventId);
             dbProperty.setContent(p.retrieveContentAsString());
             dbProperty.setName(p.getClass().getSimpleName());
+
             eventPropertyRepo.save(dbProperty);
 
             //save property parameters
             ArrayList<Parameter> propertyParameters = getPropertyParameters(p);
+
+            assert propertyParameters != null;
+
             ArrayList<DBParameter> dbParameters = parameterToDBParameter(propertyParameters,
                     calendarId, eventId, dbProperty.getId());
-            propertyParameterRepo.save(dbParameters);
-        }
 
+            propertyParameterRepo.save(dbParameters);
+
+        }
     }
 
     private ArrayList<Property> getProperties(CalendarObject calendarObject)  {
@@ -163,9 +189,8 @@ public class EventService {
 
         for(Parameter p: parameters) {
             DBParameter dbParameter = new DBParameter();
-            dbParameter.setCalendarId(calendarId);
-            dbParameter.setEventId(eventId);
             dbParameter.setPropertyId(propertyId);
+            dbParameter.setCalendarObjectId(eventId);
             dbParameter.setName(p.getClass().getSimpleName());
             dbParameter.setContent(p.toStringNoName());
             dbParameters.add(dbParameter);

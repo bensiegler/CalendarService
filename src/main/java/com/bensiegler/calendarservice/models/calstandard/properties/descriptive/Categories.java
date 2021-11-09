@@ -22,6 +22,12 @@ public class Categories extends Property {
         this.content = new ArrayList<>(Arrays.asList(categories));
     }
 
+    public Categories(ArrayList<String> content) {
+        super("CATEGORIES");
+        this.content = content;
+    }
+
+
     public Categories(ArrayList<UnknownParameter> extras, Language languageParam, ArrayList<String> content) {
         super("CATEGORIES", extras);
         this.languageParam = languageParam;

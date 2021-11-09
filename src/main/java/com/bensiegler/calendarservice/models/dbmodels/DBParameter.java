@@ -23,16 +23,16 @@ public class DBParameter {
     private String id;
 
     @NotNull
-    @Column(name = "calendar_id")
-    private String calendarId;
-    @NotNull
-    private String eventId;
+    @Column(name = "calendar_object_id")
+    private String calendarObjectId;
+
     @NotNull
     private String propertyId;
 
     @NotNull
     @Size(max = 200)
     private String name;
+
     @NotNull
     @Size(max = 1000)
     private String content;

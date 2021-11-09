@@ -20,7 +20,6 @@ import com.bensiegler.calendarservice.models.calstandard.properties.temporal.mis
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.misc.recurrence.Recurrence;
 import com.bensiegler.calendarservice.models.calstandard.properties.temporal.timezone.TZIdentifierProperty;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -70,19 +69,6 @@ public class Event extends CalendarObject{
     private UID uid = new UID();
     private DateTimeStamp dateTimeStamp = new DateTimeStamp();
 
-    public Event() {
-//        attachments.add(new Attachment());
-//        attendees.add(new Attendee());
-//        categories.add(new Categories());
-//        comments.add(new Comment());
-//        contacts.add(new Contact());
-//        exceptionsDates.add(new DateTimeExceptions());
-//        relationships.add(new RelatedTo());
-//        resources.add(new Resources());
-//        alarms.add(new Alarm());
-    }
-
-
     //required based on whether method is specified in parent
     private DateTimeStart dateTimeStart = new DateTimeStart();
 
@@ -102,11 +88,11 @@ public class Event extends CalendarObject{
     private URL url;
     private DateTimeRecurrenceID recurrenceID;
     private RecurrenceRule recurrenceRule;
-    private TZIdentifierProperty TZID;
+    private TZIdentifierProperty TZIdentifierProperty;
 
 
     //one or the other
-    private DateTimeEnd end;
+    private DateTimeEnd dateTimeEnd;
     private CustomDuration customDuration;
 
     //optional, more than once
@@ -136,12 +122,12 @@ public class Event extends CalendarObject{
         this.uid = uid;
     }
 
-    public TZIdentifierProperty getTZID() {
-        return TZID;
+    public TZIdentifierProperty getTZIdentifierProperty() {
+        return TZIdentifierProperty;
     }
 
-    public void setTZID(TZIdentifierProperty TZID) {
-        this.TZID = TZID;
+    public void setTZIdentifierProperty(TZIdentifierProperty TZIdentifierProperty) {
+        this.TZIdentifierProperty = TZIdentifierProperty;
     }
 
     public DateTimeStamp getDateTimeStamp() {
@@ -280,12 +266,12 @@ public class Event extends CalendarObject{
         this.recurrenceRule = recurrenceRule;
     }
 
-    public DateTimeEnd getEnd() {
-        return end;
+    public DateTimeEnd getDateTimeEnd() {
+        return dateTimeEnd;
     }
 
-    public void setEnd(DateTimeEnd end) {
-        this.end = end;
+    public void setDateTimeEnd(DateTimeEnd dateTimeEnd) {
+        this.dateTimeEnd = dateTimeEnd;
     }
 
     public CustomDuration getCustomDuration() {
@@ -422,7 +408,7 @@ public class Event extends CalendarObject{
             throw new CalObjectException("DateTimeStart is required for an Event");
         }
 
-        if(null != end && null != customDuration) {
+        if(null != dateTimeEnd && null != customDuration) {
             throw new CalObjectException("You can only specify either End or Duration. Not both at the same time.");
         }
 

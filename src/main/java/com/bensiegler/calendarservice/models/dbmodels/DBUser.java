@@ -23,7 +23,7 @@ public class DBUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 0 )
     private String username;
 
     @Column(nullable = false)

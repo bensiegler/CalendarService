@@ -48,7 +48,7 @@ public class StreamPropertyService {
 
             return property;
         }catch (NoSuchFieldException e) {
-            //dont do nothing
+            //don't do nothing
             return null;
         }
     }

@@ -146,20 +146,21 @@ public class CalendarService {
         }
 
         Calendar calendar = context.getBean(Calendar.class);
-        calendar.setProductIdentifier(new ProductIdentifier(AuthenticationFacade.getUserId()));
+        calendar.setProductIdentifier(new ProductIdentifier(dbCalendar.getOwnerId()));
         calendar.setName(dbCalendar.getName());
         calendar.setMethod(new Method("PUBLISH"));
         for(DBEvent e: dbCalendar.getDBEvents()) {
-            DBProperty[] properties = dbCalendar.getEventProperties().stream()
-                    .filter(property -> property.getEventId().equals(e.getId()))
+            DBProperty[] properties = e.getProperties().stream()
+                    .filter(property -> property.getCalendarObjectId().equals(e.getId()))
                     .toArray(DBProperty[]::new);
 
             Stream<DBParameter> stream;
 
             Event event = new Event();
             event.setUid(new UID(e.getId()));
+
             for(DBProperty property: properties) {
-                stream = dbCalendar.getDBParameters().stream();
+                stream = property.getParameters().stream();
                 streamObjectService.mapPropertyOntoCalendarObject(property, stream, event);
             }
 
